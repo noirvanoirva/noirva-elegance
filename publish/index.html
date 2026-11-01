@@ -229,6 +229,8 @@
     .admin-panel { display: none; min-height: calc(100vh - 160px); padding: 42px 20px 70px; }
     .admin-panel.active { display: block; }
     body.admin-mode > .announcement, body.admin-mode > .header, body.admin-mode > main, body.admin-mode > .footer { display: none; }
+    .store-sync-status { position: fixed; z-index: 40; right: 18px; bottom: 18px; max-width: min(440px, calc(100vw - 36px)); margin: 0; padding: 12px 16px; border: 1px solid var(--line); background: var(--white); color: var(--ink); font-size: 13px; box-shadow: 0 8px 30px rgba(0, 0, 0, .35); }
+    .store-sync-status[data-error="true"] { border-color: var(--gold); }
     .admin-container { max-width: 1000px; margin: 0 auto; }
     .admin-top { display: flex; align-items: center; justify-content: space-between; gap: 20px; margin-bottom: 28px; }
     .admin-top h1 { margin: 0; font-size: clamp(32px, 5vw, 46px); }
@@ -728,7 +730,28 @@
         <h1 id="admin-title">Administration</h1>
         <a class="admin-back" href="#accueil">← Retour à la boutique</a>
       </div>
-      <p class="admin-warning">Les modifications sont enregistrées dans ce navigateur uniquement. Cette page admin n'est pas protégée par mot de passe et ne synchronise pas les changements sur d'autres appareils. Pour une vraie boutique en ligne, il faudra la connecter à un hébergement et une base de données.</p>
+      <div class="admin-card" id="admin-access-card">
+        <h2>Accès propriétaire</h2>
+        <p class="image-help" id="admin-auth-message">Connectez-vous avec le compte Google autorisé pour gérer la boutique.</p>
+        <div class="admin-actions">
+          <button class="admin-button" id="admin-google-signin" type="button">Se connecter avec Google</button>
+          <button class="admin-button secondary" id="admin-google-signout" type="button" hidden>Se déconnecter</button>
+        </div>
+        <p class="admin-status" id="admin-auth-status" role="status" aria-live="polite"></p>
+        <div id="admin-bootstrap-help" hidden>
+          <p>Publiez d'abord le fichier <code>firestore.rules</code>. Puis, pour autoriser ce compte une seule fois, ajoutez un document dans Firestore &gt; <code>admins</code> avec cet UID comme identifiant. Le document peut contenir <code>enabled: true</code>. Revenez ensuite à cette page.</p>
+          <p>UID : <code id="admin-user-uid"></code></p>
+        </div>
+      </div>
+      <div class="admin-card" id="admin-publish-card" hidden>
+        <h2>Publier la boutique sur Firebase</h2>
+        <p class="image-help">Cette première publication envoie les données et photos de la boutique actuellement chargées dans ce navigateur vers le site public.</p>
+        <div class="admin-actions"><button class="admin-button" id="publish-store-data" type="button">Publier la boutique</button><p class="admin-status" id="publish-store-status" role="status"></p></div>
+      </div>
+      <div id="admin-sync-toolbar" hidden>
+        <p class="admin-status" id="admin-sync-status" role="status" aria-live="polite"></p>
+      </div>
+      <div id="admin-editor" hidden>
       <div class="admin-card">
         <h2>Sauvegarder la boutique</h2>
         <p class="image-help">Exportez les textes, collections, produits, photos et vidéos pour préparer une copie à publier.</p>
@@ -855,16 +878,22 @@
             <div class="admin-field"><label for="product-category">Collection</label><select id="product-category" name="categoryIndex" required></select></div>
             <div class="admin-field full"><label for="product-description">Description (sans limite de longueur)</label><textarea id="product-description" name="description" required></textarea></div>
             <div class="admin-field"><label for="product-image">Choisir plusieurs images depuis votre appareil</label><input id="product-image" name="imageFiles" type="file" accept="image/*" multiple><p class="image-help" id="image-help">Sélectionnez jusqu'à 6 images pour le produit. Sur ordinateur, gardez Ctrl appuyé pour en choisir plusieurs.</p><div class="image-previews" id="image-previews"></div></div>
-            <div class="admin-field"><label for="product-video">Vidéo du produit (facultative)</label><input id="product-video" name="video" type="file" accept="video/*"><p class="image-help">Choisissez une vidéo depuis votre appareil (maximum 50 Mo).</p><div id="product-video-preview"></div></div>
+            <div class="admin-field"><label>Vidéo du produit</label><p class="image-help">Les vidéos existantes restent hébergées sur GitHub. Pour ajouter une vidéo, il faut la publier manuellement avec les fichiers du site.</p><div id="product-video-preview"></div></div>
             <div class="admin-field"><label for="product-badge">Étiquette (facultatif)</label><input id="product-badge" name="badge" maxlength="30" placeholder="Nouveau"></div>
           </div>
           <div class="admin-actions"><button class="admin-button" type="submit">Enregistrer le produit</button><button class="admin-button secondary" id="cancel-edit" type="button" hidden>Annuler</button><p class="admin-status" id="product-status" role="status"></p></div>
         </form>
       </div>
+      </div>
     </div>
   </section>
+  <p class="store-sync-status" id="store-sync-status" role="status" aria-live="polite" hidden></p>
   <div class="cart-message" id="cart-message" role="status" aria-live="polite"></div>
 
+  <script src="https://www.gstatic.com/firebasejs/12.0.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/12.0.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore-compat.js"></script>
+  <script src="./firebase-config.js"></script>
   <script src="./store-data.js"></script>
   <script>
     const storageKey = "noirva-store-data";
@@ -922,6 +951,15 @@
     };
     if (window.NOIRVA_DEFAULT_STORE_DATA) Object.assign(defaultStoreData, structuredClone(window.NOIRVA_DEFAULT_STORE_DATA));
     let storeData = loadStoreData();
+    let firebaseAuth = null;
+    let firestore = null;
+    let adminUser = null;
+    let isStoreAdmin = false;
+    let hasStoreInFirestore = false;
+    let syncedMediaIds = new Set();
+    let adminDocumentUnsubscribe = null;
+    let storeSnapshotVersion = 0;
+    const firestoreImagePrefix = "firestore-image:";
     const translations = {
       fr: {
         language: "Langue", menu: "Ouvrir le menu", closeMenu: "Fermer le menu", cart: "Panier", cartItems: "{count} article(s)", emptyCart: "Votre panier est vide.",
@@ -1182,13 +1220,9 @@
       });
     }
 
-    function loadStoreData() {
-      const saved = localStorage.getItem(storageKey);
-      if (!saved) return structuredClone(defaultStoreData);
-      try {
-        const parsed = JSON.parse(saved);
-        if (!parsed || !parsed.settings || !Array.isArray(parsed.products)) throw new Error("Format invalide");
-        parsed.products = parsed.products.map((product) => ({
+    function normalizeStoreData(parsed) {
+      if (!parsed || !parsed.settings || !Array.isArray(parsed.products)) throw new Error("Format invalide");
+      parsed.products = parsed.products.map((product) => ({
           ...product,
           images: Array.isArray(product.images) && product.images.length ? product.images : product.image ? [product.image] : [],
           categoryIndex: Number.isInteger(product.categoryIndex) && product.categoryIndex >= 0 && product.categoryIndex < 3
@@ -1196,47 +1230,265 @@
             : (/montre/i.test(product.name) ? 0 : /sac/i.test(product.name) ? 1 : 2),
           oldPrice: product.oldPrice ? Number(product.oldPrice) : null,
           videoId: typeof product.videoId === "string" ? product.videoId : null
-        }));
-        const savedStoryImages = parsed.settings.storyImages;
-        const legacyStoryImage = parsed.settings.storyImage;
-        parsed.settings = {
-          ...defaultStoreData.settings,
-          ...parsed.settings,
-          theme: { ...defaultStoreData.settings.theme, ...(parsed.settings.theme || {}) },
-          visibility: { ...defaultStoreData.settings.visibility, ...(parsed.settings.visibility || {}) }
-        };
-        if ((!Array.isArray(savedStoryImages) || !savedStoryImages.length) && legacyStoryImage) {
-          parsed.settings.storyImages = [legacyStoryImage];
-        }
-        parsed.settings.categories = Array.isArray(parsed.settings.categories) && parsed.settings.categories.length === 3
-          ? parsed.settings.categories.map((category, index) => ({ ...defaultStoreData.settings.categories[index], ...category }))
-          : defaultStoreData.settings.categories.map((category) => ({ ...category }));
-        parsed.settings.values = Array.isArray(parsed.settings.values) && parsed.settings.values.length === 3
-          ? parsed.settings.values.map((value, index) => ({ ...defaultStoreData.settings.values[index], ...value }))
-          : defaultStoreData.settings.values.map((value) => ({ ...value }));
-        parsed.settings.storyImages = Array.isArray(parsed.settings.storyImages) && parsed.settings.storyImages.length
-          ? parsed.settings.storyImages
-          : defaultStoreData.settings.storyImages;
-        parsed.settings.sectionOrder = Array.isArray(parsed.settings.sectionOrder) && parsed.settings.sectionOrder.length === 4
-          && new Set(parsed.settings.sectionOrder).size === 4
-          && parsed.settings.sectionOrder.every((section) => defaultStoreData.settings.sectionOrder.includes(section))
-          ? parsed.settings.sectionOrder
-          : [...defaultStoreData.settings.sectionOrder];
-        return parsed;
+      }));
+      const savedStoryImages = parsed.settings.storyImages;
+      const legacyStoryImage = parsed.settings.storyImage;
+      parsed.settings = {
+        ...defaultStoreData.settings,
+        ...parsed.settings,
+        theme: { ...defaultStoreData.settings.theme, ...(parsed.settings.theme || {}) },
+        visibility: { ...defaultStoreData.settings.visibility, ...(parsed.settings.visibility || {}) }
+      };
+      if ((!Array.isArray(savedStoryImages) || !savedStoryImages.length) && legacyStoryImage) {
+        parsed.settings.storyImages = [legacyStoryImage];
+      }
+      parsed.settings.categories = Array.isArray(parsed.settings.categories) && parsed.settings.categories.length === 3
+        ? parsed.settings.categories.map((category, index) => ({ ...defaultStoreData.settings.categories[index], ...category }))
+        : defaultStoreData.settings.categories.map((category) => ({ ...category }));
+      parsed.settings.values = Array.isArray(parsed.settings.values) && parsed.settings.values.length === 3
+        ? parsed.settings.values.map((value, index) => ({ ...defaultStoreData.settings.values[index], ...value }))
+        : defaultStoreData.settings.values.map((value) => ({ ...value }));
+      parsed.settings.storyImages = Array.isArray(parsed.settings.storyImages) && parsed.settings.storyImages.length
+        ? parsed.settings.storyImages
+        : defaultStoreData.settings.storyImages;
+      parsed.settings.sectionOrder = Array.isArray(parsed.settings.sectionOrder) && parsed.settings.sectionOrder.length === 4
+        && new Set(parsed.settings.sectionOrder).size === 4
+        && parsed.settings.sectionOrder.every((section) => defaultStoreData.settings.sectionOrder.includes(section))
+        ? parsed.settings.sectionOrder
+        : [...defaultStoreData.settings.sectionOrder];
+      return parsed;
+    }
+
+    function loadStoreData() {
+      try {
+        const saved = localStorage.getItem(storageKey);
+        return saved ? normalizeStoreData(JSON.parse(saved)) : structuredClone(defaultStoreData);
       } catch (error) {
         console.error("Impossible de lire les données de la boutique.", error);
         return structuredClone(defaultStoreData);
       }
     }
 
-    function persistStoreData() {
+    function setStoreSyncStatus(message, isError = false) {
+      const status = document.querySelector("#store-sync-status");
+      status.textContent = message;
+      status.hidden = !message;
+      status.dataset.error = String(isError);
+    }
+
+    function updateAdminAccess() {
+      const signedIn = Boolean(adminUser);
+      const signInButton = document.querySelector("#admin-google-signin");
+      const signOutButton = document.querySelector("#admin-google-signout");
+      const authMessage = document.querySelector("#admin-auth-message");
+      const bootstrapHelp = document.querySelector("#admin-bootstrap-help");
+      const publishCard = document.querySelector("#admin-publish-card");
+      const editor = document.querySelector("#admin-editor");
+      const toolbar = document.querySelector("#admin-sync-toolbar");
+
+      signInButton.hidden = signedIn || !firebaseAuth;
+      signOutButton.hidden = !signedIn;
+      bootstrapHelp.hidden = !signedIn || isStoreAdmin;
+      publishCard.hidden = !isStoreAdmin || hasStoreInFirestore;
+      editor.hidden = !isStoreAdmin || !hasStoreInFirestore;
+      toolbar.hidden = !isStoreAdmin;
+
+      if (!firebaseAuth) {
+        authMessage.textContent = "Firebase n'est pas configuré. La boutique reste affichée, mais la connexion admin est indisponible.";
+      } else if (isStoreAdmin) {
+        authMessage.textContent = `Compte propriétaire connecté : ${adminUser.email || adminUser.uid}`;
+      } else if (signedIn) {
+        authMessage.textContent = "Ce compte Google n'est pas encore autorisé à modifier la boutique.";
+        document.querySelector("#admin-user-uid").textContent = adminUser.uid;
+      } else {
+        authMessage.textContent = "Connectez-vous avec le compte Google autorisé pour gérer la boutique.";
+      }
+    }
+
+    async function hashStoreImage(dataUrl) {
+      const bytes = new TextEncoder().encode(dataUrl);
+      const digest = await crypto.subtle.digest("SHA-256", bytes);
+      return Array.from(new Uint8Array(digest), (byte) => byte.toString(16).padStart(2, "0")).join("");
+    }
+
+    async function prepareStoreForFirestore() {
+      const prepared = structuredClone(storeData);
+      const media = new Map();
+      const referencedMediaIds = new Set();
+      const prepareImage = async (source) => {
+        if (typeof source !== "string" || !source.startsWith("data:image/")) return source;
+        if (new Blob([source]).size > 700 * 1024) {
+          throw new Error("Une photo dépasse la limite de 700 Ko. Choisissez une photo plus légère.");
+        }
+        const id = await hashStoreImage(source);
+        referencedMediaIds.add(id);
+        if (!syncedMediaIds.has(id)) media.set(id, source);
+        return `${firestoreImagePrefix}${id}`;
+      };
+
+      prepared.settings.coverImage = await prepareImage(prepared.settings.coverImage);
+      prepared.settings.storyImages = await Promise.all(prepared.settings.storyImages.map(prepareImage));
+      prepared.settings.categories = await Promise.all(prepared.settings.categories.map(async (category) => ({
+        ...category,
+        image: await prepareImage(category.image)
+      })));
+      prepared.products = await Promise.all(prepared.products.map(async (product) => ({
+        ...product,
+        images: await Promise.all(product.images.map(prepareImage))
+      })));
+
+      if (media.size > 490) throw new Error("La boutique contient trop de nouvelles photos à publier en une seule fois.");
+      return { data: prepared, media, referencedMediaIds };
+    }
+
+    async function resolveStoreImage(source, imageCache, mediaIds) {
+      if (typeof source !== "string" || !source.startsWith(firestoreImagePrefix)) return source;
+      const id = source.slice(firestoreImagePrefix.length);
+      if (!imageCache.has(id)) {
+        imageCache.set(id, firestore.collection("media").doc(id).get().then((snapshot) => {
+          const imageData = snapshot.data();
+          if (!snapshot.exists || typeof imageData?.dataUrl !== "string") {
+            throw new Error(`La photo ${id} est absente de Firebase.`);
+          }
+          mediaIds.add(id);
+          return imageData.dataUrl;
+        }));
+      }
+      return imageCache.get(id);
+    }
+
+    async function resolveStoreImages(data) {
+      const imageCache = new Map();
+      const mediaIds = new Set();
+      const resolved = structuredClone(data);
+      const resolveImage = (source) => resolveStoreImage(source, imageCache, mediaIds);
+      resolved.settings.coverImage = await resolveImage(resolved.settings.coverImage);
+      resolved.settings.storyImages = await Promise.all(resolved.settings.storyImages.map(resolveImage));
+      resolved.settings.categories = await Promise.all(resolved.settings.categories.map(async (category) => ({
+        ...category,
+        image: await resolveImage(category.image)
+      })));
+      resolved.products = await Promise.all(resolved.products.map(async (product) => ({
+        ...product,
+        images: await Promise.all(product.images.map(resolveImage))
+      })));
+      syncedMediaIds = mediaIds;
+      return resolved;
+    }
+
+    async function persistStoreData() {
       try {
-        localStorage.setItem(storageKey, JSON.stringify(storeData));
+        if (!firestore || !isStoreAdmin) throw new Error("Connectez-vous avec le compte propriétaire avant d'enregistrer.");
+        const { data, media, referencedMediaIds } = await prepareStoreForFirestore();
+        const storeRef = firestore.collection("storefront").doc("public");
+        const batch = firestore.batch();
+        media.forEach((dataUrl, id) => {
+          batch.set(firestore.collection("media").doc(id), { dataUrl, contentType: "image/jpeg" });
+        });
+        batch.set(storeRef, { ...data, updatedAt: firebase.firestore.FieldValue.serverTimestamp() });
+        await batch.commit();
+
+        const unusedMediaIds = [...syncedMediaIds].filter((id) => !referencedMediaIds.has(id));
+        syncedMediaIds = referencedMediaIds;
+        hasStoreInFirestore = true;
+        updateAdminAccess();
+        try {
+          localStorage.setItem(storageKey, JSON.stringify(storeData));
+        } catch (error) {
+          console.error("Impossible de mettre en cache les données synchronisées.", error);
+        }
+
+        let cleanupWarning = false;
+        for (let offset = 0; offset < unusedMediaIds.length; offset += 450) {
+          const cleanupBatch = firestore.batch();
+          unusedMediaIds.slice(offset, offset + 450).forEach((id) => {
+            cleanupBatch.delete(firestore.collection("media").doc(id));
+          });
+          try {
+            await cleanupBatch.commit();
+          } catch (error) {
+            console.error("Impossible de nettoyer les anciennes photos de Firebase.", error);
+            cleanupWarning = true;
+          }
+        }
+        const syncMessage = cleanupWarning
+          ? "Boutique synchronisée. Certaines anciennes photos n'ont pas pu être nettoyées."
+          : "Boutique synchronisée avec le site public.";
+        document.querySelector("#admin-sync-status").textContent = syncMessage;
+        setStoreSyncStatus(cleanupWarning ? syncMessage : "", cleanupWarning);
         return true;
       } catch (error) {
         console.error("Impossible d'enregistrer les données de la boutique.", error);
+        const message = error.message || "Impossible de synchroniser la boutique avec Firebase.";
+        document.querySelector("#admin-sync-status").textContent = message;
+        setStoreSyncStatus(message, true);
         return false;
       }
+    }
+
+    function initializeStoreSync() {
+      if (!window.noirvaFirebase) {
+        setStoreSyncStatus("Firebase n'est pas configuré. La boutique affiche sa version locale.", true);
+        updateAdminAccess();
+        return;
+      }
+
+      firebaseAuth = window.noirvaFirebase.auth;
+      firestore = window.noirvaFirebase.firestore;
+      updateAdminAccess();
+      firestore.collection("storefront").doc("public").onSnapshot(async (snapshot) => {
+        const version = ++storeSnapshotVersion;
+        hasStoreInFirestore = snapshot.exists;
+        updateAdminAccess();
+        if (!snapshot.exists) {
+          setStoreSyncStatus("");
+          return;
+        }
+        try {
+          const resolved = await resolveStoreImages(snapshot.data());
+          if (version !== storeSnapshotVersion) return;
+          storeData = normalizeStoreData(resolved);
+          try {
+            localStorage.setItem(storageKey, JSON.stringify(storeData));
+          } catch (error) {
+            console.error("Impossible de mettre en cache les données publiques de la boutique.", error);
+          }
+          renderStorefront();
+          if (isStoreAdmin) renderAdmin();
+          setStoreSyncStatus("");
+          updateAdminAccess();
+        } catch (error) {
+          console.error("Impossible de charger les données publiques de Firebase.", error);
+          setStoreSyncStatus(error.message || "Impossible de charger les données de la boutique.", true);
+        }
+      }, (error) => {
+        console.error("Impossible de suivre les mises à jour de la boutique.", error);
+        setStoreSyncStatus("Impossible de charger les mises à jour Firebase. La version locale reste affichée.", true);
+      });
+
+      firebaseAuth.onAuthStateChanged((user) => {
+        adminUser = user;
+        isStoreAdmin = false;
+        if (adminDocumentUnsubscribe) adminDocumentUnsubscribe();
+        updateAdminAccess();
+        if (!user) {
+          document.querySelector("#admin-auth-status").textContent = "";
+          return;
+        }
+        adminDocumentUnsubscribe = firestore.collection("admins").doc(user.uid).onSnapshot((snapshot) => {
+          isStoreAdmin = snapshot.exists && snapshot.data().enabled === true;
+          updateAdminAccess();
+          if (isStoreAdmin && hasStoreInFirestore) renderAdmin();
+          if (isStoreAdmin) {
+            document.querySelector("#admin-auth-status").textContent = "";
+          } else {
+            document.querySelector("#admin-auth-status").textContent = "Ajoutez l'UID ci-dessus dans la collection admins de Firestore pour activer l'administration.";
+          }
+        }, (error) => {
+          console.error("Impossible de vérifier les autorisations du propriétaire.", error);
+          document.querySelector("#admin-auth-status").textContent = "تعذر التحقق من صلاحيات المدير. تحقق من قواعد Firestore.";
+        });
+      });
     }
 
     function readFileAsDataUrl(file) {
@@ -1746,10 +1998,11 @@
     }
 
     function setAdminMode() {
-      const isAdmin = window.location.hash === "#admin";
-      document.body.classList.toggle("admin-mode", isAdmin);
-      document.querySelector("#admin-panel").classList.toggle("active", isAdmin);
-      if (isAdmin) renderAdmin();
+      const isAdminRoute = window.location.hash === "#admin";
+      document.body.classList.toggle("admin-mode", isAdminRoute);
+      document.querySelector("#admin-panel").classList.toggle("active", isAdminRoute);
+      updateAdminAccess();
+      if (isAdminRoute && isStoreAdmin && hasStoreInFirestore) renderAdmin();
     }
 
     function renderAdmin() {
@@ -1966,7 +2219,6 @@
       form.elements.oldPrice.value = product.oldPrice || "";
       form.elements.badge.value = product.badge;
       draftProductImages = [...product.images];
-      draftProductVideo = null;
       draftProductVideoRemoved = false;
       draftExistingProductVideoId = product.videoId || null;
       renderImagePreviews();
@@ -1983,7 +2235,6 @@
       form.elements.id.value = "";
       form.elements.categoryIndex.value = "0";
       draftProductImages = [];
-      draftProductVideo = null;
       draftProductVideoRemoved = false;
       draftExistingProductVideoId = null;
       if (productVideoPreviewUrl) URL.revokeObjectURL(productVideoPreviewUrl);
@@ -2031,7 +2282,6 @@
       remove.className = "admin-button secondary";
       remove.textContent = "Retirer la vidéo";
       remove.addEventListener("click", async () => {
-        draftProductVideo = null;
         draftProductVideoRemoved = true;
         await renderProductVideoPreview();
         document.querySelector("#product-status").textContent = "Vidéo retirée. Enregistrez le produit pour appliquer.";
@@ -2121,12 +2371,12 @@
       });
     }
 
-    function removeProduct(id) {
+    async function removeProduct(id) {
       const product = storeData.products.find((item) => item.id === id);
       if (!product || !window.confirm(`Supprimer « ${product.name} » ?`)) return;
       const previousProducts = storeData.products;
       storeData.products = storeData.products.filter((item) => item.id !== id);
-      if (!persistStoreData()) {
+      if (!(await persistStoreData())) {
         storeData.products = previousProducts;
         document.querySelector("#product-status").textContent = "Erreur : impossible d'enregistrer. Vérifiez l'espace disponible.";
         return;
@@ -2662,7 +2912,7 @@
       }
     });
 
-    document.querySelector("#categories-form").addEventListener("submit", (event) => {
+    document.querySelector("#categories-form").addEventListener("submit", async (event) => {
       event.preventDefault();
       const form = event.currentTarget;
       const status = document.querySelector("#categories-status");
@@ -2677,7 +2927,7 @@
         name: names[index],
         image: draftCategoryImages[index]
       }));
-      if (!persistStoreData()) {
+      if (!(await persistStoreData())) {
         storeData.settings.categories = previousCategories;
         status.textContent = "Erreur : impossible d'enregistrer les collections. Vérifiez l'espace disponible.";
         return;
@@ -2686,7 +2936,7 @@
       status.textContent = "Collections enregistrées.";
     });
 
-    document.querySelector("#values-form").addEventListener("submit", (event) => {
+    document.querySelector("#values-form").addEventListener("submit", async (event) => {
       event.preventDefault();
       const form = event.currentTarget;
       const status = document.querySelector("#values-status");
@@ -2702,7 +2952,7 @@
         title: titles[index],
         description: descriptions[index]
       }));
-      if (!persistStoreData()) {
+      if (!(await persistStoreData())) {
         storeData.settings.values = previousValues;
         status.textContent = "Erreur : impossible d'enregistrer les engagements.";
         return;
@@ -2711,7 +2961,7 @@
       status.textContent = "Engagements enregistrés.";
     });
 
-    document.querySelector("#theme-form").addEventListener("submit", (event) => {
+    document.querySelector("#theme-form").addEventListener("submit", async (event) => {
       event.preventDefault();
       const form = event.currentTarget;
       const status = document.querySelector("#theme-status");
@@ -2721,7 +2971,7 @@
         Object.keys(themeProperties).map((key) => [key, form.elements[key].value])
       );
       storeData.settings.animations = form.elements.animations.checked;
-      if (!persistStoreData()) {
+      if (!(await persistStoreData())) {
         storeData.settings.theme = previousTheme;
         storeData.settings.animations = previousAnimations;
         status.textContent = "Erreur : impossible d'enregistrer le thème.";
@@ -2731,7 +2981,7 @@
       status.textContent = "Couleurs et animations enregistrées.";
     });
 
-    document.querySelector("#layout-form").addEventListener("submit", (event) => {
+    document.querySelector("#layout-form").addEventListener("submit", async (event) => {
       event.preventDefault();
       const form = event.currentTarget;
       const status = document.querySelector("#layout-status");
@@ -2751,7 +3001,7 @@
         ...sectionKeys.map((key) => [key, form.elements[`visible-${key}`].checked]),
         ["values", form.elements["visible-values"].checked]
       ]);
-      if (!persistStoreData()) {
+      if (!(await persistStoreData())) {
         storeData.settings.sectionOrder = previousOrder;
         storeData.settings.visibility = previousVisibility;
         status.textContent = "Erreur : impossible d'enregistrer la disposition.";
@@ -2761,7 +3011,7 @@
       status.textContent = "Disposition enregistrée.";
     });
 
-    document.querySelector("#settings-form").addEventListener("submit", (event) => {
+    document.querySelector("#settings-form").addEventListener("submit", async (event) => {
       event.preventDefault();
       const form = event.currentTarget;
       const whatsapp = form.elements.whatsapp.value.trim();
@@ -2788,7 +3038,7 @@
         whatsapp,
         instagram
       };
-      if (!persistStoreData()) {
+      if (!(await persistStoreData())) {
         storeData.settings = previousSettings;
         status.textContent = "Erreur : impossible d'enregistrer les changements.";
         return;
@@ -2797,7 +3047,7 @@
       status.textContent = "Changements enregistrés.";
     });
 
-    document.querySelector("#story-form").addEventListener("submit", (event) => {
+    document.querySelector("#story-form").addEventListener("submit", async (event) => {
       event.preventDefault();
       const form = event.currentTarget;
       const previousSettings = { ...storeData.settings };
@@ -2810,7 +3060,7 @@
         storyLinkTarget: form.elements.linkTarget.value
       };
       const status = document.querySelector("#story-status");
-      if (!persistStoreData()) {
+      if (!(await persistStoreData())) {
         storeData.settings = previousSettings;
         status.textContent = "Erreur : impossible d'enregistrer le texte de cette section.";
         return;
@@ -2856,7 +3106,7 @@
       }
     });
 
-    document.querySelector("#story-image-form").addEventListener("submit", (event) => {
+    document.querySelector("#story-image-form").addEventListener("submit", async (event) => {
       event.preventDefault();
       const status = document.querySelector("#story-image-status");
       if (!draftStoryImages.length) {
@@ -2866,7 +3116,7 @@
       const previousImages = storeData.settings.storyImages;
       storeData.settings.storyImages = [...draftStoryImages];
       storyImageIndex = 0;
-      if (!persistStoreData()) {
+      if (!(await persistStoreData())) {
         storeData.settings.storyImages = previousImages;
         status.textContent = "Erreur : impossible d'enregistrer les photos. Vérifiez l'espace disponible.";
         return;
@@ -2911,7 +3161,7 @@
         const coverImage = await resizeImage(file);
         const previousCover = storeData.settings.coverImage;
         storeData.settings.coverImage = coverImage;
-        if (!persistStoreData()) {
+        if (!(await persistStoreData())) {
           storeData.settings.coverImage = previousCover;
           status.textContent = "Erreur : impossible d'enregistrer la couverture. Vérifiez l'espace disponible.";
           return;
@@ -2946,20 +3196,12 @@
       const previousProducts = storeData.products;
       const previousProduct = existingIndex >= 0 ? storeData.products[existingIndex] : null;
       const oldVideoId = previousProduct?.videoId || null;
-      let videoId = oldVideoId;
-      let newVideoId = null;
+      const videoId = draftProductVideoRemoved ? null : oldVideoId;
       let cleanupWarning = false;
       const saveButton = form.querySelector('button[type="submit"]');
       saveButton.disabled = true;
       status.textContent = "Enregistrement du produit...";
       try {
-        if (draftProductVideo) {
-          newVideoId = `product-video-${id}-${Date.now()}-${Math.random().toString(36).slice(2)}`;
-          await saveProductVideo(newVideoId, draftProductVideo);
-          videoId = newVideoId;
-        } else if (draftProductVideoRemoved) {
-          videoId = null;
-        }
         const product = {
           id,
           name: form.elements.name.value.trim(),
@@ -2974,9 +3216,8 @@
         storeData.products = existingIndex >= 0
           ? storeData.products.map((item) => item.id === id ? product : item)
           : [...storeData.products, product];
-        if (!persistStoreData()) {
+        if (!(await persistStoreData())) {
           storeData.products = previousProducts;
-          if (newVideoId) await deleteProductVideo(newVideoId);
           status.textContent = "Erreur : impossible d'enregistrer le produit.";
           return;
         }
@@ -2989,13 +3230,6 @@
           }
         }
       } catch (error) {
-        if (newVideoId) {
-          try {
-            await deleteProductVideo(newVideoId);
-          } catch (cleanupError) {
-            console.error("Impossible de supprimer la vidéo temporaire.", cleanupError);
-          }
-        }
         storeData.products = previousProducts;
         console.error("Impossible d'enregistrer le produit ou sa vidéo.", error);
         status.textContent = error.message;
@@ -3009,28 +3243,6 @@
       status.textContent = cleanupWarning
         ? "Produit enregistré, mais l'ancienne vidéo n'a pas pu être supprimée."
         : "Produit enregistré.";
-    });
-
-    document.querySelector("#product-video").addEventListener("change", async (event) => {
-      const input = event.currentTarget;
-      const file = input.files[0];
-      const status = document.querySelector("#product-status");
-      status.textContent = "";
-      if (!file) return;
-      if (!file.type.startsWith("video/")) {
-        input.value = "";
-        status.textContent = "Choisissez un fichier vidéo valide.";
-        return;
-      }
-      if (file.size > 50 * 1024 * 1024) {
-        input.value = "";
-        status.textContent = "La vidéo dépasse 50 Mo. Choisissez une vidéo plus légère.";
-        return;
-      }
-      draftProductVideo = file;
-      draftProductVideoRemoved = false;
-      await renderProductVideoPreview();
-      status.textContent = "Vidéo prête. Enregistrez le produit pour la publier.";
     });
 
     document.querySelector("#product-image").addEventListener("change", async (event) => {
@@ -3082,10 +3294,54 @@
       }
       renderStorefront();
     });
+    document.querySelector("#admin-google-signin").addEventListener("click", async () => {
+      const status = document.querySelector("#admin-auth-status");
+      if (!firebaseAuth) {
+        status.textContent = "Firebase n'est pas configuré.";
+        return;
+      }
+      const button = document.querySelector("#admin-google-signin");
+      button.disabled = true;
+      status.textContent = "Connexion à Google...";
+      try {
+        await firebaseAuth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+      } catch (error) {
+        console.error("Impossible de se connecter avec Google.", error);
+        status.textContent = error.message || "La connexion Google a échoué.";
+      } finally {
+        button.disabled = false;
+      }
+    });
+    document.querySelector("#admin-google-signout").addEventListener("click", async () => {
+      try {
+        await firebaseAuth.signOut();
+      } catch (error) {
+        console.error("Impossible de se déconnecter.", error);
+        document.querySelector("#admin-auth-status").textContent = error.message;
+      }
+    });
+    document.querySelector("#publish-store-data").addEventListener("click", async (event) => {
+      const button = event.currentTarget;
+      const status = document.querySelector("#publish-store-status");
+      button.disabled = true;
+      status.textContent = "Publication des produits et photos...";
+      try {
+        if (await persistStoreData()) {
+          renderStorefront();
+          renderAdmin();
+          status.textContent = "La boutique est publiée et synchronisée avec le site public.";
+        } else {
+          status.textContent = document.querySelector("#admin-sync-status").textContent;
+        }
+      } finally {
+        button.disabled = false;
+      }
+    });
     window.addEventListener("hashchange", setAdminMode);
     renderStorefront();
     setAdminMode();
     document.querySelector("#year").textContent = String(new Date().getFullYear());
+    initializeStoreSync();
   </script>
 </body>
 </html>
