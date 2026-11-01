@@ -1,0 +1,3091 @@
+<!doctype html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Noirva Elegance">
+  <link rel="manifest" href="./site.webmanifest">
+  <link rel="icon" href="./noirva-icon.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#111110">
+  <meta name="description" content="Noirva Elegance — une sélection raffinée de montres, sacs et accessoires pour chaque occasion.">
+  <title>Noirva Elegance — L'élégance, naturellement</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: dark;
+      --ink: #f4efe6;
+      --muted: #a7a19a;
+      --paper: #111110;
+      --white: #191817;
+      --line: #39332e;
+      --gold: #e87535;
+      --hero-surface: #191817;
+      --category-surface: #29231f;
+      --story-surface: #191817;
+      --image-surface: #211e1b;
+      --footer-text: #f4efe6;
+      --footer-muted: #a7a19a;
+      --serif: "Playfair Display", Georgia, serif;
+      --sans: "DM Sans", Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    button { color: inherit; font: inherit; }
+    :focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+    .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+    .announcement { padding: 10px 20px; background: var(--ink); color: var(--footer-text); text-align: center; font-size: 10px; letter-spacing: .17em; text-transform: uppercase; }
+    .header { position: sticky; z-index: 10; top: 0; background: color-mix(in srgb, var(--paper) 94%, transparent); backdrop-filter: blur(14px); border-bottom: 1px solid color-mix(in srgb, var(--ink) 7%, transparent); }
+    .nav { max-width: 1240px; height: 78px; margin: auto; padding: 0 38px; display: flex; align-items: center; justify-content: space-between; }
+    .brand { font-family: var(--serif); font-size: 25px; letter-spacing: .08em; white-space: nowrap; }
+    .brand span { display: block; margin-top: 2px; font-family: var(--sans); font-size: 8px; letter-spacing: .36em; text-align: center; text-transform: uppercase; }
+    .nav-links { display: flex; align-items: center; gap: 36px; font-size: 11px; letter-spacing: .11em; text-transform: uppercase; }
+    .nav-links a, .text-link { transition: color .2s ease; }
+    .nav-links a { position: relative; padding: 10px 0; }
+    .nav-links a::after { position: absolute; right: 0; bottom: 3px; left: 0; height: 1px; background: var(--gold); content: ""; transform: scaleX(0); transform-origin: left; transition: transform .2s ease; }
+    .nav-links a:hover::after, .nav-links a:focus-visible::after { transform: scaleX(1); }
+    .nav-links a:hover, .text-link:hover { color: var(--gold); }
+    .nav-tools { display: flex; align-items: center; gap: 20px; }
+    .cart { min-height: 42px; display: inline-flex; align-items: center; gap: 8px; padding: 0 13px; border: 1px solid var(--line); background: transparent; cursor: pointer; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; transition: border-color .2s ease, color .2s ease; }
+    .cart:hover { border-color: var(--gold); color: var(--gold); }
+    .cart svg { width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.5; }
+    .language-picker { display: flex; align-items: center; }
+    .language-picker label { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+    .language-picker select { min-height: 40px; padding: 0 25px 0 10px; border: 1px solid var(--line); background: transparent; color: var(--ink); font: inherit; font-size: 11px; cursor: pointer; }
+    .menu-toggle { display: none; border: 0; background: none; font-size: 20px; cursor: pointer; }
+    .hero { max-width: 1440px; min-height: 600px; margin: 0 auto; padding: 34px 38px 68px; }
+    .hero-inner { position: relative; display: grid; grid-template-columns: 48% 52%; min-height: 550px; overflow: hidden; background: var(--hero-surface); box-shadow: 0 24px 70px rgba(34, 33, 31, .08); }
+    .hero-copy { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: 70px clamp(35px, 7vw, 105px); }
+    .eyebrow { margin: 0 0 22px; color: var(--gold); font-size: 10px; font-weight: 600; letter-spacing: .23em; text-transform: uppercase; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { max-width: 480px; margin-bottom: 20px; font-family: var(--serif); font-size: clamp(42px, 5vw, 68px); font-weight: 400; line-height: 1.08; }
+    .hero-copy > p:not(.eyebrow) { max-width: 350px; margin-bottom: 32px; color: #66615a; font-size: 14px; line-height: 1.9; }
+    .button { display: inline-flex; min-height: 48px; align-items: center; justify-content: center; padding: 0 25px; border: 1px solid var(--ink); background: var(--ink); color: var(--white); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; transition: background .2s ease, color .2s ease; }
+    .button:hover { background: transparent; color: var(--ink); }
+    .hero-image { min-height: 550px; background-color: var(--image-surface); background-position: center 42%; background-size: cover; background-repeat: no-repeat; }
+    .hero-note { position: absolute; right: 22px; bottom: 22px; padding: 11px 15px; background: rgba(248, 246, 241, .9); font-size: 9px; letter-spacing: .13em; text-transform: uppercase; }
+    html[dir="rtl"] body { direction: rtl; }
+    html[dir="rtl"] .hero-note { right: auto; left: 22px; }
+    html[dir="rtl"] .service-item { text-align: right; }
+    html[dir="rtl"] .service-item + .service-item { border-left: 0; border-right: 1px solid var(--line); }
+    html[dir="rtl"] .hero-copy { padding-right: clamp(32px, 9vw, 140px); padding-left: 0; }
+    html[dir="rtl"] .hero-inner::after { background: linear-gradient(270deg, rgba(10, 10, 9, .88) 0%, rgba(10, 10, 9, .58) 44%, rgba(10, 10, 9, .1) 100%), linear-gradient(0deg, rgba(10, 10, 9, .38), transparent 38%); }
+    html[dir="rtl"] .gallery-controls button svg,
+    html[dir="rtl"] [data-zoom-action] svg { transform: scaleX(-1); }
+    .service-strip { max-width: 1164px; margin: 0 auto; padding: 24px 38px; display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .service-item { display: flex; align-items: center; justify-content: center; gap: 12px; padding: 5px 16px; text-align: left; }
+    .service-item + .service-item { border-left: 1px solid var(--line); }
+    .service-number { color: var(--gold); font-family: var(--serif); font-size: 20px; }
+    .service-item span:last-child { font-size: 10px; letter-spacing: .08em; text-transform: uppercase; }
+    .no-animations *, .no-animations *::before, .no-animations *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+    .hero-copy > * { animation: hero-enter .7s both; }
+    .hero-copy > :nth-child(2) { animation-delay: .1s; }
+    .hero-copy > :nth-child(3) { animation-delay: .2s; }
+    .hero-copy > :nth-child(4) { animation-delay: .3s; }
+    .hero-image { animation: hero-image-enter 1s .12s both; }
+    .hero-note { animation: hero-enter .7s .45s both; }
+    @keyframes hero-enter { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes hero-image-enter { from { opacity: 0; transform: scale(1.035); } to { opacity: 1; transform: scale(1); } }
+    .section { max-width: 1240px; margin: auto; padding: 78px 38px; }
+    .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 20px; margin-bottom: 30px; }
+    .section-heading .eyebrow { margin-bottom: 10px; }
+    h2 { margin-bottom: 0; font-family: var(--serif); font-size: clamp(32px, 4vw, 45px); font-weight: 400; }
+    .text-link { padding-bottom: 5px; border-bottom: 1px solid var(--gold); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; white-space: nowrap; }
+    .categories { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 18px; }
+    .category { position: relative; min-height: 370px; overflow: hidden; background: var(--category-surface); }
+    .category img { width: 100%; height: 100%; min-height: 370px; display: block; object-fit: cover; transition: transform .6s ease; }
+    .category:hover img { transform: scale(1.04); }
+    .category::after { position: absolute; inset: 35% 0 0; background: linear-gradient(transparent, rgba(0, 0, 0, .48)); content: ""; }
+    .category-label { position: absolute; z-index: 1; right: 25px; bottom: 24px; left: 25px; display: flex; align-items: end; justify-content: space-between; color: white; }
+    .category-label h3 { margin: 0; font-family: var(--serif); font-size: 30px; font-weight: 400; }
+    .category-label span { font-size: 19px; }
+    .products-section { background: var(--white); }
+    .products-section .section { padding-top: 78px; padding-bottom: 88px; }
+    .product-browser { display: grid; gap: 18px; margin-bottom: 30px; }
+    .product-filters { display: flex; flex-wrap: wrap; gap: 9px; padding-bottom: 15px; border-bottom: 1px solid var(--line); }
+    .product-filter { min-height: 40px; padding: 0 16px; border: 1px solid var(--line); border-radius: 999px; background: transparent; color: var(--muted); cursor: pointer; font-size: 11px; transition: background .2s ease, border-color .2s ease, color .2s ease; }
+    .product-filter:hover, .product-filter[aria-pressed="true"] { border-color: var(--ink); background: var(--ink); color: var(--white); }
+    .product-toolbar, .product-query-controls { display: flex; align-items: center; gap: 12px; }
+    .product-toolbar { justify-content: space-between; }
+    .product-query-controls { flex: 1; }
+    .product-search { flex: 1; }
+    .product-search input, .product-sort select { width: 100%; min-height: 44px; padding: 0 13px; border: 1px solid var(--line); border-radius: 0; background: var(--white); color: var(--ink); font: 12px var(--sans); }
+    .product-search input { max-width: 360px; }
+    .product-sort { width: 200px; flex: 0 0 auto; }
+    .product-count { margin: 0; color: var(--muted); font-size: 11px; white-space: nowrap; }
+    .products { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 22px; }
+    .product { min-width: 0; }
+    .product-image { position: relative; overflow: hidden; background: var(--category-surface); aspect-ratio: 4 / 4.8; }
+    .product-image img { width: 100%; height: 100%; display: block; object-fit: cover; transition: transform .5s ease; }
+    .product:hover .product-image img { transform: scale(1.04); }
+    .product-image img { cursor: zoom-in; }
+    .product-image-zoom { position: fixed; inset: 0; width: min(96vw, 1100px); max-width: none; max-height: 94vh; margin: auto; padding: 46px 24px 24px; overflow: hidden; border: 0; background: rgba(18, 17, 16, .97); color: white; }
+    .product-image-zoom::backdrop { background: rgba(0, 0, 0, .82); }
+    .product-image-zoom[open] { display: grid; grid-template-rows: minmax(0, 1fr) auto; }
+    .product-zoom-stage { position: relative; min-height: 0; overflow: hidden; display: grid; place-items: center; cursor: zoom-out; }
+    .product-zoom-image { max-width: 100%; max-height: calc(94vh - 100px); object-fit: contain; transform: scale(1); transform-origin: center; cursor: zoom-in; transition: transform .32s cubic-bezier(.2,.75,.25,1); will-change: transform; }
+    .product-zoom-image.is-detail { transform: scale(1.6); cursor: zoom-out; }
+    .product-zoom-caption { padding-top: 14px; text-align: center; font-size: 12px; letter-spacing: .06em; }
+    .product-zoom-button { position: absolute; z-index: 2; min-width: 42px; min-height: 42px; border: 1px solid rgba(255,255,255,.35); background: rgba(0,0,0,.55); color: white; cursor: pointer; }
+    .product-zoom-close { top: 8px; right: 8px; font-size: 24px; }
+    .product-zoom-previous { top: 50%; left: 8px; transform: translateY(-50%); }
+    .product-zoom-next { top: 50%; right: 8px; transform: translateY(-50%); }
+    .product-zoom-button[hidden] { display: none; }
+    .product-video-panel { position: relative; overflow: hidden; background: #111; aspect-ratio: 4 / 4.8; }
+    .product-video-panel video { width: 100%; height: 100%; display: block; object-fit: contain; }
+    .product-video-toggle, .product-video-return { position: absolute; z-index: 2; right: 10px; bottom: 10px; padding: 9px 12px; border: 0; background: rgba(255, 254, 250, .94); color: var(--ink); cursor: pointer; font-size: 10px; }
+    .product-video-return { top: 10px; right: auto; bottom: auto; left: 10px; }
+    .product-video-sound { position: absolute; z-index: 2; top: 10px; right: 10px; padding: 9px 12px; border: 0; background: rgba(255, 254, 250, .94); color: var(--ink); cursor: pointer; font-size: 10px; }
+    .product-video-toggle[hidden], .product-video-panel[hidden] { display: none; }
+    .gallery-controls { position: absolute; right: 10px; bottom: 10px; left: 10px; display: flex; align-items: center; justify-content: space-between; pointer-events: none; }
+    .gallery-controls button, .gallery-controls span { min-width: 30px; min-height: 30px; display: grid; place-items: center; border: 0; background: rgba(255, 254, 250, .92); color: var(--ink); font-size: 11px; pointer-events: auto; }
+    .gallery-controls[hidden] { display: none; }
+    .gallery-controls button { cursor: pointer; }
+    .gallery-controls span { margin: 0 auto; padding: 0 8px; }
+    .badge { position: absolute; top: 13px; left: 13px; padding: 7px 9px; background: var(--white); font-size: 8px; letter-spacing: .12em; text-transform: uppercase; }
+    .product-info { min-height: 240px; display: flex; flex-direction: column; align-items: stretch; justify-content: space-between; gap: 10px; padding-top: 14px; }
+    .product-info > div:first-child { display: flex; flex: 1; flex-direction: column; align-items: flex-start; }
+    .product-info h3 { margin: 0 0 7px; font-size: 13px; font-weight: 500; line-height: 1.45; }
+    .product-info p { margin: 0; color: var(--muted); font-size: 11px; line-height: 1.65; white-space: pre-line; }
+    .product-info p:not(.product-price) { display: -webkit-box; overflow: hidden; -webkit-box-orient: vertical; -webkit-line-clamp: 3; }
+    .product-price { display: flex; flex-direction: row; align-items: baseline; gap: 8px; color: var(--ink) !important; white-space: nowrap; }
+    .product-old-price { color: var(--muted); font-size: 10px; text-decoration: line-through; }
+    .product-current-price { font-size: 12px; font-weight: 500; }
+    .buy-now-button { width: 100%; min-height: 46px; margin-top: auto; padding: 0 12px; border: 1px solid #16844a; background: #16844a; color: white; cursor: pointer; font-size: 10px; font-weight: 600; letter-spacing: .1em; text-align: center; text-transform: uppercase; transition: background .2s ease, border-color .2s ease; }
+    .buy-now-button:hover { border-color: #116b3b; background: #116b3b; }
+    .add-button { width: 100%; min-height: 42px; margin-top: auto; padding: 0 12px; border: 1px solid var(--ink); background: transparent; color: var(--ink); cursor: pointer; font-size: 9px; letter-spacing: .1em; text-align: center; text-transform: uppercase; transition: background .2s ease, color .2s ease, border-color .2s ease; }
+    .add-button:hover { border-color: var(--ink); background: var(--ink); color: var(--white); }
+    .cart-dialog { position: fixed; inset: 0 0 0 auto; width: min(100%, 460px); height: 100vh; height: 100dvh; max-width: none; max-height: none; margin: 0; padding: 26px; overflow-y: auto; overscroll-behavior: contain; border: 0; border-left: 1px solid var(--line); background: var(--paper); color: var(--ink); transform: translateX(100%); transition: transform .28s ease; }
+    .cart-dialog::backdrop { background: rgba(0, 0, 0, 0); transition: background-color .28s ease; }
+    .cart-dialog[open] { display: grid; align-content: start; gap: 18px; }
+    .cart-dialog.is-visible { transform: translateX(0); }
+    .cart-dialog.is-visible::backdrop { background: rgba(0, 0, 0, .55); }
+    .cart-dialog-header, .cart-item, .cart-item-controls, .cart-total { display: flex; align-items: center; justify-content: space-between; gap: 14px; }
+    .cart-dialog-header h2 { font-size: 30px; }
+    .cart-close { width: 38px; height: 38px; border: 1px solid var(--line); background: transparent; cursor: pointer; font-size: 22px; }
+    .cart-items { display: grid; gap: 12px; }
+    .cart-item { display: grid; gap: 10px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+    .cart-item-info { min-width: 0; }
+    .cart-item-info strong, .cart-item-info span { display: block; }
+    .cart-item-info strong { margin-bottom: 5px; font-size: 13px; }
+    .cart-item-info span, .cart-empty, .cart-note { color: var(--muted); font-size: 11px; }
+    .cart-item-controls { width: 100%; flex-wrap: wrap; }
+    .cart-quantity-stepper { display: inline-flex; align-items: center; border: 1px solid var(--line); background: var(--white); }
+    .cart-quantity-stepper label { display: flex; align-items: center; gap: 6px; padding: 0 8px; color: var(--muted); font-size: 10px; }
+    .cart-quantity-stepper input { width: 38px; height: 40px; padding: 4px 2px; border: 0; background: transparent; color: var(--ink); font: 13px var(--sans); text-align: center; }
+    .cart-quantity-stepper button { width: 40px; min-height: 40px; padding: 0; border: 0; background: transparent; cursor: pointer; font-size: 19px; }
+    .cart-quantity-stepper button:disabled { cursor: not-allowed; opacity: .4; }
+    .cart-item-remove { min-height: 40px; padding: 0 8px; border: 0; background: transparent; color: #8b433c; cursor: pointer; font-size: 11px; }
+    .cart-total { padding-top: 8px; border-top: 1px solid var(--line); font-size: 14px; }
+    .cart-order-form { display: grid; gap: 12px; }
+    .cart-order-form[hidden] { display: none; }
+    .cart-order-form label { display: grid; gap: 6px; color: #625d54; font-size: 10px; letter-spacing: .08em; text-transform: uppercase; }
+    .cart-order-form input, .cart-order-form textarea { width: 100%; min-height: 42px; padding: 10px 12px; border: 1px solid var(--line); background: var(--white); color: var(--ink); font: 13px var(--sans); }
+    .cart-order-form textarea { min-height: 68px; resize: vertical; }
+    .cart-order-status { margin: 0; padding: 12px; border-left: 3px solid #16844a; background: #edf5ef; color: #205d35; font-size: 12px; line-height: 1.6; }
+    .cart-order-status[data-error="true"] { border-left-color: #a23e35; background: #f8efed; color: #8b3027; }
+    .cart-order-form .button:disabled { cursor: not-allowed; opacity: .5; }
+    .cart-note { margin: 0; line-height: 1.6; }
+    @media (prefers-reduced-motion: reduce) {
+      .cart-dialog, .cart-dialog::backdrop { transition: none; }
+    }
+    .story { display: grid; min-height: 430px; grid-template-columns: 1fr 1fr; background: var(--story-surface); }
+    .story-gallery { position: relative; min-height: 430px; overflow: hidden; background: var(--image-surface); }
+    .story-image { min-height: 430px; background-color: var(--image-surface); background-position: center 42%; background-size: cover; background-repeat: no-repeat; }
+    .story-gallery .gallery-controls { right: 18px; bottom: 18px; left: 18px; }
+    .story-copy { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: 60px clamp(35px, 7vw, 100px); }
+    .story-copy h2 { max-width: 420px; margin-bottom: 20px; line-height: 1.16; }
+    .story-copy > p:not(.eyebrow) { max-width: 400px; margin-bottom: 28px; color: #68635c; font-size: 13px; line-height: 1.9; }
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .65s ease, transform .65s ease; transition-delay: var(--reveal-delay, 0ms); }
+    .reveal.is-visible { opacity: 1; transform: translateY(0); }
+    .values { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; padding-top: 43px; padding-bottom: 43px; border-bottom: 1px solid var(--line); }
+    .value { text-align: center; }
+    .value strong { display: block; margin-bottom: 7px; font-family: var(--serif); font-size: 19px; font-weight: 400; }
+    .value span { color: var(--muted); font-size: 10px; letter-spacing: .04em; }
+    .footer { padding: 50px 38px 24px; background: var(--ink); color: var(--footer-text); }
+    .footer-inner { max-width: 1164px; margin: auto; display: flex; align-items: center; justify-content: space-between; gap: 28px; }
+    .footer .brand { font-size: 22px; }
+    .footer .brand span { color: #c9b995; }
+    .footer-note { max-width: 300px; margin: 0; color: var(--footer-muted); font-size: 11px; line-height: 1.8; }
+    .footer-links { display: flex; gap: 22px; color: #e5e0d5; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; }
+    .social-links { display: flex; align-items: center; gap: 18px; color: #e5e0d5; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; }
+    .social-links a:hover { color: #c9b995; }
+    .whatsapp-float { position: fixed; z-index: 7; right: 22px; bottom: 22px; width: 54px; height: 54px; display: grid; place-items: center; border-radius: 50%; background: #25d366; color: white; box-shadow: 0 5px 18px rgba(0, 0, 0, .2); transition: transform .2s ease, box-shadow .2s ease; }
+    .whatsapp-float:hover { transform: translateY(-3px); box-shadow: 0 8px 22px rgba(0, 0, 0, .24); }
+    .whatsapp-float svg { width: 27px; height: 27px; fill: currentColor; }
+    .instagram-float { position: fixed; z-index: 7; right: 22px; bottom: 88px; width: 54px; height: 54px; display: grid; place-items: center; border-radius: 50%; background: radial-gradient(circle at 30% 110%, #fdf497 0 14%, #fd5949 45%, #d6249f 65%, #285aeb 90%); color: white; box-shadow: 0 5px 18px rgba(0, 0, 0, .2); transition: transform .2s ease, box-shadow .2s ease; }
+    .instagram-float:hover { transform: translateY(-3px); box-shadow: 0 8px 22px rgba(0, 0, 0, .24); }
+    .instagram-float svg { width: 27px; height: 27px; fill: none; stroke: currentColor; stroke-width: 2; }
+    body.admin-mode .whatsapp-float, body.admin-mode .instagram-float { display: none; }
+    .copyright { max-width: 1164px; margin: 36px auto 0; padding-top: 17px; border-top: 1px solid rgba(255,255,255,.14); color: #aaa69d; font-size: 9px; letter-spacing: .08em; }
+    .cart-message { position: fixed; z-index: 8; right: 22px; bottom: 22px; padding: 14px 20px; background: var(--ink); color: white; font-size: 12px; opacity: 0; transform: translateY(10px); pointer-events: none; transition: opacity .2s ease, transform .2s ease; }
+    .cart-message.visible { opacity: 1; transform: translateY(0); }
+    .admin-link { color: #c9b995; }
+    .admin-panel { display: none; min-height: calc(100vh - 160px); padding: 42px 20px 70px; }
+    .admin-panel.active { display: block; }
+    body.admin-mode > .announcement, body.admin-mode > .header, body.admin-mode > main, body.admin-mode > .footer { display: none; }
+    .admin-container { max-width: 1000px; margin: 0 auto; }
+    .admin-top { display: flex; align-items: center; justify-content: space-between; gap: 20px; margin-bottom: 28px; }
+    .admin-top h1 { margin: 0; font-size: clamp(32px, 5vw, 46px); }
+    .admin-back { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; }
+    .admin-warning { margin: 0 0 24px; padding: 15px 18px; border-left: 3px solid var(--gold); background: #f0ede6; color: #5e574c; font-size: 12px; line-height: 1.7; }
+    .admin-card { margin-bottom: 22px; padding: 24px; border: 1px solid var(--line); background: var(--white); }
+    .admin-card h2 { margin-bottom: 18px; font-size: 27px; }
+    .admin-settings, .product-form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+    .admin-settings + .admin-settings { margin-top: 18px; }
+    .admin-subtitle { margin: 20px 0 12px; font-family: var(--serif); font-size: 20px; font-weight: 400; }
+    .admin-section-row { display: grid; grid-template-columns: minmax(0, 1fr) 150px auto; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line); font-size: 12px; }
+    .admin-section-row select { min-height: 38px; padding: 7px; border: 1px solid var(--line); background: white; }
+    .admin-checkbox { display: flex; align-items: center; gap: 9px; font-size: 12px; }
+    .admin-checkbox input { width: 18px; height: 18px; accent-color: var(--gold); }
+    .theme-swatch { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+    .category-admin-list { display: grid; gap: 16px; }
+    .category-admin-item { display: grid; grid-template-columns: minmax(0, 1fr) 160px; align-items: start; gap: 20px; padding: 16px 0; border-bottom: 1px solid var(--line); }
+    .category-admin-item img { width: 100%; height: 125px; margin: 0; }
+    .value-admin-list { display: grid; gap: 14px; }
+    .admin-field { display: flex; flex-direction: column; gap: 7px; }
+    .admin-field.full { grid-column: 1 / -1; }
+    .admin-field label { color: #625d54; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; }
+    .admin-field input, .admin-field textarea { width: 100%; min-height: 43px; padding: 11px 12px; border: 1px solid var(--line); border-radius: 0; background: #fff; color: var(--ink); font: 13px var(--sans); }
+    .admin-field textarea { min-height: 86px; resize: vertical; }
+    .admin-actions { display: flex; align-items: center; gap: 14px; margin-top: 18px; }
+    .admin-button { min-height: 42px; padding: 0 18px; border: 1px solid var(--ink); background: var(--ink); color: white; cursor: pointer; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; }
+    .admin-button.secondary { background: transparent; color: var(--ink); }
+    .admin-button.danger { border-color: #a23e35; background: transparent; color: #a23e35; }
+    .admin-status { min-height: 18px; margin: 0; color: #496b4a; font-size: 12px; }
+    .product-list { display: grid; gap: 10px; }
+    .admin-product { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 12px; border: 1px solid var(--line); }
+    .admin-product-info { display: flex; min-width: 0; align-items: center; gap: 13px; }
+    .admin-product-info img { width: 56px; height: 65px; flex: 0 0 auto; object-fit: cover; background: #f0ede6; }
+    .image-preview { width: 112px; height: 128px; margin-top: 10px; border: 1px solid var(--line); background: #f0ede6; object-fit: cover; }
+    .image-previews { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
+    .image-preview-item { position: relative; width: 76px; height: 88px; }
+    .image-preview-item img { width: 100%; height: 100%; border: 1px solid var(--line); background: #f0ede6; object-fit: cover; }
+    .image-preview-item button { position: absolute; top: 3px; right: 3px; width: 23px; height: 23px; border: 0; background: var(--ink); color: white; cursor: pointer; }
+    .admin-video-preview { width: min(100%, 320px); max-height: 320px; display: block; margin: 10px 0; background: #111; }
+    .image-help { margin: 0; color: var(--muted); font-size: 11px; line-height: 1.6; }
+    .admin-product-info strong { display: block; margin-bottom: 5px; font-size: 13px; }
+    .admin-product-info span { color: var(--muted); font-size: 11px; }
+    .admin-product-actions { display: flex; flex: 0 0 auto; gap: 8px; }
+    .admin-product-actions button { padding: 8px 10px; border: 1px solid var(--line); background: transparent; cursor: pointer; font-size: 10px; }
+    @media (max-width: 760px) {
+      .admin-panel { padding: 30px 15px 50px; }
+      .admin-top { align-items: flex-start; flex-direction: column; }
+      .admin-card { padding: 18px; }
+      .admin-settings, .product-form { grid-template-columns: 1fr; }
+      .theme-swatch { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .admin-section-row { grid-template-columns: 1fr 120px; }
+      .admin-section-row .admin-checkbox { grid-column: 1 / -1; }
+      .category-admin-item { grid-template-columns: 1fr; }
+      .admin-field.full { grid-column: auto; }
+      .admin-product { align-items: flex-start; flex-direction: column; }
+      .admin-product-actions { padding-left: 69px; }
+    }
+    @media (max-width: 760px) {
+      .announcement { font-size: 8px; }
+      .instagram-float { right: 14px; bottom: 72px; width: 48px; height: 48px; }
+      .whatsapp-float { right: 14px; bottom: 14px; width: 48px; height: 48px; }
+      .nav { height: 68px; padding: 0 20px; }
+      .brand { font-size: 21px; }
+      .menu-toggle { display: block; }
+      .nav-links { position: absolute; top: 68px; right: 0; left: 0; display: none; flex-direction: column; align-items: stretch; gap: 0; padding: 8px 22px 18px; border-bottom: 1px solid var(--line); background: var(--paper); }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: 13px 0; border-bottom: 1px solid var(--line); }
+      .nav-tools { gap: 12px; }
+      .cart { min-height: 40px; padding: 0 10px; }
+      .cart-dialog { padding: 20px; }
+      .cart-dialog-header h2 { font-size: 26px; }
+      .cart-item { align-items: flex-start; flex-wrap: wrap; }
+      .hero { min-height: auto; padding: 18px 15px 48px; }
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-copy { min-height: 330px; padding: 43px 28px; }
+      h1 { font-size: clamp(42px, 12vw, 58px); }
+      .hero-image { min-height: 350px; }
+      .hero-note { right: 12px; bottom: 12px; }
+      .service-strip { grid-template-columns: 1fr; padding: 10px 19px; }
+      .service-item { justify-content: flex-start; padding: 13px 4px; }
+      .service-item + .service-item { border-top: 1px solid var(--line); border-left: 0; }
+      .section { padding: 55px 19px; }
+      .section-heading { align-items: start; }
+      .section-heading .text-link { margin-top: 26px; }
+      .categories { gap: 10px; }
+      .category, .category img { min-height: 260px; }
+      .category-label { right: 12px; bottom: 14px; left: 12px; }
+      .category-label h3 { font-size: 21px; }
+      .products-section .section { padding: 55px 19px 65px; }
+      .product-browser { gap: 14px; margin-bottom: 24px; }
+      .product-filters { gap: 7px; }
+      .product-filter { min-height: 38px; padding: 0 13px; font-size: 10px; }
+      .product-toolbar, .product-query-controls { align-items: stretch; flex-direction: column; }
+      .product-query-controls { width: 100%; gap: 9px; }
+      .product-search input { max-width: none; }
+      .product-sort { width: 100%; }
+      .product-count { align-self: flex-start; }
+      .products { grid-template-columns: repeat(2, 1fr); gap: 25px 12px; }
+      .product-info { min-height: 240px; }
+      .product-info h3 { font-size: 12px; }
+      .add-button { padding: 0 8px; font-size: 8px; letter-spacing: .06em; }
+      .story { grid-template-columns: 1fr; }
+      .story-image { min-height: 330px; }
+      .story-copy { padding: 45px 26px; }
+      .values { gap: 8px; padding: 30px 10px; }
+      .value strong { font-size: 16px; }
+      .value span { font-size: 9px; }
+      .footer { padding: 42px 22px 20px; }
+      .footer-inner { align-items: flex-start; flex-direction: column; }
+      .footer-links, .social-links { flex-wrap: wrap; }
+    }
+    @media (max-width: 420px) {
+      .categories { grid-template-columns: 1fr; }
+      .category, .category img { min-height: 330px; }
+      .section-heading { flex-direction: column; }
+      .section-heading .text-link { margin-top: 0; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+    }
+    .hero { min-height: 0; padding-bottom: 50px; }
+    .hero-inner { grid-template-columns: minmax(0, .88fr) minmax(0, 1.12fr); min-height: 520px; }
+    .hero-copy { padding-right: clamp(30px, 5vw, 74px); padding-left: clamp(30px, 5vw, 74px); }
+    h1 { max-width: 440px; letter-spacing: -.025em; line-height: 1.06; }
+    .hero-image { min-height: 520px; background-position: center; }
+    #nouveautes { scroll-margin-top: 86px; }
+    .section { padding-top: 68px; padding-bottom: 68px; }
+    .section-heading { margin-bottom: 34px; }
+    .products { gap: 28px; }
+    .product-info { min-height: 240px; gap: 10px; }
+    .product-info h3 { font-size: 14px; }
+    .product-info p { font-size: 12px; }
+    .product-info p:not(.product-price) { -webkit-line-clamp: 2; }
+    .product-price { font-size: 12px; }
+    .product-current-price { font-size: 14px; font-weight: 600; }
+    .add-button { min-height: 44px; font-size: 10px; }
+    .badge { padding: 8px 11px; font-size: 9px; }
+    .gallery-controls button, .gallery-controls span { min-width: 34px; min-height: 34px; border-radius: 50%; }
+    .product-video-toggle, .product-video-return, .product-video-sound { padding: 10px 13px; font-size: 10px; }
+    .whatsapp-float { width: 52px; height: 52px; }
+    @media (max-width: 1050px) {
+      .products { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 760px) {
+      .hero { padding: 16px 15px 40px; }
+      .hero-inner { min-height: 0; grid-template-columns: 1fr; }
+      .hero-copy { min-height: 300px; padding: 38px 26px; }
+      .hero-image { min-height: 310px; }
+      .section { padding: 52px 19px; }
+      .products-section .section { padding: 52px 19px 62px; }
+      .products { gap: 24px 14px; }
+      .product-info { min-height: 240px; }
+      .product-info h3 { font-size: 13px; }
+      .add-button { font-size: 9px; }
+      .story { min-height: 0; }
+    }
+    @media (max-width: 420px) {
+      .hero-copy { min-height: 280px; padding: 32px 22px; }
+      .hero-image { min-height: 270px; }
+      .products { gap: 22px 10px; }
+      .product-info { min-height: 240px; }
+      .product-info h3 { font-size: 12px; }
+      .product-info p { font-size: 11px; }
+      .add-button { padding: 0 6px; font-size: 8px; }
+    }
+    body { background: var(--paper); color: var(--ink); }
+    .announcement { background: var(--gold); color: #111110; font-weight: 700; }
+    .header { background: rgba(17, 17, 16, .9); border-bottom-color: rgba(244, 239, 230, .12); }
+    .nav { max-width: 1440px; }
+    .brand { font-family: var(--sans); font-size: 22px; font-weight: 700; letter-spacing: .16em; }
+    .brand span { color: var(--gold); }
+    .nav-links { font-weight: 600; }
+    .nav-links a::after { background: var(--gold); }
+    .nav-links a:hover, .text-link:hover { color: var(--gold); }
+    .cart { border-color: rgba(244, 239, 230, .25); }
+    .cart:hover { border-color: var(--gold); color: var(--gold); }
+    .hero { max-width: none; padding: 0 0 76px; }
+    .hero-inner { min-height: min(780px, calc(100svh - 112px)); grid-template-columns: 1fr; background: #111110; box-shadow: none; }
+    .hero-image { position: absolute; inset: 0; min-height: 0; background-position: center 42%; }
+    .hero-inner::after { position: absolute; inset: 0; z-index: 0; background: linear-gradient(90deg, rgba(10, 10, 9, .88) 0%, rgba(10, 10, 9, .58) 44%, rgba(10, 10, 9, .1) 100%), linear-gradient(0deg, rgba(10, 10, 9, .38), transparent 38%); content: ""; pointer-events: none; }
+    .hero-copy { z-index: 1; width: min(760px, 72vw); padding: 80px 0 90px clamp(32px, 9vw, 140px); }
+    .hero-copy .eyebrow, .eyebrow { color: var(--gold); font-weight: 700; letter-spacing: .2em; }
+    h1 { max-width: 760px; margin-bottom: 24px; color: var(--footer-text); font-family: var(--sans); font-size: clamp(48px, 7.4vw, 104px); font-weight: 700; letter-spacing: -.055em; line-height: .98; text-transform: uppercase; }
+    .hero-copy > p:not(.eyebrow) { max-width: 500px; color: rgba(244, 239, 230, .8); font-size: 16px; }
+    .button { min-height: 54px; border-color: var(--gold); background: var(--gold); color: #111110; font-weight: 700; }
+    .button:hover { background: transparent; color: var(--footer-text); }
+    .hero-note { z-index: 1; right: clamp(20px, 5vw, 70px); bottom: 30px; border-left: 2px solid var(--gold); background: rgba(17, 17, 16, .72); color: var(--footer-text); }
+    .service-strip { max-width: 1240px; border-color: var(--line); }
+    .service-item span:last-child { color: var(--muted); font-weight: 600; }
+    .section { max-width: 1320px; padding-top: 90px; padding-bottom: 90px; }
+    .section-heading { align-items: end; margin-bottom: 38px; }
+    .section-heading .eyebrow { margin-bottom: 13px; }
+    h2 { color: var(--ink); font-family: var(--sans); font-size: clamp(30px, 4vw, 52px); font-weight: 700; letter-spacing: -.045em; line-height: 1.05; text-transform: uppercase; }
+    .text-link { border-color: var(--gold); font-weight: 600; }
+    .categories { grid-template-columns: 1.2fr 1fr 1fr; gap: 14px; }
+    .categories[data-count="2"] { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .category, .category img { min-height: 390px; }
+    .category::after { inset: 20% 0 0; background: linear-gradient(transparent, rgba(10, 10, 9, .82)); }
+    .category-label { right: 24px; bottom: 23px; left: 24px; }
+    .category-label h3 { font-family: var(--sans); font-size: 22px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+    .category-label span { color: var(--gold); }
+    .products-section { background: #191817; }
+    .products-section .section { padding-top: 90px; padding-bottom: 100px; }
+    .product-browser { margin-bottom: 38px; }
+    .product-filters { border-color: var(--line); }
+    .product-filter { border-color: #514840; background: transparent; color: var(--muted); font-weight: 600; }
+    .product-filter:hover, .product-filter[aria-pressed="true"] { border-color: var(--gold); background: var(--gold); color: #111110; }
+    .product-search input, .product-sort select { border-color: #514840; background: #111110; color: var(--ink); }
+    .product-count { color: var(--muted); }
+    .product { border-bottom: 1px solid rgba(244, 239, 230, .12); padding-bottom: 18px; }
+    .product-image { display: grid; place-items: center; background: #191817; }
+    .product-image img { transition: transform .35s ease, opacity .2s ease; }
+    .product-image img.is-changing { animation: product-image-change .24s ease both; }
+    @keyframes product-image-change { from { opacity: .65; transform: scale(.99); } to { opacity: 1; transform: scale(1); } }
+    .product-info h3 { color: var(--ink); font-size: 15px; font-weight: 700; letter-spacing: .02em; text-transform: uppercase; }
+    .product-info p { color: var(--muted); }
+    .product-current-price { color: var(--gold); }
+    .buy-now-button { border-color: var(--gold); background: var(--gold); color: #111110; font-weight: 700; }
+    .buy-now-button:hover { border-color: #c65b2b; background: #c65b2b; }
+    .add-button { border-color: rgba(244, 239, 230, .5); color: var(--ink); font-weight: 600; }
+    .add-button:hover { border-color: var(--ink); background: var(--ink); color: #111110; }
+    .badge { background: var(--gold); color: #111110; font-weight: 700; }
+    .gallery-controls button, .gallery-controls span { background: rgba(17, 17, 16, .86); color: var(--footer-text); }
+    .story { background: #191817; }
+    .story-copy h2 { max-width: 540px; }
+    .story-copy > p:not(.eyebrow) { color: var(--muted); }
+    .values { border-color: var(--line); }
+    .value strong { color: var(--gold); }
+    .value span { color: var(--muted); }
+    .footer { background: #0a0a09; }
+    .footer .brand span { color: var(--gold); }
+    .footer-note, .copyright { color: var(--muted); }
+    .footer-links, .social-links { color: var(--footer-text); }
+    .cart-dialog { border-color: var(--line); background: var(--paper); color: var(--ink); }
+    .cart-dialog::backdrop { background: rgba(0, 0, 0, 0); }
+    .cart-dialog.is-visible::backdrop { background: rgba(0, 0, 0, .72); }
+    .cart-item-info span, .cart-empty, .cart-note { color: var(--muted); }
+    .cart-quantity-stepper { border-color: var(--line); background: var(--white); }
+    .cart-order-form label { color: var(--muted); }
+    .cart-order-form input, .cart-order-form textarea { border-color: var(--line); background: var(--white); color: var(--ink); }
+    .product-video-toggle, .product-video-return, .product-video-sound { background: rgba(17, 17, 16, .9); color: var(--footer-text); }
+    .whatsapp-float, .instagram-float { box-shadow: 0 8px 26px rgba(0, 0, 0, .4); }
+    @media (max-width: 1050px) {
+      .hero-copy { width: min(720px, 82vw); }
+      .categories { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .categories[data-count="2"] { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .category, .category img { min-height: 320px; }
+    }
+    @media (max-width: 760px) {
+      .announcement { padding: 9px 16px; font-size: 8px; }
+      .header { background: rgba(17, 17, 16, .96); }
+      .nav-links { background: #191817; }
+      .nav-links a { border-color: var(--line); }
+      .hero { padding: 0 0 54px; }
+      .hero-inner { min-height: max(620px, calc(82svh - 68px)); }
+      .hero-inner::after { background: linear-gradient(90deg, rgba(10, 10, 9, .82), rgba(10, 10, 9, .2)), linear-gradient(0deg, rgba(10, 10, 9, .55), transparent 65%); }
+      .hero-copy { width: 100%; min-height: 0; justify-content: flex-end; padding: 100px 25px 65px; }
+      h1 { max-width: 650px; font-size: clamp(46px, 13vw, 72px); }
+      .hero-copy > p:not(.eyebrow) { font-size: 14px; }
+      .hero-note { right: 16px; bottom: 14px; max-width: 60%; font-size: 8px; }
+      html[dir="rtl"] .hero-copy { padding: 100px 25px 65px; }
+      html[dir="rtl"] .hero-inner::after { background: linear-gradient(270deg, rgba(10, 10, 9, .82), rgba(10, 10, 9, .2)), linear-gradient(0deg, rgba(10, 10, 9, .55), transparent 65%); }
+      html[dir="rtl"] .hero-note { right: auto; left: 16px; }
+      .service-strip { padding: 10px 24px; }
+      .section, .products-section .section { padding: 62px 22px; }
+      .section-heading { margin-bottom: 28px; }
+      .categories { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .category:first-child { grid-column: 1 / -1; }
+      .categories[data-count="2"] .category:first-child { grid-column: auto; }
+      .category, .category img { min-height: 250px; }
+      .category:first-child, .category:first-child img { min-height: 330px; }
+      .product-browser { gap: 16px; margin-bottom: 28px; }
+      .product-filters { flex-wrap: nowrap; overflow-x: auto; padding: 2px 2px 14px; scrollbar-width: thin; }
+      .product-filter { flex: 0 0 auto; }
+      .product-toolbar, .product-query-controls { align-items: stretch; flex-direction: column; }
+      .product-query-controls { gap: 10px; }
+      .product-search input, .product-sort { width: 100%; max-width: none; }
+      .product-count { align-self: flex-start; }
+      .products { gap: 26px 13px; }
+      .product { padding-bottom: 13px; }
+      .product-image { display: block; width: 100%; min-height: 0; aspect-ratio: 1 / 1; touch-action: pan-y; }
+      .product-image img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+      .product:hover .product-image img { transform: none; }
+      .gallery-controls { z-index: 2; right: 7px; bottom: 7px; left: 7px; }
+      .gallery-controls button { min-width: 44px; min-height: 44px; border: 1px solid rgba(244, 239, 230, .22); background: rgba(17, 17, 16, .86); color: var(--footer-text); }
+      .gallery-controls span { min-width: 48px; min-height: 34px; border: 1px solid rgba(244, 239, 230, .22); border-radius: 999px; background: rgba(17, 17, 16, .86); color: var(--footer-text); font-size: 10px; }
+      .product-video-toggle { top: 8px; right: 8px; bottom: auto; }
+      .story { grid-template-columns: 1fr; }
+      .story-copy { padding: 45px 26px; }
+      .footer { padding: 44px 24px 22px; }
+    }
+    @media (max-width: 420px) {
+      .nav { padding: 0 14px; }
+      .brand { font-size: 18px; }
+      .cart { gap: 5px; padding: 0 8px; font-size: 9px; }
+      .hero-inner { min-height: max(590px, calc(78svh - 68px)); }
+      .hero-copy { padding: 90px 22px 68px; }
+      .hero-copy .eyebrow { font-size: 9px; }
+      .hero-copy > p:not(.eyebrow) { max-width: 330px; }
+      .categories { grid-template-columns: 1fr 1fr; }
+      .category, .category img { min-height: 220px; }
+      .category:first-child, .category:first-child img { min-height: 280px; }
+      .category-label { right: 13px; bottom: 14px; left: 13px; }
+      .category-label h3 { font-size: 16px; }
+      .products { gap: 20px 10px; }
+      .product-info { min-height: 228px; }
+      .product-info h3 { font-size: 11px; }
+      .product-info p { font-size: 10px; }
+      .buy-now-button, .add-button { min-height: 40px; padding: 0 6px; font-size: 8px; letter-spacing: .05em; }
+      .story-image { min-height: 290px; }
+      .values { gap: 8px; }
+      .value strong { font-size: 14px; }
+      .value span { font-size: 8px; }
+    }
+    @media (max-width: 360px) {
+      .nav { gap: 7px; padding: 0 10px; }
+      .brand { font-size: 16px; letter-spacing: .1em; }
+      .nav-tools { flex-shrink: 0; gap: 6px; }
+      .language-picker select { max-width: 78px; min-height: 38px; padding: 0 16px 0 6px; font-size: 10px; }
+      .cart { min-height: 38px; gap: 4px; padding: 0 6px; font-size: 8px; letter-spacing: .04em; }
+      .menu-toggle { padding: 4px; font-size: 18px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="announcement">Montres · Sacs · Accessoires — une élégance à offrir, à s'offrir</div>
+  <header class="header">
+    <nav class="nav" aria-label="Navigation principale">
+      <button class="menu-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false">☰</button>
+      <a class="brand" href="#accueil" aria-label="Noirva Elegance, accueil">NOIRVA<span>Elegance</span></a>
+      <div class="nav-links" id="nav-links">
+        <a href="#nouveautes" id="nav-products">Nouveautés</a>
+        <a href="#collections" id="nav-collections">Collections</a>
+        <a href="#maison" id="nav-story">La maison</a>
+      </div>
+      <div class="nav-tools">
+        <div class="language-picker">
+          <label for="language-select">Language</label>
+          <select id="language-select" aria-label="Language">
+            <option value="fr">Français</option>
+            <option value="ar">العربية</option>
+            <option value="en">English</option>
+          </select>
+        </div>
+        <button class="cart" type="button" aria-label="Panier, 0 article">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.2 10.2a2 2 0 0 0 2 1.6h8.9a2 2 0 0 0 1.9-1.4L22 8H6"></path><circle cx="10" cy="20" r="1"></circle><circle cx="18" cy="20" r="1"></circle></svg>
+          <span>Panier (<span id="cart-count">0</span>)</span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="accueil" aria-labelledby="hero-title">
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <p class="eyebrow" id="hero-eyebrow">La nouvelle collection</p>
+          <h1 id="hero-title">L'élégance, naturellement.</h1>
+          <p id="hero-description">Des pièces choisies avec soin. Des détails qui vous ressemblent. Découvrez une autre façon de porter le quotidien.</p>
+          <a class="button" id="hero-button" href="#nouveautes">Découvrir la collection</a>
+        </div>
+        <div class="hero-image" role="img" aria-label="Silhouette élégante portant une tenue contemporaine"></div>
+        <span class="hero-note" id="hero-note">L'allure en toute simplicité</span>
+      </div>
+    </section>
+
+    <section class="service-strip" aria-label="Les avantages Noirva">
+      <div class="service-item"><span class="service-number" aria-hidden="true">01</span><span>Montres, sacs et accessoires</span></div>
+      <div class="service-item"><span class="service-number" aria-hidden="true">02</span><span>Commande simple sur WhatsApp</span></div>
+      <div class="service-item"><span class="service-number" aria-hidden="true">03</span><span>Un accompagnement personnalisé</span></div>
+    </section>
+
+    <section class="section" id="collections" aria-labelledby="collections-title">
+      <div class="section-heading">
+        <div><p class="eyebrow" id="collections-eyebrow">Trouvez votre essentiel</p><h2 id="collections-title">Nos collections</h2></div>
+        <a class="text-link" id="collections-link" href="#nouveautes">Tout découvrir</a>
+      </div>
+      <div class="categories" id="categories">
+        <a class="category" href="#nouveautes" data-category-index="0">
+          <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=900&q=80" alt="Montre élégante au cadran raffiné" loading="lazy">
+          <div class="category-label"><h3>Montres</h3><span aria-hidden="true">↗</span></div>
+        </a>
+        <a class="category" href="#nouveautes" data-category-index="1">
+          <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=900&q=80" alt="Sac à main chic aux lignes intemporelles" loading="lazy">
+          <div class="category-label"><h3>Sacs</h3><span aria-hidden="true">↗</span></div>
+        </a>
+        <a class="category" href="#nouveautes" data-category-index="2">
+          <img src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=900&q=80" alt="Bijoux délicats aux finitions dorées" loading="lazy">
+          <div class="category-label"><h3>Accessoires</h3><span aria-hidden="true">↗</span></div>
+        </a>
+      </div>
+    </section>
+
+    <section class="products-section" id="nouveautes" aria-labelledby="products-title">
+      <div class="section">
+        <div class="section-heading">
+          <div><p class="eyebrow" id="products-eyebrow">Sélection du moment</p><h2 id="products-title">Les pièces à découvrir</h2></div>
+          <a class="text-link" id="products-link" href="#collections">Voir les collections</a>
+        </div>
+        <div class="product-browser">
+          <div class="product-filters" id="product-filters" role="group" aria-label="Filtrer par collection"></div>
+          <div class="product-toolbar">
+            <div class="product-query-controls">
+              <label class="product-search">
+                <span class="visually-hidden">Rechercher un produit</span>
+                <input id="product-search" type="search" placeholder="Rechercher un produit…" autocomplete="off">
+              </label>
+              <label class="product-sort">
+                <span class="visually-hidden">Trier les produits</span>
+                <select id="product-sort">
+                  <option value="featured">Sélection du moment</option>
+                  <option value="price-ascending">Prix : du moins cher au plus cher</option>
+                  <option value="price-descending">Prix : du plus cher au moins cher</option>
+                  <option value="name">Nom : A à Z</option>
+                </select>
+              </label>
+            </div>
+            <p class="product-count" id="product-count" aria-live="polite"></p>
+          </div>
+        </div>
+        <div class="products" id="products"></div>
+        <p class="cart-empty" id="products-empty" hidden>Aucun produit dans cette collection pour le moment.</p>
+      </div>
+    </section>
+
+    <section class="section" id="maison" aria-labelledby="story-title">
+      <div class="story">
+        <div class="story-gallery">
+          <div class="story-image" role="img" aria-label="Une sélection de pièces mode aux textures naturelles"></div>
+          <div class="gallery-controls" id="story-gallery-controls" hidden>
+            <button type="button" data-story-gallery-action="previous" aria-label="Photo précédente de Notre signature">←</button>
+            <span class="gallery-count" id="story-gallery-count"></span>
+            <button type="button" data-story-gallery-action="next" aria-label="Photo suivante de Notre signature">→</button>
+          </div>
+        </div>
+        <div class="story-copy">
+          <p class="eyebrow" id="story-eyebrow">Notre signature</p>
+          <h2 id="story-title">Le beau se cache dans les détails.</h2>
+          <p id="story-description">Noirva Elegance célèbre les pièces qui traversent les saisons. Une sélection pensée pour celles et ceux qui aiment l'élégance discrète et les objets qui ont une allure particulière.</p>
+          <a class="text-link" id="story-link" href="#collections">Explorer notre univers</a>
+        </div>
+      </div>
+      <div class="values" id="values" aria-label="Nos engagements"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <a class="brand" href="#accueil" aria-label="Noirva Elegance, accueil">NOIRVA<span>Elegance</span></a>
+      <p class="footer-note" id="footer-note">Des accessoires choisis avec soin, pour une élégance qui vous ressemble.</p>
+      <div class="footer-links"><a id="footer-collections" href="#collections">Collections</a><a id="footer-story" href="#maison">À propos</a><a href="#admin" class="admin-link">Administration</a></div>
+      <div class="social-links" aria-label="Nos réseaux sociaux">
+        <a id="footer-whatsapp" href="https://wa.me/212789001047" target="_blank" rel="noopener noreferrer" aria-label="Nous contacter sur WhatsApp">WhatsApp</a>
+        <a id="footer-instagram" href="https://www.instagram.com/noirva_elegance/" target="_blank" rel="noopener noreferrer" aria-label="Suivre Noirva Elegance sur Instagram">Instagram</a>
+      </div>
+    </div>
+    <div class="copyright">© <span id="year"></span> Noirva Elegance. Tous droits réservés.</div>
+  </footer>
+  <a class="whatsapp-float" id="whatsapp-float" href="https://wa.me/212789001047" target="_blank" rel="noopener noreferrer" aria-label="Contacter Noirva Elegance sur WhatsApp">
+    <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16.02 3C8.85 3 3.02 8.79 3.02 15.92c0 2.28.6 4.51 1.75 6.49L3 29l6.8-1.77a13.1 13.1 0 0 0 6.22 1.57h.01c7.16 0 13-5.8 13-12.92A12.84 12.84 0 0 0 25.2 6.7 12.98 12.98 0 0 0 16.02 3zm0 23.63h-.01a10.84 10.84 0 0 1-5.5-1.49l-.4-.24-4.04 1.05 1.08-3.91-.26-.41a10.61 10.61 0 0 1-1.65-5.71c0-5.96 4.85-10.8 10.8-10.8a10.74 10.74 0 0 1 7.64 3.16 10.62 10.62 0 0 1 3.16 7.59c0 5.96-4.85 10.8-10.81 10.8zm5.93-8.09c-.32-.16-1.9-.94-2.2-1.04-.3-.11-.52-.16-.74.16-.22.32-.85 1.04-1.04 1.25-.19.21-.38.24-.7.08-.32-.16-1.36-.5-2.59-1.59-.96-.85-1.6-1.9-1.79-2.22-.19-.32-.02-.49.14-.65.15-.14.32-.38.48-.57.16-.19.21-.32.32-.54.1-.22.05-.41-.03-.57-.08-.16-.74-1.77-1.01-2.43-.27-.64-.54-.55-.74-.56l-.63-.01c-.22 0-.57.08-.87.41-.3.32-1.14 1.1-1.14 2.68s1.17 3.11 1.33 3.33c.16.21 2.3 3.5 5.57 4.9.78.34 1.39.54 1.86.69.78.25 1.49.21 2.05.13.63-.09 1.9-.78 2.17-1.53.27-.75.27-1.39.19-1.53-.08-.14-.3-.22-.62-.38z"/></svg>
+  </a>
+  <a class="instagram-float" id="instagram-float" href="https://www.instagram.com/noirva_elegance/" target="_blank" rel="noopener noreferrer" aria-label="Visiter Noirva Elegance sur Instagram">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"></circle></svg>
+  </a>
+  <dialog class="cart-dialog" id="cart-dialog" aria-labelledby="cart-title">
+    <div class="cart-dialog-header">
+      <h2 id="cart-title">Votre panier</h2>
+      <button class="cart-close" type="button" data-cart-close aria-label="Fermer le panier">×</button>
+    </div>
+    <p class="cart-empty" id="cart-empty">Votre panier est vide. Découvrez nos produits et ajoutez vos favoris.</p>
+    <div class="cart-items" id="cart-items"></div>
+    <div class="cart-total"><strong>Total estimé</strong><strong id="cart-total">0 MAD</strong></div>
+    <form class="cart-order-form" id="cart-order-form" hidden>
+      <label>Nom complet<input name="customerName" autocomplete="name" maxlength="120" required></label>
+      <label>Téléphone<input name="customerPhone" type="tel" autocomplete="tel" inputmode="tel" placeholder="+212 6 00 00 00 00" maxlength="25" required></label>
+      <label>Ville<input name="customerCity" autocomplete="address-level2" maxlength="100" required></label>
+      <label>Adresse complète de livraison<textarea name="deliveryAddress" autocomplete="street-address" maxlength="300" required></textarea></label>
+      <button class="button" id="cart-checkout" type="submit">Continuer sur WhatsApp</button>
+      <a class="button" id="cart-whatsapp-link" href="#" target="_blank" rel="noopener noreferrer" hidden>Continuer sur WhatsApp</a>
+      <p class="cart-note">Votre commande sera préparée dans WhatsApp. Envoyez le message pour nous la confirmer.</p>
+    </form>
+    <p class="cart-order-status" id="cart-order-status" role="status" aria-live="polite" hidden></p>
+  </dialog>
+  <dialog class="product-image-zoom" id="product-image-zoom" aria-label="Agrandissement de la photo du produit">
+    <button class="product-zoom-button product-zoom-close" type="button" data-zoom-action="close" aria-label="Fermer l'agrandissement">×</button>
+    <div class="product-zoom-stage">
+      <button class="product-zoom-button product-zoom-previous" type="button" data-zoom-action="previous" aria-label="Photo précédente">←</button>
+      <img class="product-zoom-image" id="product-zoom-image" alt="">
+      <button class="product-zoom-button product-zoom-next" type="button" data-zoom-action="next" aria-label="Photo suivante">→</button>
+    </div>
+    <div class="product-zoom-caption" id="product-zoom-caption">Cliquez sur l'image pour voir les détails</div>
+  </dialog>
+  <section class="admin-panel" id="admin-panel" aria-labelledby="admin-title">
+    <div class="admin-container">
+      <div class="admin-top">
+        <h1 id="admin-title">Administration</h1>
+        <a class="admin-back" href="#accueil">← Retour à la boutique</a>
+      </div>
+      <p class="admin-warning">Les modifications sont enregistrées dans ce navigateur uniquement. Cette page admin n'est pas protégée par mot de passe et ne synchronise pas les changements sur d'autres appareils. Pour une vraie boutique en ligne, il faudra la connecter à un hébergement et une base de données.</p>
+      <div class="admin-card">
+        <h2>Sauvegarder la boutique</h2>
+        <p class="image-help">Exportez les textes, collections, produits, photos et vidéos pour préparer une copie à publier.</p>
+        <div class="admin-actions"><button class="admin-button" id="export-store" type="button">Télécharger une sauvegarde</button><p class="admin-status" id="export-status" role="status"></p></div>
+      </div>
+      <div class="admin-card">
+        <h2>Contenu de la boutique</h2>
+        <form id="settings-form">
+          <div class="admin-settings">
+            <div class="admin-field"><label for="setting-brand">Nom de la boutique</label><input id="setting-brand" name="brand" required maxlength="50"></div>
+            <div class="admin-field"><label for="setting-announcement">Bandeau en haut</label><input id="setting-announcement" name="announcement" required maxlength="120"></div>
+            <div class="admin-field"><label for="setting-nav-products">Lien menu nouveautés</label><input id="setting-nav-products" name="navProducts" required maxlength="40"></div>
+            <div class="admin-field"><label for="setting-nav-collections">Lien menu collections</label><input id="setting-nav-collections" name="navCollections" required maxlength="40"></div>
+            <div class="admin-field"><label for="setting-nav-story">Lien menu section signature</label><input id="setting-nav-story" name="navStory" required maxlength="40"></div>
+            <div class="admin-field"><label for="setting-hero-eyebrow">Petit titre d'accueil</label><input id="setting-hero-eyebrow" name="heroEyebrow" required maxlength="60"></div>
+            <div class="admin-field full"><label for="setting-title">Grand titre de la page</label><input id="setting-title" name="title" required maxlength="100"></div>
+            <div class="admin-field full"><label for="setting-description">Texte de présentation</label><textarea id="setting-description" name="description" required maxlength="300"></textarea></div>
+            <div class="admin-field"><label for="setting-hero-button">Bouton d'accueil</label><input id="setting-hero-button" name="heroButtonText" required maxlength="60"></div>
+            <div class="admin-field"><label for="setting-hero-target">Destination du bouton</label><select id="setting-hero-target" name="heroButtonTarget"><option value="#nouveautes">Produits</option><option value="#collections">Collections</option><option value="#maison">Notre signature</option></select></div>
+            <div class="admin-field full"><label for="setting-hero-note">Petit texte sur l'image</label><input id="setting-hero-note" name="heroNote" required maxlength="80"></div>
+            <div class="admin-field"><label for="setting-collections-eyebrow">Petit titre collections</label><input id="setting-collections-eyebrow" name="collectionsEyebrow" required maxlength="60"></div>
+            <div class="admin-field"><label for="setting-collections-title">Titre collections</label><input id="setting-collections-title" name="collectionsTitle" required maxlength="80"></div>
+            <div class="admin-field"><label for="setting-collections-link">Lien collections</label><input id="setting-collections-link" name="collectionsLinkText" required maxlength="60"></div>
+            <div class="admin-field"><label for="setting-products-eyebrow">Petit titre produits</label><input id="setting-products-eyebrow" name="productsEyebrow" required maxlength="60"></div>
+            <div class="admin-field"><label for="setting-products-title">Titre produits</label><input id="setting-products-title" name="productsTitle" required maxlength="80"></div>
+            <div class="admin-field"><label for="setting-products-link">Lien produits</label><input id="setting-products-link" name="productsLinkText" required maxlength="60"></div>
+            <div class="admin-field"><label for="setting-add-button">Bouton produit</label><input id="setting-add-button" name="productButtonText" required maxlength="40"></div>
+            <div class="admin-field full"><label for="setting-footer-note">Texte du bas de page</label><textarea id="setting-footer-note" name="footerNote" required maxlength="250"></textarea></div>
+            <div class="admin-field"><label for="setting-whatsapp">Numéro WhatsApp (avec indicatif)</label><input id="setting-whatsapp" name="whatsapp" required maxlength="25" placeholder="+212..."></div>
+            <div class="admin-field"><label for="setting-instagram">Compte Instagram (sans lien)</label><input id="setting-instagram" name="instagram" required maxlength="50" placeholder="@nom"></div>
+          </div>
+          <div class="admin-actions"><button class="admin-button" type="submit">Enregistrer les changements</button><p class="admin-status" id="settings-status" role="status"></p></div>
+        </form>
+      </div>
+      <div class="admin-card">
+        <h2>Collections</h2>
+        <p class="image-help">Changez le nom et la photo de chaque collection.</p>
+        <form id="categories-form">
+          <div class="category-admin-list" id="category-admin-list"></div>
+          <div class="admin-actions"><button class="admin-button" type="submit">Enregistrer les collections</button><p class="admin-status" id="categories-status" role="status"></p></div>
+        </form>
+      </div>
+      <div class="admin-card">
+        <h2>Engagements</h2>
+        <form id="values-form">
+          <div class="value-admin-list" id="value-admin-list"></div>
+          <div class="admin-actions"><button class="admin-button" type="submit">Enregistrer les engagements</button><p class="admin-status" id="values-status" role="status"></p></div>
+        </form>
+      </div>
+      <div class="admin-card">
+        <h2>Couleurs et animations</h2>
+        <form id="theme-form">
+          <div class="theme-swatch">
+            <div class="admin-field"><label for="theme-ink">Couleur principale</label><input id="theme-ink" name="ink" type="color"></div>
+            <div class="admin-field"><label for="theme-gold">Couleur accent</label><input id="theme-gold" name="gold" type="color"></div>
+            <div class="admin-field"><label for="theme-paper">Fond principal</label><input id="theme-paper" name="paper" type="color"></div>
+            <div class="admin-field"><label for="theme-white">Fond des produits</label><input id="theme-white" name="white" type="color"></div>
+            <div class="admin-field"><label for="theme-muted">Texte secondaire</label><input id="theme-muted" name="muted" type="color"></div>
+            <div class="admin-field"><label for="theme-line">Bordures</label><input id="theme-line" name="line" type="color"></div>
+            <div class="admin-field"><label for="theme-hero">Fond de l'accueil</label><input id="theme-hero" name="hero" type="color"></div>
+            <div class="admin-field"><label for="theme-story">Fond de Notre signature</label><input id="theme-story" name="story" type="color"></div>
+            <div class="admin-field"><label for="theme-category">Fond des collections</label><input id="theme-category" name="category" type="color"></div>
+            <div class="admin-field"><label for="theme-image">Fond des photos</label><input id="theme-image" name="image" type="color"></div>
+            <div class="admin-field"><label for="theme-footer">Texte du pied de page</label><input id="theme-footer" name="footer" type="color"></div>
+          </div>
+          <label class="admin-checkbox"><input id="theme-animations" name="animations" type="checkbox"> Activer les animations du site</label>
+          <div class="admin-actions"><button class="admin-button" type="submit">Enregistrer le thème</button><p class="admin-status" id="theme-status" role="status"></p></div>
+        </form>
+      </div>
+      <div class="admin-card">
+        <h2>Sections et disposition</h2>
+        <p class="image-help">Choisissez les sections visibles et leur ordre. Les modifications sont appliquées à la page dès l'enregistrement.</p>
+        <form id="layout-form">
+          <div id="layout-controls"></div>
+          <div class="admin-actions"><button class="admin-button" type="submit">Enregistrer la disposition</button><p class="admin-status" id="layout-status" role="status"></p></div>
+        </form>
+      </div>
+      <div class="admin-card">
+        <h2>Photo de couverture</h2>
+        <form id="cover-form">
+          <div class="admin-field">
+            <label for="cover-image-file">Choisir une nouvelle photo</label>
+            <input id="cover-image-file" name="coverImage" type="file" accept="image/*" required>
+            <p class="image-help">Cette image s'affiche à côté du grand titre sur la page d'accueil.</p>
+            <img class="image-preview" id="cover-image-preview" alt="Aperçu de la couverture">
+          </div>
+          <div class="admin-actions"><button class="admin-button" type="submit">Enregistrer la couverture</button><p class="admin-status" id="cover-status" role="status"></p></div>
+        </form>
+      </div>
+      <div class="admin-card">
+        <h2>Section « Notre signature »</h2>
+        <form id="story-form">
+          <div class="admin-settings">
+            <div class="admin-field"><label for="story-eyebrow-input">Petit titre</label><input id="story-eyebrow-input" name="eyebrow" maxlength="60" required></div>
+            <div class="admin-field"><label for="story-link-input">Texte du bouton</label><input id="story-link-input" name="linkText" maxlength="60" required></div>
+            <div class="admin-field full"><label for="story-heading-input">Grand titre</label><input id="story-heading-input" name="title" maxlength="120" required></div>
+            <div class="admin-field full"><label for="story-description-input">Texte de présentation</label><textarea id="story-description-input" name="description" maxlength="500" required></textarea></div>
+            <div class="admin-field"><label for="story-link-target">Destination du bouton</label><select id="story-link-target" name="linkTarget"><option value="#collections">Collections</option><option value="#nouveautes">Produits</option><option value="#accueil">Accueil</option></select></div>
+          </div>
+          <div class="admin-actions"><button class="admin-button" type="submit">Enregistrer le texte</button><p class="admin-status" id="story-status" role="status"></p></div>
+        </form>
+        <form id="story-image-form">
+          <div class="admin-field">
+            <label for="story-image-file">Choisir plusieurs photos pour cette section</label>
+            <input id="story-image-file" name="storyImages" type="file" accept="image/*" multiple>
+            <p class="image-help" id="story-image-help">Sélectionnez jusqu'à 6 photos. Sur ordinateur, gardez Ctrl appuyé pour en choisir plusieurs.</p>
+            <div class="image-previews" id="story-image-previews"></div>
+          </div>
+          <div class="admin-actions"><button class="admin-button" type="submit">Enregistrer les photos</button><p class="admin-status" id="story-image-status" role="status"></p></div>
+        </form>
+      </div>
+      <div class="admin-card">
+        <h2>Mes produits</h2>
+        <div class="product-list" id="admin-product-list"></div>
+      </div>
+      <div class="admin-card" id="product-editor">
+        <h2 id="product-form-title">Ajouter un produit</h2>
+        <form id="product-form">
+          <input type="hidden" name="id">
+          <div class="product-form">
+            <div class="admin-field"><label for="product-name">Nom du produit</label><input id="product-name" name="name" required maxlength="70"></div>
+            <div class="admin-field"><label for="product-price">Prix (MAD)</label><input id="product-price" name="price" type="number" min="0" step="0.01" required></div>
+            <div class="admin-field"><label for="product-old-price">Ancien prix (facultatif)</label><input id="product-old-price" name="oldPrice" type="number" min="0" step="0.01" placeholder="Prix avant réduction"></div>
+            <div class="admin-field"><label for="product-category">Collection</label><select id="product-category" name="categoryIndex" required></select></div>
+            <div class="admin-field full"><label for="product-description">Description (sans limite de longueur)</label><textarea id="product-description" name="description" required></textarea></div>
+            <div class="admin-field"><label for="product-image">Choisir plusieurs images depuis votre appareil</label><input id="product-image" name="imageFiles" type="file" accept="image/*" multiple><p class="image-help" id="image-help">Sélectionnez jusqu'à 6 images pour le produit. Sur ordinateur, gardez Ctrl appuyé pour en choisir plusieurs.</p><div class="image-previews" id="image-previews"></div></div>
+            <div class="admin-field"><label for="product-video">Vidéo du produit (facultative)</label><input id="product-video" name="video" type="file" accept="video/*"><p class="image-help">Choisissez une vidéo depuis votre appareil (maximum 50 Mo).</p><div id="product-video-preview"></div></div>
+            <div class="admin-field"><label for="product-badge">Étiquette (facultatif)</label><input id="product-badge" name="badge" maxlength="30" placeholder="Nouveau"></div>
+          </div>
+          <div class="admin-actions"><button class="admin-button" type="submit">Enregistrer le produit</button><button class="admin-button secondary" id="cancel-edit" type="button" hidden>Annuler</button><p class="admin-status" id="product-status" role="status"></p></div>
+        </form>
+      </div>
+    </div>
+  </section>
+  <div class="cart-message" id="cart-message" role="status" aria-live="polite"></div>
+
+  <script src="./store-data.js"></script>
+  <script>
+    const storageKey = "noirva-store-data";
+    const defaultStoreData = {
+      settings: {
+        brand: "NOIRVA",
+        announcement: "Montres · Sacs · Accessoires — une élégance à offrir, à s'offrir",
+        title: "L'élégance, naturellement.",
+        description: "Des pièces choisies avec soin. Des détails qui vous ressemblent. Découvrez une autre façon de porter le quotidien.",
+        navProducts: "Nouveautés",
+        navCollections: "Collections",
+        navStory: "La maison",
+        heroEyebrow: "La nouvelle collection",
+        heroButtonText: "Découvrir la collection",
+        heroButtonTarget: "#nouveautes",
+        heroNote: "L'allure en toute simplicité",
+        collectionsEyebrow: "Trouvez votre essentiel",
+        collectionsTitle: "Nos collections",
+        collectionsLinkText: "Tout découvrir",
+        productsEyebrow: "Sélection du moment",
+        productsTitle: "Les pièces à découvrir",
+        productsLinkText: "Voir les collections",
+        productButtonText: "Ajouter au panier",
+        footerNote: "Des accessoires choisis avec soin, pour une élégance qui vous ressemble.",
+        whatsapp: "+212789001047",
+        instagram: "noirva_elegance",
+        storyLinkTarget: "#collections",
+        coverImage: "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1400&q=85",
+        storyEyebrow: "Notre signature",
+        storyTitle: "Le beau se cache dans les détails.",
+        storyDescription: "Noirva Elegance célèbre les pièces qui traversent les saisons. Une sélection pensée pour celles et ceux qui aiment l'élégance discrète et les objets qui ont une allure particulière.",
+        storyLinkText: "Explorer notre univers",
+        storyImages: ["https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1200&q=85"],
+        categories: [
+          { name: "Montres", image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=900&q=80" },
+          { name: "Sacs", image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=900&q=80" },
+          { name: "Accessoires", image: "https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=900&q=80" }
+        ],
+        values: [
+          { title: "Choisi avec soin", description: "Des pièces qui ont du caractère" },
+          { title: "Des essentiels", description: "Pour chaque occasion" },
+          { title: "À votre image", description: "Une élégance toute personnelle" }
+        ],
+        theme: { ink: "#22211f", gold: "#a5814c", paper: "#f8f6f1", white: "#fffefa", muted: "#77736d", line: "#e9e5dc", hero: "#eee9df", story: "#eee9df", category: "#e8e2d8", image: "#ddd5c8", footer: "#f7f3e9" },
+        animations: true,
+        visibility: { hero: true, collections: true, products: true, story: true, values: true },
+        sectionOrder: ["hero", "collections", "products", "story"]
+      },
+      products: [
+        { id: "heritage", name: "Montre Héritage", categoryIndex: 0, description: "Acier doré · Cuir naturel", price: 890, images: ["https://images.unsplash.com/photo-1524592094714-0f0654e20314?auto=format&fit=crop&w=750&q=80"], badge: "Nouveau" },
+        { id: "elise", name: "Le sac Élise", categoryIndex: 1, description: "Camel · Finition grainée", price: 1250, images: ["https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&w=750&q=80"], badge: "Coup de cœur" },
+        { id: "lumiere", name: "Boucles Lumière", categoryIndex: 2, description: "Finition dorée · Édition limitée", price: 390, images: ["https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&w=750&q=80"], badge: "" },
+        { id: "epure", name: "Montre Épure", categoryIndex: 0, description: "Acier argenté · Cadran nacré", price: 740, images: ["https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=750&q=80"], badge: "Essentiel" }
+      ]
+    };
+    if (window.NOIRVA_DEFAULT_STORE_DATA) Object.assign(defaultStoreData, structuredClone(window.NOIRVA_DEFAULT_STORE_DATA));
+    let storeData = loadStoreData();
+    const translations = {
+      fr: {
+        language: "Langue", menu: "Ouvrir le menu", closeMenu: "Fermer le menu", cart: "Panier", cartItems: "{count} article(s)", emptyCart: "Votre panier est vide.",
+        cartStorageError: "Le panier ne peut pas être enregistré dans ce navigateur.",
+        invalidQuantity: "Entrez un nombre de pièces supérieur ou égal à 1.",
+        unit: "unité", quantity: "Qté", decrease: "Diminuer la quantité de {name}", increase: "Augmenter la quantité de {name}",
+        remove: "Retirer", pieces: "Nombre de pièces pour {name}", total: "Total", checkout: "Commander",
+        name: "Nom complet", phone: "Téléphone", city: "Ville", address: "Adresse de livraison",
+        productsAll: "Tout", search: "Rechercher un produit", sort: "Trier les produits",
+        sortFeatured: "En vedette", sortPriceAsc: "Prix : croissant", sortPriceDesc: "Prix : décroissant",
+        noProducts: "Aucun produit ne correspond à votre recherche.", noAvailable: "Aucun produit disponible pour le moment.",
+        productOne: "produit", productMany: "produits", allProductsLink: "Voir tous les produits",
+        buy: "Acheter", add: "Ajouter au panier",
+        previous: "Photo précédente : {name}", next: "Photo suivante : {name}", video: "▶ Voir la vidéo",
+        sound: "Activer le son", photos: "Retour aux photos", photoNumber: "Photo {current} sur {total}",
+        touchZoom: "Touchez pour zoomer", zoomCaption: "{name} · {current} / {total} · Touchez la photo pour zoomer",
+        storyPhoto: "Photo {current} sur {total} de {name}", added: "{name} ajouté au panier",
+        whatsappOrderNotice: "Votre commande sera préparée dans WhatsApp. Envoyez le message pour nous la confirmer.",
+        whatsappOrderButton: "Continuer sur WhatsApp",
+        whatsappOrderTitle: "Bonjour Noirva, je souhaite commander :",
+        whatsappOrderCustomer: "Nom : {name}\nTéléphone : {phone}\nVille : {city}\nAdresse : {address}",
+        whatsappOrderTotal: "Total estimé : {total}",
+        whatsappOrderFooter: "Merci de confirmer la disponibilité et les modalités de livraison.",
+        whatsappUnavailable: "Le numéro WhatsApp de la boutique n'est pas valide. Contactez-nous via Instagram.",
+        chooseAll: "Tout", categories: ["Montres", "Sacs", "Accessoires"],
+        service: ["Montres, sacs et accessoires", "Commande simple sur WhatsApp", "Un accompagnement personnalisé"],
+        nav: ["Nouveautés", "Collections", "La maison"], footer: ["Collections", "À propos"], settings: {}
+      },
+      en: {
+        language: "Language", menu: "Open menu", closeMenu: "Close menu", cart: "Cart", cartItems: "{count} item(s)", emptyCart: "Your cart is empty.",
+        cartStorageError: "Your cart could not be saved in this browser.",
+        invalidQuantity: "Enter a quantity of 1 or more.",
+        unit: "unit", quantity: "Qty", decrease: "Decrease quantity of {name}", increase: "Increase quantity of {name}",
+        remove: "Remove", pieces: "Number of items for {name}", total: "Total", checkout: "Place order",
+        name: "Full name", phone: "Phone", city: "City", address: "Delivery address",
+        productsAll: "All", search: "Search products", sort: "Sort products",
+        sortFeatured: "Featured", sortPriceAsc: "Price: low to high", sortPriceDesc: "Price: high to low",
+        noProducts: "No products match your search.", noAvailable: "No products are available right now.",
+        productOne: "product", productMany: "products", allProductsLink: "View all products",
+        buy: "Buy now", add: "Add to cart",
+        previous: "Previous photo: {name}", next: "Next photo: {name}", video: "▶ Watch video",
+        sound: "Turn sound on", photos: "Back to photos", photoNumber: "Photo {current} of {total}",
+        touchZoom: "Tap to zoom", zoomCaption: "{name} · {current} / {total} · Tap the photo to zoom",
+        storyPhoto: "Photo {current} of {total} in {name}", added: "{name} added to cart",
+        whatsappOrderNotice: "Your order will be prepared in WhatsApp. Send the message there to confirm it.",
+        whatsappOrderButton: "Continue to WhatsApp",
+        whatsappOrderTitle: "Hello Noirva, I’d like to order:",
+        whatsappOrderCustomer: "Name: {name}\nPhone: {phone}\nCity: {city}\nAddress: {address}",
+        whatsappOrderTotal: "Estimated total: {total}",
+        whatsappOrderFooter: "Please confirm availability and delivery details.",
+        whatsappUnavailable: "The store’s WhatsApp number is invalid. Please contact us on Instagram.",
+        chooseAll: "All", categories: ["Watches", "Bags", "Accessories"],
+        service: ["Watches, bags and accessories", "Easy ordering on WhatsApp", "Personalized assistance"],
+        nav: ["New arrivals", "Collections", "Our story"], footer: ["Collections", "About us"],
+        values: [
+          ["Thoughtfully chosen", "Pieces with character"],
+          ["Everyday essentials", "Made for every occasion"],
+          ["True to you", "A style that feels personal"]
+        ],
+        settings: {
+          announcement: "Watches & bags · carefully selected",
+          title: "Elegance for every day.",
+          description: "Carefully selected watches and bags to complement your everyday style.",
+          navProducts: "New arrivals", navCollections: "Collections", navStory: "Our story",
+          heroEyebrow: "The Noirva edit", heroButtonText: "Explore the collection", heroNote: "Thoughtfully chosen pieces",
+          collectionsEyebrow: "Our world", collectionsTitle: "Explore our collections", collectionsLinkText: "Discover all",
+          productsEyebrow: "The latest edit", productsTitle: "Pieces to discover", productsLinkText: "View collections",
+          productButtonText: "Add to cart", footerNote: "Thoughtfully chosen pieces for an elegance that feels like you.",
+          storyEyebrow: "The Noirva spirit", storyTitle: "Details make all the difference.",
+          storyDescription: "Noirva Elegance brings together watches, bags and accessories made to complement your everyday style. Discover our pieces and choose the one that feels like you.",
+          storyLinkText: "Discover the collections"
+        }
+      },
+      ar: {
+        language: "اللغة", menu: "فتح القائمة", closeMenu: "إغلاق القائمة", cart: "السلة", cartItems: "{count} منتج",
+        emptyCart: "سلتك فارغة.", cartStorageError: "تعذر حفظ سلتك في هذا المتصفح.",
+        invalidQuantity: "أدخل كمية تساوي قطعة واحدة على الأقل.",
+        unit: "للوحدة", quantity: "الكمية",
+        decrease: "تقليل كمية {name}", increase: "زيادة كمية {name}", remove: "إزالة",
+        pieces: "عدد القطع من {name}", total: "الإجمالي", checkout: "إتمام الطلب",
+        name: "الاسم الكامل", phone: "رقم الهاتف", city: "المدينة", address: "عنوان التوصيل",
+        productsAll: "الكل", search: "ابحث عن منتج", sort: "ترتيب المنتجات",
+        sortFeatured: "الأكثر تميزًا", sortPriceAsc: "السعر: من الأقل إلى الأعلى", sortPriceDesc: "السعر: من الأعلى إلى الأقل",
+        noProducts: "لا توجد منتجات تطابق بحثك.", noAvailable: "لا توجد منتجات متاحة حاليًا.",
+        productOne: "منتج", productMany: "منتجات", allProductsLink: "عرض جميع المنتجات",
+        buy: "اشترِ الآن", add: "أضف إلى السلة",
+        previous: "الصورة السابقة: {name}", next: "الصورة التالية: {name}", video: "▶ شاهد الفيديو",
+        sound: "تشغيل الصوت", photos: "العودة إلى الصور", photoNumber: "الصورة {current} من {total}",
+        touchZoom: "اضغط للتكبير", zoomCaption: "{name} · {current} / {total} · اضغط على الصورة للتكبير",
+        storyPhoto: "الصورة {current} من {total} في {name}", added: "تمت إضافة {name} إلى السلة",
+        whatsappOrderNotice: "سيتم تجهيز طلبك في واتساب. أرسل الرسالة هناك لتأكيد الطلب.",
+        whatsappOrderButton: "متابعة إلى واتساب",
+        whatsappOrderTitle: "مرحبًا Noirva، أود طلب:",
+        whatsappOrderCustomer: "الاسم: {name}\nالهاتف: {phone}\nالمدينة: {city}\nالعنوان: {address}",
+        whatsappOrderTotal: "الإجمالي التقديري: {total}",
+        whatsappOrderFooter: "يرجى تأكيد توفر المنتجات وتفاصيل التوصيل.",
+        whatsappUnavailable: "رقم واتساب المتجر غير صالح. يرجى التواصل معنا عبر إنستغرام.",
+        chooseAll: "الكل", categories: ["ساعات", "حقائب", "إكسسوارات"],
+        service: ["ساعات وحقائب وإكسسوارات", "طلب سهل عبر واتساب", "مرافقة وخدمة شخصية"],
+        nav: ["وصل حديثًا", "المجموعات", "قصتنا"], footer: ["المجموعات", "من نحن"],
+        values: [
+          ["مختارة بعناية", "قطع تحمل طابعًا مميزًا"],
+          ["أساسيات يومية", "لكل المناسبات"],
+          ["تشبهك", "أناقة بطابعك الخاص"]
+        ],
+        settings: {
+          announcement: "ساعات وحقائب · مختارة بعناية",
+          title: "أناقة لكل يوم.",
+          description: "ساعات وحقائب مختارة بعناية لترافق أسلوبك اليومي.",
+          navProducts: "وصل حديثًا", navCollections: "المجموعات", navStory: "قصتنا",
+          heroEyebrow: "اختيارات Noirva", heroButtonText: "اكتشف المجموعة", heroNote: "قطع مختارة بعناية",
+          collectionsEyebrow: "عالمنا", collectionsTitle: "اكتشف مجموعاتنا", collectionsLinkText: "اكتشف الكل",
+          productsEyebrow: "اختيارات الموسم", productsTitle: "قطع تستحق الاكتشاف", productsLinkText: "تصفّح المجموعات",
+          productButtonText: "أضف إلى السلة", footerNote: "قطع مختارة بعناية، لأناقة تعبّر عنك.",
+          storyEyebrow: "روح Noirva", storyTitle: "التفاصيل تصنع الفرق.",
+          storyDescription: "تجمع Noirva Elegance ساعات وحقائب وإكسسوارات لترافق أسلوبك اليومي. اكتشف قطعنا واختر ما يشبهك.",
+          storyLinkText: "اكتشف المجموعات"
+        }
+      }
+    };
+    const productTranslations = {
+      fr: {
+        heritage: { name: "Rolex Daytona Panda", description: "Montre au design sport-chic élégant, avec un cadran blanc à compteurs noirs, une lunette tachymétrique noire et un bracelet Oyster en acier argenté." },
+        elise: { name: "Rolex Submariner Date de luxe", description: "Montre style Submariner, finition bicolore acier et or, cadran noir élégant, mouvement automatique et design sportif. Un look luxueux et raffiné pour toutes les occasions." },
+        lumiere: { name: "Montre Calida squelette dorée", description: "Montre élégante au design luxueux, avec un cadran doré ajouré laissant apparaître le mécanisme intérieur, des détails brillants et un bracelet métallique doré." },
+        epure: { name: "Sac à main noir", description: "Découvrez notre sac à main noir au design moderne et raffiné, idéal pour accompagner toutes vos tenues. Doté d’une forme rectangulaire aux bords arrondis, d’une finition texturée élégante et d’une fermeture zippée pratique, il allie style et fonctionnalité." }
+      },
+      en: {
+        heritage: { name: "Rolex Daytona Panda", description: "A stylish sport-chic watch with a white dial, black subdials, a black tachymeter bezel and a silver-tone Oyster bracelet." },
+        elise: { name: "Luxury Rolex Submariner Date", description: "A Submariner-style watch with a two-tone steel and gold finish, elegant black dial, automatic movement and sporty design. A refined, luxurious look for every occasion." },
+        lumiere: { name: "Calida Skeleton Gold Watch", description: "An elegant, luxurious watch with an open-work gold-tone dial revealing the inner mechanism, sparkling details and a gold-tone metal bracelet." },
+        epure: { name: "Black Handbag", description: "Discover our refined, modern black handbag, designed to complement any outfit. Its rounded rectangular shape, elegant textured finish and practical zip closure bring style and function together." }
+      },
+      ar: {
+        heritage: { name: "رولكس دايتونا باندا", description: "ساعة أنيقة بطابع رياضي راقٍ، بميناء أبيض وعدادات فرعية سوداء وإطار أسود لقياس السرعة وسوار أويستر من الفولاذ الفضي." },
+        elise: { name: "رولكس صبمارينر ديت الفاخرة", description: "ساعة بطراز صبمارينر وتشطيب ثنائي اللون من الفولاذ والذهب، بميناء أسود أنيق وحركة أوتوماتيكية وتصميم رياضي. إطلالة فاخرة وراقية لكل المناسبات." },
+        lumiere: { name: "ساعة كاليدا سكليتون الذهبية", description: "ساعة أنيقة وفاخرة بميناء ذهبي مفرغ يكشف عن الآلية الداخلية، وتفاصيل براقة وسوار معدني ذهبي." },
+        epure: { name: "حقيبة يد سوداء", description: "اكتشفي حقيبتنا السوداء بتصميم عصري وأنيق يناسب إطلالاتك. شكل مستطيل بحواف مستديرة، وملمس أنيق، وسحّاب عملي يجمع بين الأناقة والوظيفة." }
+      }
+    };
+    let currentLanguage = (() => {
+      try {
+        const saved = localStorage.getItem("noirva-language");
+        return Object.hasOwn(translations, saved) ? saved : "fr";
+      } catch (error) {
+        console.error("Impossible de lire la langue enregistrée.", error);
+        return "fr";
+      }
+    })();
+    function translate(key, values = {}) {
+      const template = translations[currentLanguage][key] ?? translations.fr[key] ?? key;
+      return Object.entries(values).reduce((text, [name, value]) => text.replaceAll(`{${name}}`, String(value)), template);
+    }
+    function productText(product, field) {
+      return productTranslations[currentLanguage]?.[product.id]?.[field] || product[field];
+    }
+    function localizedSetting(key) {
+      const localized = translations[currentLanguage].settings?.[key];
+      const defaultValue = window.NOIRVA_DEFAULT_STORE_DATA?.settings?.[key];
+      return localized && storeData.settings[key] === defaultValue ? localized : storeData.settings[key];
+    }
+    function localizedCategoryName(category, index) {
+      const defaultName = window.NOIRVA_DEFAULT_STORE_DATA?.settings?.categories?.[index]?.name;
+      return category.name === defaultName ? translations[currentLanguage].categories[index] : category.name;
+    }
+    function localizedValueText(value, index, field) {
+      const defaultValue = window.NOIRVA_DEFAULT_STORE_DATA?.settings?.values?.[index]?.[field];
+      return value[field] === defaultValue
+        ? translations[currentLanguage].values?.[index]?.[field === "title" ? 0 : 1] || value[field]
+        : value[field];
+    }
+    function formatPrice(value) {
+      const locale = currentLanguage === "ar" ? "ar-MA" : currentLanguage === "en" ? "en-US" : "fr-FR";
+      return `${Number(value).toLocaleString(locale)} MAD`;
+    }
+    function localizedBadge(value) {
+      const badges = {
+        Nouveau: { en: "New", ar: "جديد" },
+        Essentiel: { en: "Essential", ar: "أساسي" },
+        "Coup de cœur": { en: "Customer favorite", ar: "الأكثر رواجًا" }
+      };
+      return badges[value]?.[currentLanguage] || value;
+    }
+    const previousTheme = {
+      ink: "#22211f", gold: "#a5814c", paper: "#f8f6f1", white: "#fffefa", muted: "#77736d",
+      line: "#e9e5dc", hero: "#eee9df", story: "#eee9df", category: "#e8e2d8",
+      image: "#ddd5c8", footer: "#f7f3e9"
+    };
+    const noirvaTheme = {
+      ink: "#f4efe6", gold: "#e87535", paper: "#111110", white: "#191817", muted: "#a7a19a",
+      line: "#39332e", hero: "#191817", story: "#191817", category: "#29231f",
+      image: "#211e1b", footer: "#f4efe6"
+    };
+    Object.entries(previousTheme).forEach(([key, value]) => {
+      if (typeof storeData.settings.theme[key] === "string" && storeData.settings.theme[key].toLowerCase() === value) {
+        storeData.settings.theme[key] = noirvaTheme[key];
+      }
+    });
+    let storyImageIndex = 0;
+    let draftStoryImages = [];
+    let draftCategoryImages = [];
+    let draftProductVideo = null;
+    let draftProductVideoRemoved = false;
+    let draftExistingProductVideoId = null;
+    let productVideoPreviewUrl = null;
+    let productVideoDatabasePromise;
+    const productVideoObjectUrls = new Set();
+
+    function openProductVideoDatabase() {
+      if (!("indexedDB" in window)) return Promise.reject(new Error("Ce navigateur ne permet pas de sauvegarder les vidéos."));
+      if (!productVideoDatabasePromise) {
+        productVideoDatabasePromise = new Promise((resolve, reject) => {
+          const request = indexedDB.open("noirva-product-videos", 1);
+          request.onupgradeneeded = () => request.result.createObjectStore("videos");
+          request.onsuccess = () => resolve(request.result);
+          request.onerror = () => reject(request.error || new Error("Impossible d'ouvrir le stockage des vidéos."));
+        });
+
+      }
+      return productVideoDatabasePromise;
+    }
+
+    async function saveProductVideo(key, video) {
+      const database = await openProductVideoDatabase();
+      return new Promise((resolve, reject) => {
+        const transaction = database.transaction("videos", "readwrite");
+        transaction.objectStore("videos").put(video, key);
+        transaction.oncomplete = resolve;
+        transaction.onerror = () => reject(transaction.error || new Error("Impossible d'enregistrer la vidéo."));
+        transaction.onabort = () => reject(transaction.error || new Error("L'enregistrement de la vidéo a été interrompu."));
+      });
+    }
+
+    async function getProductVideo(key) {
+      const publishedVideoUrl = window.NOIRVA_PRODUCT_VIDEO_URLS && window.NOIRVA_PRODUCT_VIDEO_URLS[key];
+      if (publishedVideoUrl) {
+        const response = await fetch(publishedVideoUrl);
+        if (!response.ok) throw new Error(`Impossible de charger la vidéo (${response.status}).`);
+        return response.blob();
+      }
+      const database = await openProductVideoDatabase();
+      return new Promise((resolve, reject) => {
+        const request = database.transaction("videos", "readonly").objectStore("videos").get(key);
+        request.onsuccess = () => resolve(request.result || null);
+        request.onerror = () => reject(request.error || new Error("Impossible de charger la vidéo."));
+      });
+    }
+
+    async function deleteProductVideo(key) {
+      if (!key) return;
+      const database = await openProductVideoDatabase();
+      return new Promise((resolve, reject) => {
+        const transaction = database.transaction("videos", "readwrite");
+        transaction.objectStore("videos").delete(key);
+        transaction.oncomplete = resolve;
+        transaction.onerror = () => reject(transaction.error || new Error("Impossible de supprimer la vidéo."));
+        transaction.onabort = () => reject(transaction.error || new Error("La suppression de la vidéo a été interrompue."));
+      });
+    }
+
+    function loadStoreData() {
+      const saved = localStorage.getItem(storageKey);
+      if (!saved) return structuredClone(defaultStoreData);
+      try {
+        const parsed = JSON.parse(saved);
+        if (!parsed || !parsed.settings || !Array.isArray(parsed.products)) throw new Error("Format invalide");
+        parsed.products = parsed.products.map((product) => ({
+          ...product,
+          images: Array.isArray(product.images) && product.images.length ? product.images : product.image ? [product.image] : [],
+          categoryIndex: Number.isInteger(product.categoryIndex) && product.categoryIndex >= 0 && product.categoryIndex < 3
+            ? product.categoryIndex
+            : (/montre/i.test(product.name) ? 0 : /sac/i.test(product.name) ? 1 : 2),
+          oldPrice: product.oldPrice ? Number(product.oldPrice) : null,
+          videoId: typeof product.videoId === "string" ? product.videoId : null
+        }));
+        const savedStoryImages = parsed.settings.storyImages;
+        const legacyStoryImage = parsed.settings.storyImage;
+        parsed.settings = {
+          ...defaultStoreData.settings,
+          ...parsed.settings,
+          theme: { ...defaultStoreData.settings.theme, ...(parsed.settings.theme || {}) },
+          visibility: { ...defaultStoreData.settings.visibility, ...(parsed.settings.visibility || {}) }
+        };
+        if ((!Array.isArray(savedStoryImages) || !savedStoryImages.length) && legacyStoryImage) {
+          parsed.settings.storyImages = [legacyStoryImage];
+        }
+        parsed.settings.categories = Array.isArray(parsed.settings.categories) && parsed.settings.categories.length === 3
+          ? parsed.settings.categories.map((category, index) => ({ ...defaultStoreData.settings.categories[index], ...category }))
+          : defaultStoreData.settings.categories.map((category) => ({ ...category }));
+        parsed.settings.values = Array.isArray(parsed.settings.values) && parsed.settings.values.length === 3
+          ? parsed.settings.values.map((value, index) => ({ ...defaultStoreData.settings.values[index], ...value }))
+          : defaultStoreData.settings.values.map((value) => ({ ...value }));
+        parsed.settings.storyImages = Array.isArray(parsed.settings.storyImages) && parsed.settings.storyImages.length
+          ? parsed.settings.storyImages
+          : defaultStoreData.settings.storyImages;
+        parsed.settings.sectionOrder = Array.isArray(parsed.settings.sectionOrder) && parsed.settings.sectionOrder.length === 4
+          && new Set(parsed.settings.sectionOrder).size === 4
+          && parsed.settings.sectionOrder.every((section) => defaultStoreData.settings.sectionOrder.includes(section))
+          ? parsed.settings.sectionOrder
+          : [...defaultStoreData.settings.sectionOrder];
+        return parsed;
+      } catch (error) {
+        console.error("Impossible de lire les données de la boutique.", error);
+        return structuredClone(defaultStoreData);
+      }
+    }
+
+    function persistStoreData() {
+      try {
+        localStorage.setItem(storageKey, JSON.stringify(storeData));
+        return true;
+      } catch (error) {
+        console.error("Impossible d'enregistrer les données de la boutique.", error);
+        return false;
+      }
+    }
+
+    function readFileAsDataUrl(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = () => reject(new Error("Impossible de lire une vidéo pour la sauvegarde."));
+        reader.readAsDataURL(file);
+      });
+    }
+
+    document.querySelector("#export-store").addEventListener("click", async (event) => {
+      const button = event.currentTarget;
+      const status = document.querySelector("#export-status");
+      button.disabled = true;
+      status.textContent = "Préparation de la sauvegarde...";
+      try {
+        const productVideos = {};
+        for (const product of storeData.products) {
+          if (!product.videoId) continue;
+          const video = await getProductVideo(product.videoId);
+          if (!video) throw new Error(`Vidéo introuvable pour « ${product.name} ». La sauvegarde a été annulée.`);
+          productVideos[product.videoId] = await readFileAsDataUrl(video);
+        }
+        const backup = {
+          format: "noirva-store-backup",
+          version: 1,
+          exportedAt: new Date().toISOString(),
+          storeData,
+          productVideos
+        };
+        const blob = new Blob([JSON.stringify(backup)], { type: "application/json" });
+        const downloadUrl = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = downloadUrl;
+        link.download = `noirva-store-backup-${new Date().toISOString().slice(0, 10)}.json`;
+        link.click();
+        URL.revokeObjectURL(downloadUrl);
+        status.textContent = "Sauvegarde téléchargée. Conservez-la pour préparer la publication.";
+      } catch (error) {
+        console.error("Impossible de préparer une sauvegarde de la boutique.", error);
+        status.textContent = error.message;
+      } finally {
+        button.disabled = false;
+      }
+    });
+
+    function createProductCard(product) {
+      const localizedName = productText(product, "name");
+      const article = document.createElement("article");
+      article.className = "product";
+      article.dataset.productId = product.id;
+      article.dataset.categoryIndex = String(product.categoryIndex);
+      const imageFrame = document.createElement("div");
+      imageFrame.className = "product-image";
+      if (product.badge) {
+        const badge = document.createElement("span");
+        badge.className = "badge";
+        badge.textContent = localizedBadge(product.badge);
+        imageFrame.append(badge);
+      }
+      const image = document.createElement("img");
+      image.src = product.images[0];
+      image.alt = localizedName;
+      image.loading = "lazy";
+      image.draggable = false;
+      imageFrame.append(image);
+      if (product.images.length > 1) {
+        const controls = document.createElement("div");
+        controls.className = "gallery-controls";
+        const previous = document.createElement("button");
+        previous.type = "button";
+        previous.dataset.galleryAction = "previous";
+        previous.setAttribute("aria-label", translate("previous", { name: localizedName }));
+        previous.textContent = "←";
+        const count = document.createElement("span");
+        count.className = "gallery-count";
+        count.textContent = `1 / ${product.images.length}`;
+        const next = document.createElement("button");
+        next.type = "button";
+        next.dataset.galleryAction = "next";
+        next.setAttribute("aria-label", translate("next", { name: localizedName }));
+        next.textContent = "→";
+        controls.append(previous, count, next);
+        imageFrame.append(controls);
+      }
+      article.append(imageFrame);
+      if (product.videoId) {
+        const videoToggle = document.createElement("button");
+        videoToggle.className = "product-video-toggle";
+        videoToggle.type = "button";
+        videoToggle.dataset.productVideoAction = "show";
+        videoToggle.textContent = translate("video");
+        imageFrame.append(videoToggle);
+        const videoPanel = document.createElement("div");
+        videoPanel.className = "product-video-panel";
+        videoPanel.hidden = true;
+        const video = document.createElement("video");
+        video.controls = true;
+        video.playsInline = true;
+        video.preload = "metadata";
+        video.muted = false;
+        video.volume = 1;
+        const soundButton = document.createElement("button");
+        soundButton.className = "product-video-sound";
+        soundButton.type = "button";
+        soundButton.dataset.productVideoAction = "sound";
+        soundButton.textContent = translate("sound");
+        const returnButton = document.createElement("button");
+        returnButton.className = "product-video-return";
+        returnButton.type = "button";
+        returnButton.dataset.productVideoAction = "photos";
+        returnButton.textContent = translate("photos");
+        videoPanel.append(video, soundButton, returnButton);
+        article.append(videoPanel);
+        getProductVideo(product.videoId).then((blob) => {
+          if (!blob) throw new Error(`Vidéo introuvable pour le produit « ${product.name} ».`);
+          if (!article.isConnected) return;
+          const url = URL.createObjectURL(blob);
+          productVideoObjectUrls.add(url);
+          video.src = url;
+        }).catch((error) => {
+          console.error("Impossible de charger la vidéo du produit.", error);
+          videoToggle.disabled = true;
+          videoToggle.textContent = currentLanguage === "ar" ? "الفيديو غير متاح" : currentLanguage === "en" ? "Video unavailable" : "Vidéo indisponible";
+        });
+      }
+      const info = document.createElement("div");
+      info.className = "product-info";
+      const details = document.createElement("div");
+      const name = document.createElement("h3");
+      name.textContent = localizedName;
+      const description = document.createElement("p");
+      const descriptionParagraphs = product.description.trim().split(/\n\s*\n/);
+      const firstParagraph = descriptionParagraphs[0] || "";
+      const firstParagraphIsHeading = firstParagraph.length < 70
+        && (firstParagraph.includes(product.name) || firstParagraph.startsWith("⌚"));
+      const descriptionSummary = firstParagraphIsHeading
+        ? descriptionParagraphs[1] || ""
+        : firstParagraph || descriptionParagraphs[1] || "";
+      description.textContent = productTranslations[currentLanguage]?.[product.id]?.description
+        || descriptionSummary.replace(/\s+/g, " ").trim();
+      const addButton = document.createElement("button");
+      addButton.className = "add-button";
+      addButton.type = "button";
+      addButton.dataset.product = product.id;
+      addButton.textContent = localizedSetting("productButtonText");
+      const buyNowButton = document.createElement("button");
+      buyNowButton.className = "buy-now-button";
+      buyNowButton.type = "button";
+      buyNowButton.dataset.buyNow = product.id;
+      buyNowButton.textContent = translate("buy");
+      details.append(name, description);
+      const price = document.createElement("p");
+      price.className = "product-price";
+      if (product.oldPrice && product.oldPrice > product.price) {
+        const oldPrice = document.createElement("del");
+        oldPrice.className = "product-old-price";
+        oldPrice.textContent = formatPrice(product.oldPrice);
+        price.append(oldPrice);
+      }
+      const currentPrice = document.createElement("span");
+      currentPrice.className = "product-current-price";
+      currentPrice.textContent = formatPrice(product.price);
+      price.append(currentPrice);
+      info.append(details, price, buyNowButton, addButton);
+      article.append(info);
+      return article;
+    }
+
+    let zoomedProductId = null;
+    let zoomedImageIndex = 0;
+    let zoomedScrollY = 0;
+
+    function renderZoomedProductImage() {
+      const product = storeData.products.find((item) => item.id === zoomedProductId);
+      if (!product) return;
+      const dialog = document.querySelector("#product-image-zoom");
+      const image = document.querySelector("#product-zoom-image");
+      image.src = product.images[zoomedImageIndex];
+      const localizedName = productText(product, "name");
+      image.alt = `${localizedName} · ${translate("photoNumber", { current: zoomedImageIndex + 1, total: product.images.length })}`;
+      image.classList.remove("is-detail");
+      image.style.transformOrigin = "center";
+      image.setAttribute("aria-label", `${localizedName}, ${translate("photoNumber", { current: zoomedImageIndex + 1, total: product.images.length })}. ${translate("touchZoom")}`);
+      document.querySelector("#product-zoom-caption").textContent = translate("zoomCaption", { name: localizedName, current: zoomedImageIndex + 1, total: product.images.length });
+      dialog.querySelector('[data-zoom-action="previous"]').hidden = product.images.length < 2;
+      dialog.querySelector('[data-zoom-action="next"]').hidden = product.images.length < 2;
+    }
+
+    function openProductImageZoom(product, index) {
+      zoomedProductId = product.id;
+      zoomedImageIndex = index;
+      zoomedScrollY = window.scrollY;
+      renderZoomedProductImage();
+      const dialog = document.querySelector("#product-image-zoom");
+      dialog.showModal();
+      dialog.focus({ preventScroll: true });
+      requestAnimationFrame(() => window.scrollTo(0, zoomedScrollY));
+    }
+
+    function changeZoomedImage(direction) {
+      const product = storeData.products.find((item) => item.id === zoomedProductId);
+      if (!product || product.images.length < 2) return;
+      zoomedImageIndex = (zoomedImageIndex + direction + product.images.length) % product.images.length;
+      renderZoomedProductImage();
+      const card = document.querySelector(`.product[data-product-id="${CSS.escape(product.id)}"]`);
+      if (card) {
+        card.dataset.imageIndex = String(zoomedImageIndex);
+        card.querySelector(".product-image img").src = product.images[zoomedImageIndex];
+        const count = card.querySelector(".gallery-count");
+        if (count) count.textContent = `${zoomedImageIndex + 1} / ${product.images.length}`;
+      }
+    }
+
+    function renderStorefront() {
+      document.documentElement.lang = currentLanguage;
+      document.documentElement.dir = currentLanguage === "ar" ? "rtl" : "ltr";
+      document.querySelector("#language-select").value = currentLanguage;
+      document.querySelector("#language-select").setAttribute("aria-label", translate("language"));
+      document.querySelector(".language-picker label").textContent = translate("language");
+      document.querySelector(".announcement").textContent = localizedSetting("announcement");
+      document.querySelector("nav.nav").setAttribute("aria-label", currentLanguage === "ar" ? "التنقل الرئيسي" : currentLanguage === "en" ? "Main navigation" : "Navigation principale");
+      document.querySelectorAll(".brand").forEach((brand) => {
+        const subtitle = brand.querySelector("span");
+        brand.replaceChildren(document.createTextNode(storeData.settings.brand), subtitle);
+        brand.setAttribute("aria-label", `${storeData.settings.brand} Elegance, ${currentLanguage === "ar" ? "الرئيسية" : currentLanguage === "en" ? "home" : "accueil"}`);
+      });
+      menuToggle.setAttribute("aria-label", translate("menu"));
+      document.querySelector(".admin-link").textContent = currentLanguage === "ar" ? "الإدارة" : currentLanguage === "en" ? "Administration" : "Administration";
+      document.querySelector("#hero-title").textContent = localizedSetting("title");
+      document.querySelector("#hero-description").textContent = localizedSetting("description");
+      document.querySelector(".hero-image").style.backgroundImage = `url("${storeData.settings.coverImage}")`;
+      document.querySelector("#hero-eyebrow").textContent = localizedSetting("heroEyebrow");
+      document.querySelector("#hero-button").textContent = localizedSetting("heroButtonText");
+      document.querySelector("#hero-button").href = storeData.settings.heroButtonTarget;
+      document.querySelector("#hero-note").textContent = localizedSetting("heroNote");
+      document.querySelector("#collections-eyebrow").textContent = localizedSetting("collectionsEyebrow");
+      document.querySelector("#collections-title").textContent = localizedSetting("collectionsTitle");
+      document.querySelector("#collections-link").textContent = localizedSetting("collectionsLinkText");
+      document.querySelector("#products-eyebrow").textContent = localizedSetting("productsEyebrow");
+      document.querySelector("#products-title").textContent = localizedSetting("productsTitle");
+      document.querySelector("#products-link").textContent = localizedSetting("productsLinkText");
+      document.querySelector("#nav-products").textContent = localizedSetting("navProducts");
+      document.querySelector("#nav-collections").textContent = localizedSetting("navCollections");
+      document.querySelector("#nav-story").textContent = localizedSetting("navStory");
+      document.querySelector("#footer-collections").textContent = localizedSetting("navCollections");
+      document.querySelector("#footer-story").textContent = translations[currentLanguage].footer[1];
+      document.querySelector("#footer-note").textContent = localizedSetting("footerNote");
+      document.querySelectorAll(".service-item span:last-child").forEach((item, index) => {
+        if (!item.dataset.originalText) item.dataset.originalText = item.textContent;
+        item.textContent = currentLanguage === "fr" ? item.dataset.originalText : translations[currentLanguage].service[index];
+      });
+      const whatsappNumber = storeData.settings.whatsapp.replace(/\D/g, "");
+      const whatsappUrl = `https://wa.me/${whatsappNumber}`;
+      const savedInstagram = storeData.settings.instagram.trim();
+      const instagramMatch = savedInstagram.match(/^(?:https?:\/\/(?:www\.)?instagram\.com\/)?@?([A-Za-z0-9._]{1,30})\/?$/i);
+      const instagramName = instagramMatch ? instagramMatch[1] : "";
+      const instagramUrl = instagramName
+        ? `https://www.instagram.com/${encodeURIComponent(instagramName)}/`
+        : "https://www.instagram.com/";
+      document.querySelector("#footer-whatsapp").href = whatsappUrl;
+      document.querySelector("#footer-instagram").href = instagramUrl;
+      document.querySelector("#whatsapp-float").href = whatsappUrl;
+      document.querySelector("#instagram-float").href = instagramUrl;
+      document.querySelector("#story-eyebrow").textContent = localizedSetting("storyEyebrow");
+      document.querySelector("#story-title").textContent = localizedSetting("storyTitle");
+      document.querySelector("#story-description").textContent = localizedSetting("storyDescription");
+      document.querySelector("#story-link").textContent = localizedSetting("storyLinkText");
+      document.querySelector("#story-link").href = storeData.settings.storyLinkTarget;
+      renderCategories();
+      renderValues();
+      const storyImage = document.querySelector(".story-image");
+      storyImageIndex %= storeData.settings.storyImages.length;
+      storyImage.style.backgroundImage = `url("${storeData.settings.storyImages[storyImageIndex]}")`;
+      storyImage.setAttribute("aria-label", translate("storyPhoto", { current: storyImageIndex + 1, total: storeData.settings.storyImages.length, name: localizedSetting("storyEyebrow") }));
+      const storyControls = document.querySelector("#story-gallery-controls");
+      storyControls.hidden = storeData.settings.storyImages.length < 2;
+      storyControls.querySelector('[data-story-gallery-action="previous"]').setAttribute("aria-label", translate("previous", { name: localizedSetting("storyEyebrow") }));
+      storyControls.querySelector('[data-story-gallery-action="next"]').setAttribute("aria-label", translate("next", { name: localizedSetting("storyEyebrow") }));
+      document.querySelector("#story-gallery-count").textContent = `${storyImageIndex + 1} / ${storeData.settings.storyImages.length}`;
+      document.querySelector(".service-strip").setAttribute("aria-label", currentLanguage === "ar" ? "مزايا Noirva" : currentLanguage === "en" ? "Noirva benefits" : "Les avantages Noirva");
+      document.querySelector("#values").setAttribute("aria-label", currentLanguage === "ar" ? "ما نلتزم به" : currentLanguage === "en" ? "Our commitments" : "Nos engagements");
+      document.querySelector(".footer .social-links").setAttribute("aria-label", currentLanguage === "ar" ? "تابعنا على مواقع التواصل" : currentLanguage === "en" ? "Follow us" : "Nos réseaux sociaux");
+      document.querySelector("#footer-whatsapp").setAttribute("aria-label", currentLanguage === "ar" ? "تواصل معنا عبر واتساب" : currentLanguage === "en" ? "Contact us on WhatsApp" : "Nous contacter sur WhatsApp");
+      document.querySelector("#footer-instagram").setAttribute("aria-label", currentLanguage === "ar" ? "تابع Noirva Elegance على إنستغرام" : currentLanguage === "en" ? "Follow Noirva Elegance on Instagram" : "Suivre Noirva Elegance sur Instagram");
+      document.querySelector("#whatsapp-float").setAttribute("aria-label", currentLanguage === "ar" ? "تواصل مع Noirva Elegance عبر واتساب" : currentLanguage === "en" ? "Contact Noirva Elegance on WhatsApp" : "Contacter Noirva Elegance sur WhatsApp");
+      document.querySelector("#instagram-float").setAttribute("aria-label", currentLanguage === "ar" ? "تابع Noirva Elegance على إنستغرام" : currentLanguage === "en" ? "Follow Noirva Elegance on Instagram" : "Suivre Noirva Elegance sur Instagram");
+      document.querySelector(".copyright").innerHTML = `© <span id="year">${new Date().getFullYear()}</span> Noirva Elegance. ${currentLanguage === "ar" ? "جميع الحقوق محفوظة." : currentLanguage === "en" ? "All rights reserved." : "Tous droits réservés."}`;
+      document.title = `Noirva Elegance — ${localizedSetting("title")}`;
+      document.querySelector('meta[name="description"]').content = localizedSetting("description");
+      document.querySelector("#product-search").placeholder = `${translate("search")}…`;
+      document.querySelector(".product-search .visually-hidden").textContent = translate("search");
+      document.querySelector(".product-sort .visually-hidden").textContent = translate("sort");
+      document.querySelector("#product-filters").setAttribute("aria-label", currentLanguage === "ar" ? "تصفية حسب المجموعة" : currentLanguage === "en" ? "Filter by collection" : "Filtrer par collection");
+      const sortOptions = document.querySelectorAll("#product-sort option");
+      sortOptions[0].textContent = translate("sortFeatured");
+      sortOptions[1].textContent = currentLanguage === "ar" ? "السعر: من الأقل إلى الأعلى" : currentLanguage === "en" ? "Price: low to high" : "Prix : du moins cher au plus cher";
+      sortOptions[2].textContent = currentLanguage === "ar" ? "السعر: من الأعلى إلى الأقل" : currentLanguage === "en" ? "Price: high to low" : "Prix : du plus cher au moins cher";
+      sortOptions[3].textContent = currentLanguage === "ar" ? "الاسم: أ إلى ي" : currentLanguage === "en" ? "Name: A to Z" : "Nom : A à Z";
+      document.querySelector("#cart-title").textContent = currentLanguage === "ar" ? "سلة التسوق" : currentLanguage === "en" ? "Your cart" : "Votre panier";
+      document.querySelector("#cart-empty").textContent = translate("emptyCart");
+      document.querySelector(".cart-total strong").textContent = translate("total");
+      document.querySelector("#cart-checkout").textContent = translate("whatsappOrderButton");
+      document.querySelector("#cart-order-form .cart-note").textContent = translate("whatsappOrderNotice");
+      const whatsappOrderLink = document.querySelector("#cart-whatsapp-link");
+      whatsappOrderLink.textContent = translate("whatsappOrderButton");
+      whatsappOrderLink.hidden = true;
+      const checkoutLabels = { customerName: translate("name"), customerPhone: translate("phone"), customerCity: translate("city"), deliveryAddress: translate("address") };
+      Object.entries(checkoutLabels).forEach(([name, label]) => {
+        cartForm.elements[name].parentElement.firstChild.textContent = label;
+      });
+      cartButton.querySelector("span").firstChild.textContent = `${translate("cart")} (`;
+      cartDialog.querySelector("[data-cart-close]").setAttribute("aria-label", currentLanguage === "ar" ? "إغلاق السلة" : currentLanguage === "en" ? "Close cart" : "Fermer le panier");
+      document.querySelector("#product-image-zoom").setAttribute("aria-label", currentLanguage === "ar" ? "تكبير صورة المنتج" : currentLanguage === "en" ? "Product image zoom" : "Agrandissement de la photo du produit");
+      document.querySelector('[data-zoom-action="close"]').setAttribute("aria-label", currentLanguage === "ar" ? "إغلاق التكبير" : currentLanguage === "en" ? "Close zoom" : "Fermer l'agrandissement");
+      document.querySelector('[data-zoom-action="previous"]').setAttribute("aria-label", currentLanguage === "ar" ? "الصورة السابقة" : currentLanguage === "en" ? "Previous photo" : "Photo précédente");
+      document.querySelector('[data-zoom-action="next"]').setAttribute("aria-label", currentLanguage === "ar" ? "الصورة التالية" : currentLanguage === "en" ? "Next photo" : "Photo suivante");
+      document.querySelector("#product-zoom-caption").textContent = currentLanguage === "ar" ? "اضغط على الصورة لعرض التفاصيل" : currentLanguage === "en" ? "Tap the image to view details" : "Cliquez sur l'image pour voir les détails";
+      renderCart();
+      if (zoomedProductId) renderZoomedProductImage();
+      const productGrid = document.querySelector("#products");
+      productGrid.querySelectorAll("video").forEach((video) => video.pause());
+      productVideoObjectUrls.forEach((url) => URL.revokeObjectURL(url));
+      productVideoObjectUrls.clear();
+      renderProducts();
+      applyTheme();
+      applyLayout();
+      setupScrollAnimations();
+    }
+
+    const themeProperties = {
+      ink: "--ink",
+      gold: "--gold",
+      paper: "--paper",
+      white: "--white",
+      muted: "--muted",
+      line: "--line",
+      hero: "--hero-surface",
+      story: "--story-surface",
+      category: "--category-surface",
+      image: "--image-surface",
+      footer: "--footer-text"
+    };
+
+    function applyTheme() {
+      Object.entries(themeProperties).forEach(([key, property]) => {
+        document.documentElement.style.setProperty(property, storeData.settings.theme[key]);
+      });
+      document.body.classList.toggle("no-animations", !storeData.settings.animations);
+    }
+
+    function renderCategories() {
+      const container = document.querySelector("#categories");
+      container.replaceChildren();
+      const categories = storeData.settings.categories
+        .map((category, index) => ({ category, index }))
+        .filter(({ index }) => storeData.products.some((product) => product.categoryIndex === index));
+      container.dataset.count = String(categories.length);
+      categories.forEach(({ category, index }) => {
+        const link = document.createElement("a");
+        link.className = "category";
+        link.href = "#nouveautes";
+        link.dataset.categoryIndex = String(index);
+        const image = document.createElement("img");
+        image.src = category.image;
+        image.alt = localizedCategoryName(category, index);
+        image.loading = "lazy";
+        const label = document.createElement("div");
+        label.className = "category-label";
+        const title = document.createElement("h3");
+        title.textContent = localizedCategoryName(category, index);
+        const arrow = document.createElement("span");
+        arrow.setAttribute("aria-hidden", "true");
+        arrow.textContent = "↗";
+        label.append(title, arrow);
+        link.append(image, label);
+        container.append(link);
+      });
+    }
+
+    let activeCategoryIndex = null;
+    let productSearchTerm = "";
+    let productSort = "featured";
+
+    function renderProductFilters() {
+      const filters = document.querySelector("#product-filters");
+      const allProductsButton = document.createElement("button");
+      allProductsButton.type = "button";
+      allProductsButton.className = "product-filter";
+      allProductsButton.dataset.productCategory = "all";
+      allProductsButton.setAttribute("aria-pressed", String(activeCategoryIndex === null));
+      allProductsButton.textContent = `${translate("productsAll")} (${storeData.products.length})`;
+      filters.replaceChildren(allProductsButton);
+
+      storeData.settings.categories.forEach((category, index) => {
+        const count = storeData.products.filter((product) => product.categoryIndex === index).length;
+        if (!count) return;
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "product-filter";
+        button.dataset.productCategory = String(index);
+        button.setAttribute("aria-pressed", String(activeCategoryIndex === index));
+        button.textContent = `${localizedCategoryName(category, index)} (${count})`;
+        filters.append(button);
+      });
+    }
+
+    function renderProducts() {
+      const productGrid = document.querySelector("#products");
+      if (activeCategoryIndex !== null && !storeData.products.some((product) => product.categoryIndex === activeCategoryIndex)) {
+        activeCategoryIndex = null;
+      }
+      const locale = currentLanguage === "ar" ? "ar" : currentLanguage === "en" ? "en" : "fr";
+      const normalizedSearch = productSearchTerm.trim().normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLocaleLowerCase(locale);
+      const visibleProducts = storeData.products.filter((product) => {
+        const matchesCategory = activeCategoryIndex === null || product.categoryIndex === activeCategoryIndex;
+        const category = storeData.settings.categories[product.categoryIndex];
+        const categoryName = category ? localizedCategoryName(category, product.categoryIndex) : "";
+        const searchableText = `${productText(product, "name")} ${productText(product, "description")} ${product.name} ${product.description} ${categoryName}`
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .toLocaleLowerCase(locale);
+        return matchesCategory && searchableText.includes(normalizedSearch);
+      });
+      if (productSort === "price-ascending") visibleProducts.sort((first, second) => first.price - second.price);
+      if (productSort === "price-descending") visibleProducts.sort((first, second) => second.price - first.price);
+      if (productSort === "name") visibleProducts.sort((first, second) => productText(first, "name").localeCompare(productText(second, "name"), locale));
+      productGrid.replaceChildren(...visibleProducts.map(createProductCard));
+      const emptyMessage = document.querySelector("#products-empty");
+      emptyMessage.hidden = visibleProducts.length > 0;
+      emptyMessage.textContent = normalizedSearch || activeCategoryIndex !== null
+        ? translate("noProducts")
+        : translate("noAvailable");
+      document.querySelector("#product-count").textContent = `${visibleProducts.length} ${visibleProducts.length === 1 ? translate("productOne") : translate("productMany")}`;
+      renderProductFilters();
+      document.querySelector("#products-title").textContent = activeCategoryIndex === null
+        ? localizedSetting("productsTitle")
+        : localizedCategoryName(storeData.settings.categories[activeCategoryIndex], activeCategoryIndex);
+      const productsLink = document.querySelector("#products-link");
+      productsLink.textContent = activeCategoryIndex === null
+        ? localizedSetting("productsLinkText")
+        : translate("allProductsLink");
+      productsLink.href = "#nouveautes";
+      productsLink.dataset.showAllProducts = String(activeCategoryIndex !== null);
+    }
+
+    function renderValues() {
+      const container = document.querySelector("#values");
+      container.replaceChildren();
+      storeData.settings.values.forEach((value, index) => {
+        const item = document.createElement("div");
+        item.className = "value";
+        const title = document.createElement("strong");
+        title.textContent = localizedValueText(value, index, "title");
+        const description = document.createElement("span");
+        description.textContent = localizedValueText(value, index, "description");
+        item.append(title, description);
+        container.append(item);
+      });
+    }
+
+    function applyLayout() {
+      const main = document.querySelector("main");
+      const sections = {
+        hero: document.querySelector("#accueil"),
+        collections: document.querySelector("#collections"),
+        products: document.querySelector("#nouveautes"),
+        story: document.querySelector("#maison")
+      };
+      storeData.settings.sectionOrder.forEach((key) => main.append(sections[key]));
+      const serviceStrip = document.querySelector(".service-strip");
+      sections.hero.after(serviceStrip);
+      serviceStrip.hidden = !storeData.settings.visibility.hero;
+      Object.entries(sections).forEach(([key, section]) => {
+        section.hidden = !storeData.settings.visibility[key];
+      });
+      document.querySelector("#values").hidden = !storeData.settings.visibility.values;
+    }
+
+    let scrollObserver;
+
+    function setupScrollAnimations() {
+      if (scrollObserver) scrollObserver.disconnect();
+      const animatedElements = document.querySelectorAll(".section-heading, .category, .product, .story-gallery, .story-copy, .value");
+      if (!storeData.settings.animations) {
+        animatedElements.forEach((element) => element.classList.remove("reveal", "is-visible"));
+        return;
+      }
+      if (!("IntersectionObserver" in window)) {
+        animatedElements.forEach((element) => element.classList.add("is-visible"));
+        return;
+      }
+      scrollObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      animatedElements.forEach((element, index) => {
+        element.classList.add("reveal");
+        element.style.setProperty("--reveal-delay", `${(index % 4) * 80}ms`);
+        scrollObserver.observe(element);
+      });
+    }
+
+    function setAdminMode() {
+      const isAdmin = window.location.hash === "#admin";
+      document.body.classList.toggle("admin-mode", isAdmin);
+      document.querySelector("#admin-panel").classList.toggle("active", isAdmin);
+      if (isAdmin) renderAdmin();
+    }
+
+    function renderAdmin() {
+      const categorySelect = document.querySelector("#product-category");
+      const selectedCategory = categorySelect.value;
+      categorySelect.replaceChildren(...storeData.settings.categories.map((category, index) => {
+        const option = document.createElement("option");
+        option.value = String(index);
+        option.textContent = category.name;
+        return option;
+      }));
+      categorySelect.value = selectedCategory && Number(selectedCategory) < storeData.settings.categories.length
+        ? selectedCategory
+        : "0";
+      const settingsForm = document.querySelector("#settings-form");
+      [
+        "brand", "announcement", "navProducts", "navCollections", "navStory",
+        "heroEyebrow", "title", "description", "heroButtonText", "heroButtonTarget",
+        "heroNote", "collectionsEyebrow", "collectionsTitle", "collectionsLinkText",
+        "productsEyebrow", "productsTitle", "productsLinkText", "productButtonText",
+        "footerNote", "whatsapp", "instagram"
+      ].forEach((key) => {
+        settingsForm.elements[key].value = storeData.settings[key];
+      });
+      document.querySelector("#cover-image-preview").src = storeData.settings.coverImage;
+      renderCategoryAdmin();
+      renderValueAdmin();
+      renderThemeAdmin();
+      renderLayoutAdmin();
+      const storyForm = document.querySelector("#story-form");
+      storyForm.elements.eyebrow.value = storeData.settings.storyEyebrow;
+      storyForm.elements.title.value = storeData.settings.storyTitle;
+      storyForm.elements.description.value = storeData.settings.storyDescription;
+      storyForm.elements.linkText.value = storeData.settings.storyLinkText;
+      storyForm.elements.linkTarget.value = storeData.settings.storyLinkTarget;
+      draftStoryImages = [...storeData.settings.storyImages];
+      renderStoryImagePreviews();
+      const list = document.querySelector("#admin-product-list");
+      list.replaceChildren();
+      storeData.products.forEach((product) => {
+        const row = document.createElement("div");
+        row.className = "admin-product";
+        const info = document.createElement("div");
+        info.className = "admin-product-info";
+        const image = document.createElement("img");
+        image.src = product.images[0];
+        image.alt = "";
+        const text = document.createElement("div");
+        const name = document.createElement("strong");
+        name.textContent = product.name;
+        const price = document.createElement("span");
+        price.textContent = `${Number(product.price).toLocaleString("fr-FR")} MAD`;
+        if (product.oldPrice && product.oldPrice > product.price) {
+          price.textContent += ` · Ancien prix : ${Number(product.oldPrice).toLocaleString("fr-FR")} MAD`;
+        }
+        text.append(name, price);
+        info.append(image, text);
+        const actions = document.createElement("div");
+        actions.className = "admin-product-actions";
+        const edit = document.createElement("button");
+        edit.type = "button";
+        edit.textContent = "Modifier";
+        edit.addEventListener("click", () => editProduct(product));
+        const remove = document.createElement("button");
+        remove.type = "button";
+        remove.textContent = "Supprimer";
+        remove.addEventListener("click", () => removeProduct(product.id));
+        actions.append(edit, remove);
+        row.append(info, actions);
+        list.append(row);
+      });
+    }
+
+    function renderCategoryAdmin() {
+      draftCategoryImages = storeData.settings.categories.map((category) => category.image);
+      const list = document.querySelector("#category-admin-list");
+      list.replaceChildren();
+      storeData.settings.categories.forEach((category, index) => {
+        const item = document.createElement("div");
+        item.className = "category-admin-item";
+        const fields = document.createElement("div");
+        fields.className = "admin-field";
+        const nameLabel = document.createElement("label");
+        nameLabel.htmlFor = `category-name-${index}`;
+        nameLabel.textContent = `Nom de la collection ${index + 1}`;
+        const nameInput = document.createElement("input");
+        nameInput.id = nameLabel.htmlFor;
+        nameInput.name = "categoryName";
+        nameInput.value = category.name;
+        nameInput.required = true;
+        nameInput.maxLength = 50;
+        const imageLabel = document.createElement("label");
+        imageLabel.htmlFor = `category-image-${index}`;
+        imageLabel.textContent = "Photo";
+        const imageInput = document.createElement("input");
+        imageInput.id = imageLabel.htmlFor;
+        imageInput.type = "file";
+        imageInput.accept = "image/*";
+        imageInput.dataset.categoryIndex = String(index);
+        const imageHelp = document.createElement("p");
+        imageHelp.className = "image-help";
+        imageHelp.textContent = "Choisissez une image depuis votre appareil.";
+        fields.append(nameLabel, nameInput, imageLabel, imageInput, imageHelp);
+        const preview = document.createElement("img");
+        preview.src = category.image;
+        preview.alt = `Aperçu de ${category.name}`;
+        preview.dataset.categoryPreview = String(index);
+        item.append(fields, preview);
+        list.append(item);
+      });
+    }
+
+    function renderValueAdmin() {
+      const list = document.querySelector("#value-admin-list");
+      list.replaceChildren();
+      storeData.settings.values.forEach((value, index) => {
+        const item = document.createElement("div");
+        item.className = "admin-settings";
+        const titleField = document.createElement("div");
+        titleField.className = "admin-field";
+        const titleLabel = document.createElement("label");
+        titleLabel.htmlFor = `value-title-${index}`;
+        titleLabel.textContent = `Engagement ${index + 1}`;
+        const titleInput = document.createElement("input");
+        titleInput.id = titleLabel.htmlFor;
+        titleInput.name = "valueTitle";
+        titleInput.value = value.title;
+        titleInput.maxLength = 60;
+        titleInput.required = true;
+        titleField.append(titleLabel, titleInput);
+        const descriptionField = document.createElement("div");
+        descriptionField.className = "admin-field";
+        const descriptionLabel = document.createElement("label");
+        descriptionLabel.htmlFor = `value-description-${index}`;
+        descriptionLabel.textContent = "Description";
+        const descriptionInput = document.createElement("input");
+        descriptionInput.id = descriptionLabel.htmlFor;
+        descriptionInput.name = "valueDescription";
+        descriptionInput.value = value.description;
+        descriptionInput.maxLength = 100;
+        descriptionInput.required = true;
+        descriptionField.append(descriptionLabel, descriptionInput);
+        item.append(titleField, descriptionField);
+        list.append(item);
+      });
+    }
+
+    function renderThemeAdmin() {
+      const form = document.querySelector("#theme-form");
+      Object.keys(themeProperties).forEach((key) => {
+        form.elements[key].value = storeData.settings.theme[key];
+      });
+      form.elements.animations.checked = storeData.settings.animations;
+    }
+
+    function renderLayoutAdmin() {
+      const labels = {
+        hero: "Accueil",
+        collections: "Collections",
+        products: "Produits",
+        story: "Notre signature"
+      };
+      const container = document.querySelector("#layout-controls");
+      container.replaceChildren();
+      storeData.settings.sectionOrder.forEach((key, index) => {
+        const row = document.createElement("div");
+        row.className = "admin-section-row";
+        const label = document.createElement("strong");
+        label.textContent = labels[key];
+        const order = document.createElement("select");
+        order.name = `order-${key}`;
+        order.setAttribute("aria-label", `Ordre de la section ${labels[key]}`);
+        storeData.settings.sectionOrder.forEach((_, position) => {
+          const option = document.createElement("option");
+          option.value = String(position + 1);
+          option.textContent = `Position ${position + 1}`;
+          option.selected = index === position;
+          order.append(option);
+        });
+        const visibility = document.createElement("label");
+        visibility.className = "admin-checkbox";
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.name = `visible-${key}`;
+        checkbox.checked = storeData.settings.visibility[key];
+        visibility.append(checkbox, document.createTextNode(" Visible"));
+        row.append(label, order, visibility);
+        container.append(row);
+      });
+      const valuesRow = document.createElement("div");
+      valuesRow.className = "admin-section-row";
+      const valuesLabel = document.createElement("strong");
+      valuesLabel.textContent = "Engagements";
+      const valuesHint = document.createElement("span");
+      valuesHint.textContent = "Dans Notre signature";
+      const valuesVisibility = document.createElement("label");
+      valuesVisibility.className = "admin-checkbox";
+      const valuesCheckbox = document.createElement("input");
+      valuesCheckbox.type = "checkbox";
+      valuesCheckbox.name = "visible-values";
+      valuesCheckbox.checked = storeData.settings.visibility.values;
+      valuesVisibility.append(valuesCheckbox, document.createTextNode(" Visible"));
+      valuesRow.append(valuesLabel, valuesHint, valuesVisibility);
+      container.append(valuesRow);
+    }
+
+    async function editProduct(product) {
+      const form = document.querySelector("#product-form");
+      form.elements.id.value = product.id;
+      form.elements.name.value = product.name;
+      form.elements.categoryIndex.value = String(product.categoryIndex);
+      form.elements.description.value = product.description;
+      form.elements.price.value = product.price;
+      form.elements.oldPrice.value = product.oldPrice || "";
+      form.elements.badge.value = product.badge;
+      draftProductImages = [...product.images];
+      draftProductVideo = null;
+      draftProductVideoRemoved = false;
+      draftExistingProductVideoId = product.videoId || null;
+      renderImagePreviews();
+      await renderProductVideoPreview();
+      document.querySelector("#image-help").textContent = "Photos actuelles. Ajoutez d'autres images ou retirez celles que vous ne voulez plus.";
+      document.querySelector("#product-form-title").textContent = "Modifier le produit";
+      document.querySelector("#cancel-edit").hidden = false;
+      document.querySelector("#product-editor").scrollIntoView({ behavior: "smooth" });
+    }
+
+    function resetProductForm() {
+      const form = document.querySelector("#product-form");
+      form.reset();
+      form.elements.id.value = "";
+      form.elements.categoryIndex.value = "0";
+      draftProductImages = [];
+      draftProductVideo = null;
+      draftProductVideoRemoved = false;
+      draftExistingProductVideoId = null;
+      if (productVideoPreviewUrl) URL.revokeObjectURL(productVideoPreviewUrl);
+      productVideoPreviewUrl = null;
+      document.querySelector("#product-video-preview").replaceChildren();
+      renderImagePreviews();
+      document.querySelector("#image-help").textContent = "Sélectionnez jusqu'à 6 images pour le produit. Sur ordinateur, gardez Ctrl appuyé pour en choisir plusieurs.";
+      document.querySelector("#product-form-title").textContent = "Ajouter un produit";
+      document.querySelector("#cancel-edit").hidden = true;
+      document.querySelector("#product-status").textContent = "";
+    }
+
+    async function renderProductVideoPreview() {
+      const container = document.querySelector("#product-video-preview");
+      container.replaceChildren();
+      if (productVideoPreviewUrl) URL.revokeObjectURL(productVideoPreviewUrl);
+      productVideoPreviewUrl = null;
+      let source = draftProductVideo;
+      if (!source && draftExistingProductVideoId && !draftProductVideoRemoved) {
+        try {
+          source = await getProductVideo(draftExistingProductVideoId);
+        } catch (error) {
+          console.error("Impossible de charger l'aperçu de la vidéo.", error);
+          document.querySelector("#product-status").textContent = error.message;
+          return;
+        }
+      }
+      if (!source) {
+        const empty = document.createElement("p");
+        empty.className = "image-help";
+        empty.textContent = "Aucune vidéo ajoutée.";
+        container.append(empty);
+        return;
+      }
+      productVideoPreviewUrl = URL.createObjectURL(source);
+      const video = document.createElement("video");
+      video.src = productVideoPreviewUrl;
+      video.controls = true;
+      video.playsInline = true;
+      video.muted = false;
+      video.volume = 1;
+      video.className = "admin-video-preview";
+      const remove = document.createElement("button");
+      remove.type = "button";
+      remove.className = "admin-button secondary";
+      remove.textContent = "Retirer la vidéo";
+      remove.addEventListener("click", async () => {
+        draftProductVideo = null;
+        draftProductVideoRemoved = true;
+        await renderProductVideoPreview();
+        document.querySelector("#product-status").textContent = "Vidéo retirée. Enregistrez le produit pour appliquer.";
+      });
+      container.append(video, remove);
+    }
+
+    function resizeImage(file) {
+      return new Promise((resolve, reject) => {
+        const image = new Image();
+        const objectUrl = URL.createObjectURL(file);
+        image.onload = () => {
+          URL.revokeObjectURL(objectUrl);
+          const scale = Math.min(1, 1200 / Math.max(image.naturalWidth, image.naturalHeight));
+          const canvas = document.createElement("canvas");
+          canvas.width = Math.round(image.naturalWidth * scale);
+          canvas.height = Math.round(image.naturalHeight * scale);
+          const context = canvas.getContext("2d");
+          if (!context) {
+            reject(new Error("Impossible de traiter cette image."));
+            return;
+          }
+          context.drawImage(image, 0, 0, canvas.width, canvas.height);
+          canvas.toBlob((blob) => {
+            if (!blob) {
+              reject(new Error("Impossible de convertir cette image."));
+              return;
+            }
+            const reader = new FileReader();
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = () => reject(new Error("Impossible de lire cette image."));
+            reader.readAsDataURL(blob);
+          }, "image/jpeg", 0.82);
+        };
+        image.onerror = () => {
+          URL.revokeObjectURL(objectUrl);
+          reject(new Error("Ce fichier n'est pas une image lisible."));
+        };
+        image.src = objectUrl;
+      });
+    }
+
+    let draftProductImages = [];
+
+    function renderImagePreviews() {
+      const previews = document.querySelector("#image-previews");
+      previews.replaceChildren();
+      draftProductImages.forEach((imageSource, index) => {
+        const item = document.createElement("div");
+        item.className = "image-preview-item";
+        const image = document.createElement("img");
+        image.src = imageSource;
+        image.alt = `Photo ${index + 1}`;
+        const remove = document.createElement("button");
+        remove.type = "button";
+        remove.setAttribute("aria-label", `Supprimer la photo ${index + 1}`);
+        remove.textContent = "×";
+        remove.addEventListener("click", () => {
+          draftProductImages.splice(index, 1);
+          renderImagePreviews();
+        });
+        item.append(image, remove);
+        previews.append(item);
+      });
+    }
+
+    function renderStoryImagePreviews() {
+      const previews = document.querySelector("#story-image-previews");
+      previews.replaceChildren();
+      draftStoryImages.forEach((imageSource, index) => {
+        const item = document.createElement("div");
+        item.className = "image-preview-item";
+        const image = document.createElement("img");
+        image.src = imageSource;
+        image.alt = `Photo ${index + 1} de Notre signature`;
+        const remove = document.createElement("button");
+        remove.type = "button";
+        remove.setAttribute("aria-label", `Supprimer la photo ${index + 1} de Notre signature`);
+        remove.textContent = "×";
+        remove.addEventListener("click", () => {
+          draftStoryImages.splice(index, 1);
+          renderStoryImagePreviews();
+          document.querySelector("#story-image-status").textContent = "Photo retirée. Enregistrez pour appliquer le changement.";
+        });
+        item.append(image, remove);
+        previews.append(item);
+      });
+    }
+
+    function removeProduct(id) {
+      const product = storeData.products.find((item) => item.id === id);
+      if (!product || !window.confirm(`Supprimer « ${product.name} » ?`)) return;
+      const previousProducts = storeData.products;
+      storeData.products = storeData.products.filter((item) => item.id !== id);
+      if (!persistStoreData()) {
+        storeData.products = previousProducts;
+        document.querySelector("#product-status").textContent = "Erreur : impossible d'enregistrer. Vérifiez l'espace disponible.";
+        return;
+      }
+      if (product.videoId) {
+        deleteProductVideo(product.videoId).catch((error) => {
+          console.error("Impossible de supprimer la vidéo du produit.", error);
+          document.querySelector("#product-status").textContent = "Produit supprimé, mais la vidéo n'a pas pu être supprimée du stockage.";
+        });
+      }
+      renderAdmin();
+      renderStorefront();
+      document.querySelector("#product-status").textContent = "Produit supprimé.";
+    }
+
+    const menuToggle = document.querySelector(".menu-toggle");
+    const navLinks = document.querySelector(".nav-links");
+    const cartCount = document.querySelector("#cart-count");
+    const cartButton = document.querySelector(".cart");
+    const cartMessage = document.querySelector("#cart-message");
+    const cartDialog = document.querySelector("#cart-dialog");
+    const cartItemsElement = document.querySelector("#cart-items");
+    const cartForm = document.querySelector("#cart-order-form");
+    const cartOrderStatus = document.querySelector("#cart-order-status");
+    const cartStorageKey = "noirva-cart";
+    let cartItems = loadCart();
+    let cartBeforeDirectPurchase = null;
+    let messageTimeout;
+
+    function loadCart() {
+      try {
+        const saved = localStorage.getItem("noirva-cart");
+        if (!saved) return [];
+        const parsed = JSON.parse(saved);
+        if (!Array.isArray(parsed)) throw new Error("Format de panier invalide");
+        return parsed.filter((item) => item && typeof item.id === "string"
+          && storeData.products.some((product) => product.id === item.id)
+          && Number.isInteger(item.quantity) && item.quantity > 0);
+      } catch (error) {
+        console.error("Impossible de charger le panier.", error);
+        return [];
+      }
+    }
+
+    function persistCart() {
+      if (cartBeforeDirectPurchase) return true;
+      try {
+        localStorage.setItem(cartStorageKey, JSON.stringify(cartItems));
+        return true;
+      } catch (error) {
+        console.error("Impossible d'enregistrer le panier.", error);
+        cartMessage.textContent = translate("cartStorageError");
+        cartMessage.classList.add("visible");
+        window.clearTimeout(messageTimeout);
+        messageTimeout = window.setTimeout(() => cartMessage.classList.remove("visible"), 3000);
+        return false;
+      }
+    }
+
+    function renderCart() {
+      const validItems = cartItems.filter((item) => storeData.products.some((product) => product.id === item.id));
+      if (validItems.length !== cartItems.length) {
+        cartItems = validItems;
+        persistCart();
+      }
+      const count = cartItems.reduce((total, item) => total + item.quantity, 0);
+      cartCount.textContent = String(count);
+      cartButton.setAttribute("aria-label", currentLanguage === "ar"
+        ? `السلة، ${count} منتج`
+        : currentLanguage === "en"
+          ? `Cart, ${count} item${count === 1 ? "" : "s"}`
+          : `Panier, ${count} article${count > 1 ? "s" : ""}`);
+      document.querySelector("#cart-whatsapp-link").hidden = true;
+      cartItemsElement.replaceChildren();
+      let total = 0;
+      cartItems.forEach((item) => {
+        const product = storeData.products.find((entry) => entry.id === item.id);
+        if (!product) return;
+        total += Number(product.price) * item.quantity;
+        const row = document.createElement("div");
+        row.className = "cart-item";
+        const info = document.createElement("div");
+        info.className = "cart-item-info";
+        const name = document.createElement("strong");
+        const localizedName = productText(product, "name");
+        name.textContent = localizedName;
+        const price = document.createElement("span");
+        price.textContent = `${formatPrice(product.price)} / ${translate("unit")}`;
+        info.append(name, price);
+        const controls = document.createElement("div");
+        controls.className = "cart-item-controls";
+        const stepper = document.createElement("div");
+        stepper.className = "cart-quantity-stepper";
+        stepper.setAttribute("role", "group");
+        stepper.setAttribute("aria-label", `${translate("quantity")} : ${localizedName}`);
+        const decrease = document.createElement("button");
+        decrease.type = "button";
+        decrease.dataset.cartAction = "decrease";
+        decrease.dataset.productId = product.id;
+        decrease.setAttribute("aria-label", translate("decrease", { name: localizedName }));
+        decrease.disabled = item.quantity <= 1;
+        decrease.textContent = "−";
+        const quantityLabel = document.createElement("label");
+        quantityLabel.textContent = translate("quantity");
+        const quantity = document.createElement("input");
+        quantity.type = "number";
+        quantity.min = "1";
+        quantity.step = "1";
+        quantity.required = true;
+        quantity.value = String(item.quantity);
+        quantity.dataset.cartQuantity = product.id;
+        quantity.setAttribute("aria-label", translate("pieces", { name: localizedName }));
+        quantityLabel.append(quantity);
+        const increase = document.createElement("button");
+        increase.type = "button";
+        increase.dataset.cartAction = "increase";
+        increase.dataset.productId = product.id;
+        increase.setAttribute("aria-label", translate("increase", { name: localizedName }));
+        increase.textContent = "+";
+        stepper.append(decrease, quantityLabel, increase);
+        const remove = document.createElement("button");
+        remove.type = "button";
+        remove.className = "cart-item-remove";
+        remove.dataset.cartAction = "remove";
+        remove.dataset.productId = product.id;
+        remove.textContent = translate("remove");
+        controls.append(stepper, remove);
+        row.append(info, controls);
+        cartItemsElement.append(row);
+      });
+      document.querySelector("#cart-empty").hidden = cartItems.length > 0;
+      document.querySelector("#cart-total").textContent = formatPrice(total);
+      cartForm.hidden = count === 0;
+    }
+
+    function showCartMessage(message) {
+      cartMessage.textContent = message;
+      cartMessage.classList.add("visible");
+      window.clearTimeout(messageTimeout);
+      messageTimeout = window.setTimeout(() => cartMessage.classList.remove("visible"), 2400);
+    }
+
+    let cartCloseTimeout;
+
+    function openCartDialog() {
+      window.clearTimeout(cartCloseTimeout);
+      if (!cartDialog.open) cartDialog.showModal();
+      cartDialog.offsetWidth;
+      cartDialog.classList.add("is-visible");
+    }
+
+    function closeCartDialog() {
+      if (!cartDialog.open) return;
+      cartDialog.classList.remove("is-visible");
+      window.clearTimeout(cartCloseTimeout);
+      cartCloseTimeout = window.setTimeout(() => {
+        if (cartDialog.open && !cartDialog.classList.contains("is-visible")) cartDialog.close();
+      }, 300);
+    }
+
+    cartButton.addEventListener("click", () => {
+      renderCart();
+      openCartDialog();
+    });
+
+    function restoreCartAfterDirectPurchase() {
+      if (!cartBeforeDirectPurchase) return;
+      cartItems = cartBeforeDirectPurchase;
+      cartBeforeDirectPurchase = null;
+      renderCart();
+    }
+
+    cartDialog.addEventListener("close", () => {
+      restoreCartAfterDirectPurchase();
+    });
+
+    cartDialog.addEventListener("cancel", (event) => {
+      event.preventDefault();
+      closeCartDialog();
+    });
+
+    cartDialog.addEventListener("click", (event) => {
+      if (event.target === cartDialog || event.target.closest("[data-cart-close]")) {
+        closeCartDialog();
+        return;
+      }
+      const action = event.target.closest("[data-cart-action]");
+      if (!action) return;
+      const item = cartItems.find((entry) => entry.id === action.dataset.productId);
+      if (!item) return;
+      if (action.dataset.cartAction === "remove") {
+        cartItems = cartItems.filter((entry) => entry.id !== item.id);
+      } else {
+        const previousQuantity = item.quantity;
+        item.quantity += action.dataset.cartAction === "increase" ? 1 : -1;
+        if (item.quantity < 1) {
+          item.quantity = previousQuantity;
+          return;
+        }
+        if (!persistCart()) {
+          item.quantity = previousQuantity;
+          renderCart();
+          return;
+        }
+      }
+      if (action.dataset.cartAction === "remove" && !persistCart()) {
+        cartItems.push(item);
+        renderCart();
+        return;
+      }
+      renderCart();
+    });
+
+    cartItemsElement.addEventListener("change", (event) => {
+      const quantityInput = event.target.closest("[data-cart-quantity]");
+      if (!quantityInput) return;
+      const item = cartItems.find((entry) => entry.id === quantityInput.dataset.cartQuantity);
+      const quantity = Number(quantityInput.value);
+      if (!item) return;
+      if (!Number.isSafeInteger(quantity) || quantity < 1) {
+        quantityInput.value = String(item.quantity);
+        showCartMessage(translate("invalidQuantity"));
+        return;
+      }
+      const previousQuantity = item.quantity;
+      item.quantity = quantity;
+      if (!persistCart()) {
+        item.quantity = previousQuantity;
+        renderCart();
+        return;
+      }
+      renderCart();
+    });
+
+    cartForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      if (!cartItems.length) return;
+      const form = event.currentTarget;
+      if (!form.reportValidity()) return;
+      const phone = storeData.settings.whatsapp.replace(/\D/g, "");
+      if (!/^\d{8,15}$/.test(phone)) {
+        cartOrderStatus.dataset.error = "true";
+        cartOrderStatus.textContent = translate("whatsappUnavailable");
+        cartOrderStatus.hidden = false;
+        return;
+      }
+      const itemLines = cartItems.map((item) => {
+        const product = storeData.products.find((entry) => entry.id === item.id);
+        if (!product) return null;
+        return "• " + productText(product, "name") + " × " + item.quantity + " — " + formatPrice(Number(product.price) * item.quantity);
+      }).filter(Boolean);
+      const total = cartItems.reduce((sum, item) => {
+        const product = storeData.products.find((entry) => entry.id === item.id);
+        return sum + (product ? Number(product.price) * item.quantity : 0);
+      }, 0);
+      const message = [
+        translate("whatsappOrderTitle"),
+        "",
+        ...itemLines,
+        "",
+        translate("whatsappOrderCustomer", {
+          name: form.elements.customerName.value.trim(),
+          phone: form.elements.customerPhone.value.trim(),
+          city: form.elements.customerCity.value.trim(),
+          address: form.elements.deliveryAddress.value.trim()
+        }),
+        "",
+        translate("whatsappOrderTotal", { total: formatPrice(total) }),
+        translate("whatsappOrderFooter")
+      ].join("\n");
+      const whatsappOrderLink = document.querySelector("#cart-whatsapp-link");
+      whatsappOrderLink.href = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
+      whatsappOrderLink.hidden = false;
+      cartOrderStatus.removeAttribute("data-error");
+      cartOrderStatus.textContent = translate("whatsappOrderNotice");
+      cartOrderStatus.hidden = false;
+      whatsappOrderLink.click();
+    });
+
+    menuToggle.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("open");
+      menuToggle.setAttribute("aria-expanded", String(isOpen));
+      menuToggle.setAttribute("aria-label", isOpen ? translate("closeMenu") : translate("menu"));
+    });
+
+    navLinks.addEventListener("click", (event) => {
+      if (event.target.closest("a")) {
+        navLinks.classList.remove("open");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.setAttribute("aria-label", translate("menu"));
+      }
+    });
+
+    document.querySelector("#products").addEventListener("click", (event) => {
+      const buyNowButton = event.target.closest("[data-buy-now]");
+      if (buyNowButton) {
+        const product = storeData.products.find((item) => item.id === buyNowButton.dataset.buyNow);
+        if (!product || cartBeforeDirectPurchase) return;
+        cartOrderStatus.hidden = true;
+        document.querySelector("#cart-whatsapp-link").hidden = true;
+        cartBeforeDirectPurchase = cartItems;
+        cartItems = [{ id: product.id, quantity: 1 }];
+        renderCart();
+        openCartDialog();
+        return;
+      }
+      const videoButton = event.target.closest("[data-product-video-action]");
+      if (videoButton) {
+        const card = videoButton.closest(".product");
+        if (videoButton.dataset.productVideoAction === "sound") {
+          const video = card.querySelector(".product-video-panel video");
+          video.muted = false;
+          video.volume = 1;
+          videoButton.textContent = "Son activé";
+          videoButton.disabled = true;
+          return;
+        }
+        const videoPanel = card.querySelector(".product-video-panel");
+        const imageFrame = card.querySelector(".product-image");
+        const video = videoPanel.querySelector("video");
+        const showVideo = videoButton.dataset.productVideoAction === "show";
+        videoPanel.hidden = !showVideo;
+        imageFrame.hidden = showVideo;
+        if (!showVideo) video.pause();
+        return;
+      }
+      const productImage = event.target.closest(".product-image img");
+      if (productImage) {
+        if (swipedProductImages.has(productImage)) {
+          swipedProductImages.delete(productImage);
+          return;
+        }
+        const card = productImage.closest(".product");
+        const product = storeData.products.find((item) => item.id === card.dataset.productId);
+        if (product) openProductImageZoom(product, Number(card.dataset.imageIndex || 0));
+        return;
+      }
+      const galleryButton = event.target.closest("[data-gallery-action]");
+      if (galleryButton) {
+        const product = storeData.products.find((item) => item.id === galleryButton.closest(".product").dataset.productId);
+        if (!product) return;
+        const card = galleryButton.closest(".product");
+        const currentIndex = Number(card.dataset.imageIndex || 0);
+        const direction = galleryButton.dataset.galleryAction === "next" ? 1 : -1;
+        showProductImage(card, product, currentIndex, direction);
+        return;
+      }
+      const button = event.target.closest(".add-button");
+      if (button) {
+        const productId = button.closest(".product").dataset.productId;
+        const item = cartItems.find((entry) => entry.id === productId);
+        if (item) item.quantity += 1;
+        else cartItems.push({ id: productId, quantity: 1 });
+        if (!persistCart()) return;
+        renderCart();
+        cartOrderStatus.hidden = true;
+        cartOrderStatus.removeAttribute("data-error");
+        openCartDialog();
+      }
+    });
+
+    const swipedProductImages = new WeakSet();
+    const productSwipeStarts = new WeakMap();
+    const productGrid = document.querySelector("#products");
+
+    function showProductImage(card, product, currentIndex, direction) {
+      const nextIndex = (currentIndex + direction + product.images.length) % product.images.length;
+      const image = card.querySelector(".product-image img");
+      image.classList.remove("is-changing");
+      void image.offsetWidth;
+      card.dataset.imageIndex = String(nextIndex);
+      image.src = product.images[nextIndex];
+      image.classList.add("is-changing");
+      card.querySelector(".gallery-count").textContent = `${nextIndex + 1} / ${product.images.length}`;
+    }
+
+    productGrid.addEventListener("pointerdown", (event) => {
+      if (event.pointerType !== "touch" || !event.isPrimary) return;
+      const image = event.target.closest(".product-image img");
+      if (image) productSwipeStarts.set(image, { x: event.clientX, y: event.clientY });
+    });
+
+    productGrid.addEventListener("pointerup", (event) => {
+      if (event.pointerType !== "touch") return;
+      const image = event.target.closest(".product-image img");
+      const start = image && productSwipeStarts.get(image);
+      if (!image || !start) return;
+      productSwipeStarts.delete(image);
+
+      const deltaX = event.clientX - start.x;
+      const deltaY = event.clientY - start.y;
+      if (Math.abs(deltaX) < 40 || Math.abs(deltaX) <= Math.abs(deltaY)) return;
+
+      const card = image.closest(".product");
+      const product = storeData.products.find((item) => item.id === card.dataset.productId);
+      if (!product || product.images.length < 2) return;
+      const currentIndex = Number(card.dataset.imageIndex || 0);
+      showProductImage(card, product, currentIndex, deltaX < 0 ? 1 : -1);
+      swipedProductImages.add(image);
+      window.setTimeout(() => swipedProductImages.delete(image), 500);
+    });
+
+    productGrid.addEventListener("pointercancel", (event) => {
+      const image = event.target.closest(".product-image img");
+      if (image) productSwipeStarts.delete(image);
+    });
+
+    document.querySelector("#categories").addEventListener("click", (event) => {
+      const category = event.target.closest("[data-category-index]");
+      if (!category) return;
+      activeCategoryIndex = Number(category.dataset.categoryIndex);
+      renderProducts();
+    });
+
+    document.querySelector("#product-filters").addEventListener("click", (event) => {
+      const filter = event.target.closest("[data-product-category]");
+      if (!filter) return;
+      activeCategoryIndex = filter.dataset.productCategory === "all"
+        ? null
+        : Number(filter.dataset.productCategory);
+      renderProducts();
+      const activeFilter = activeCategoryIndex === null
+        ? document.querySelector('[data-product-category="all"]')
+        : document.querySelector(`[data-product-category="${activeCategoryIndex}"]`);
+      if (activeFilter) activeFilter.focus();
+    });
+
+    document.querySelector("#product-search").addEventListener("input", (event) => {
+      productSearchTerm = event.currentTarget.value;
+      renderProducts();
+    });
+
+    document.querySelector("#product-sort").addEventListener("change", (event) => {
+      productSort = event.currentTarget.value;
+      renderProducts();
+    });
+
+    document.querySelector("#products-link").addEventListener("click", (event) => {
+      if (event.currentTarget.dataset.showAllProducts !== "true") return;
+      event.preventDefault();
+      activeCategoryIndex = null;
+      renderProducts();
+    });
+
+    const productZoomDialog = document.querySelector("#product-image-zoom");
+    productZoomDialog.addEventListener("close", () => {
+      requestAnimationFrame(() => window.scrollTo(0, zoomedScrollY));
+    });
+    productZoomDialog.addEventListener("click", (event) => {
+      if (event.target === productZoomDialog || event.target.closest('[data-zoom-action="close"]')) {
+        productZoomDialog.close();
+        return;
+      }
+      const actionButton = event.target.closest("[data-zoom-action]");
+      if (actionButton) {
+        if (actionButton.dataset.zoomAction === "close") return;
+        changeZoomedImage(actionButton.dataset.zoomAction === "next" ? 1 : -1);
+        return;
+      }
+      const image = event.target.closest("#product-zoom-image");
+      if (image) {
+        const wasZoomed = image.classList.contains("is-detail");
+        if (wasZoomed) {
+          image.classList.remove("is-detail");
+          image.style.transformOrigin = "center";
+        } else {
+          const bounds = image.getBoundingClientRect();
+          const x = event.detail === 0 ? 50 : Math.max(0, Math.min(100, ((event.clientX - bounds.left) / bounds.width) * 100));
+          const y = event.detail === 0 ? 50 : Math.max(0, Math.min(100, ((event.clientY - bounds.top) / bounds.height) * 100));
+          image.style.transformOrigin = `${x}% ${y}%`;
+          image.classList.add("is-detail");
+        }
+        const product = storeData.products.find((item) => item.id === zoomedProductId);
+        if (product) {
+          const zoomHint = wasZoomed ? "Touchez la photo pour zoomer" : "Touchez la photo pour afficher l'image entière";
+          document.querySelector("#product-zoom-caption").textContent = `${product.name} · ${zoomedImageIndex + 1} / ${product.images.length} · ${zoomHint}`;
+        }
+      }
+    });
+
+    productZoomDialog.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        productZoomDialog.close();
+        return;
+      }
+      if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+      const product = storeData.products.find((item) => item.id === zoomedProductId);
+      if (!product || product.images.length < 2) return;
+      event.preventDefault();
+      changeZoomedImage(event.key === "ArrowRight" ? 1 : -1);
+    });
+
+    document.querySelector("#story-gallery-controls").addEventListener("click", (event) => {
+      const button = event.target.closest("[data-story-gallery-action]");
+      if (!button) return;
+      const imageCount = storeData.settings.storyImages.length;
+      const direction = button.dataset.storyGalleryAction === "next" ? 1 : -1;
+      storyImageIndex = (storyImageIndex + direction + imageCount) % imageCount;
+      renderStorefront();
+    });
+
+    document.querySelector("#category-admin-list").addEventListener("change", async (event) => {
+      const input = event.target.closest('input[type="file"][data-category-index]');
+      if (!input || !input.files.length) return;
+      const status = document.querySelector("#categories-status");
+      const index = Number(input.dataset.categoryIndex);
+      const file = input.files[0];
+      if (!file.type.startsWith("image/")) {
+        input.value = "";
+        status.textContent = "Choisissez un fichier image valide.";
+        return;
+      }
+      if (file.size > 10 * 1024 * 1024) {
+        input.value = "";
+        status.textContent = "L'image dépasse 10 Mo. Choisissez une image plus légère.";
+        return;
+      }
+      input.disabled = true;
+      status.textContent = "Traitement de l'image...";
+      try {
+        const image = await resizeImage(file);
+        draftCategoryImages[index] = image;
+        const preview = document.querySelector(`[data-category-preview="${index}"]`);
+        preview.src = image;
+        status.textContent = "Photo modifiée. Enregistrez les collections pour appliquer le changement.";
+      } catch (error) {
+        console.error("Impossible de traiter la photo de collection.", error);
+        status.textContent = error.message;
+      } finally {
+        input.value = "";
+        input.disabled = false;
+      }
+    });
+
+    document.querySelector("#categories-form").addEventListener("submit", (event) => {
+      event.preventDefault();
+      const form = event.currentTarget;
+      const status = document.querySelector("#categories-status");
+      const names = Array.from(form.querySelectorAll('input[name="categoryName"]'), (input) => input.value.trim());
+      if (names.some((name) => !name) || draftCategoryImages.length !== storeData.settings.categories.length) {
+        status.textContent = "Complétez chaque nom et choisissez une photo valide pour chaque collection.";
+        return;
+      }
+      const previousCategories = storeData.settings.categories;
+      storeData.settings.categories = previousCategories.map((category, index) => ({
+        ...category,
+        name: names[index],
+        image: draftCategoryImages[index]
+      }));
+      if (!persistStoreData()) {
+        storeData.settings.categories = previousCategories;
+        status.textContent = "Erreur : impossible d'enregistrer les collections. Vérifiez l'espace disponible.";
+        return;
+      }
+      renderStorefront();
+      status.textContent = "Collections enregistrées.";
+    });
+
+    document.querySelector("#values-form").addEventListener("submit", (event) => {
+      event.preventDefault();
+      const form = event.currentTarget;
+      const status = document.querySelector("#values-status");
+      const titles = Array.from(form.querySelectorAll('input[name="valueTitle"]'), (input) => input.value.trim());
+      const descriptions = Array.from(form.querySelectorAll('input[name="valueDescription"]'), (input) => input.value.trim());
+      if (titles.length !== storeData.settings.values.length || titles.some((title) => !title) || descriptions.some((description) => !description)) {
+        status.textContent = "Complétez le titre et la description de chaque engagement.";
+        return;
+      }
+      const previousValues = storeData.settings.values;
+      storeData.settings.values = previousValues.map((value, index) => ({
+        ...value,
+        title: titles[index],
+        description: descriptions[index]
+      }));
+      if (!persistStoreData()) {
+        storeData.settings.values = previousValues;
+        status.textContent = "Erreur : impossible d'enregistrer les engagements.";
+        return;
+      }
+      renderStorefront();
+      status.textContent = "Engagements enregistrés.";
+    });
+
+    document.querySelector("#theme-form").addEventListener("submit", (event) => {
+      event.preventDefault();
+      const form = event.currentTarget;
+      const status = document.querySelector("#theme-status");
+      const previousTheme = storeData.settings.theme;
+      const previousAnimations = storeData.settings.animations;
+      storeData.settings.theme = Object.fromEntries(
+        Object.keys(themeProperties).map((key) => [key, form.elements[key].value])
+      );
+      storeData.settings.animations = form.elements.animations.checked;
+      if (!persistStoreData()) {
+        storeData.settings.theme = previousTheme;
+        storeData.settings.animations = previousAnimations;
+        status.textContent = "Erreur : impossible d'enregistrer le thème.";
+        return;
+      }
+      renderStorefront();
+      status.textContent = "Couleurs et animations enregistrées.";
+    });
+
+    document.querySelector("#layout-form").addEventListener("submit", (event) => {
+      event.preventDefault();
+      const form = event.currentTarget;
+      const status = document.querySelector("#layout-status");
+      const sectionKeys = ["hero", "collections", "products", "story"];
+      const positions = sectionKeys.map((key) => Number(form.elements[`order-${key}`].value));
+      if (new Set(positions).size !== sectionKeys.length || positions.some((position) => position < 1 || position > sectionKeys.length)) {
+        status.textContent = "Chaque section doit avoir une position différente.";
+        return;
+      }
+      const previousOrder = storeData.settings.sectionOrder;
+      const previousVisibility = storeData.settings.visibility;
+      storeData.settings.sectionOrder = sectionKeys
+        .map((key, index) => ({ key, position: positions[index] }))
+        .sort((left, right) => left.position - right.position)
+        .map(({ key }) => key);
+      storeData.settings.visibility = Object.fromEntries([
+        ...sectionKeys.map((key) => [key, form.elements[`visible-${key}`].checked]),
+        ["values", form.elements["visible-values"].checked]
+      ]);
+      if (!persistStoreData()) {
+        storeData.settings.sectionOrder = previousOrder;
+        storeData.settings.visibility = previousVisibility;
+        status.textContent = "Erreur : impossible d'enregistrer la disposition.";
+        return;
+      }
+      renderStorefront();
+      status.textContent = "Disposition enregistrée.";
+    });
+
+    document.querySelector("#settings-form").addEventListener("submit", (event) => {
+      event.preventDefault();
+      const form = event.currentTarget;
+      const whatsapp = form.elements.whatsapp.value.trim();
+      const instagram = form.elements.instagram.value.trim().replace(/^@/, "");
+      const status = document.querySelector("#settings-status");
+      if (!/^\+?[\d\s().-]+$/.test(whatsapp) || whatsapp.replace(/\D/g, "").length < 8 || whatsapp.replace(/\D/g, "").length > 15) {
+        status.textContent = "Entrez un numéro WhatsApp valide avec son indicatif, par exemple +212...";
+        return;
+      }
+      if (!/^[A-Za-z0-9._]{1,30}$/.test(instagram)) {
+        status.textContent = "Entrez uniquement le nom du compte Instagram (30 caractères maximum), sans lien.";
+        return;
+      }
+      const previousSettings = { ...storeData.settings };
+      storeData.settings = {
+        ...storeData.settings,
+        ...Object.fromEntries([
+          "brand", "announcement", "navProducts", "navCollections", "navStory",
+          "heroEyebrow", "title", "description", "heroButtonText", "heroButtonTarget",
+          "heroNote", "collectionsEyebrow", "collectionsTitle", "collectionsLinkText",
+          "productsEyebrow", "productsTitle", "productsLinkText", "productButtonText",
+          "footerNote"
+        ].map((key) => [key, form.elements[key].value.trim()])),
+        whatsapp,
+        instagram
+      };
+      if (!persistStoreData()) {
+        storeData.settings = previousSettings;
+        status.textContent = "Erreur : impossible d'enregistrer les changements.";
+        return;
+      }
+      renderStorefront();
+      status.textContent = "Changements enregistrés.";
+    });
+
+    document.querySelector("#story-form").addEventListener("submit", (event) => {
+      event.preventDefault();
+      const form = event.currentTarget;
+      const previousSettings = { ...storeData.settings };
+      storeData.settings = {
+        ...storeData.settings,
+        storyEyebrow: form.elements.eyebrow.value.trim(),
+        storyTitle: form.elements.title.value.trim(),
+        storyDescription: form.elements.description.value.trim(),
+        storyLinkText: form.elements.linkText.value.trim(),
+        storyLinkTarget: form.elements.linkTarget.value
+      };
+      const status = document.querySelector("#story-status");
+      if (!persistStoreData()) {
+        storeData.settings = previousSettings;
+        status.textContent = "Erreur : impossible d'enregistrer le texte de cette section.";
+        return;
+      }
+      renderStorefront();
+      status.textContent = "Texte de la section enregistré.";
+    });
+
+    document.querySelector("#story-image-file").addEventListener("change", async (event) => {
+      const files = Array.from(event.currentTarget.files);
+      const status = document.querySelector("#story-image-status");
+      status.textContent = "";
+      if (!files.length) return;
+      if (files.some((file) => !file.type.startsWith("image/"))) {
+        event.currentTarget.value = "";
+        status.textContent = "Tous les fichiers choisis doivent être des images.";
+        return;
+      }
+      if (draftStoryImages.length + files.length > 6) {
+        event.currentTarget.value = "";
+        status.textContent = "Vous pouvez choisir jusqu'à 6 photos pour cette section.";
+        return;
+      }
+      if (files.some((file) => file.size > 10 * 1024 * 1024)) {
+        event.currentTarget.value = "";
+        status.textContent = "Une des images dépasse 10 Mo. Choisissez des images plus légères.";
+        return;
+      }
+      const input = event.currentTarget;
+      input.disabled = true;
+      status.textContent = "Traitement des photos...";
+      try {
+        draftStoryImages.push(...await Promise.all(files.map(resizeImage)));
+        renderStoryImagePreviews();
+        document.querySelector("#story-image-help").textContent = `${draftStoryImages.length} photo(s) dans la section.`;
+        status.textContent = "Photos ajoutées. Enregistrez pour afficher les changements.";
+      } catch (error) {
+        console.error("Impossible de traiter les photos de la section.", error);
+        status.textContent = error.message;
+      } finally {
+        input.value = "";
+        input.disabled = false;
+      }
+    });
+
+    document.querySelector("#story-image-form").addEventListener("submit", (event) => {
+      event.preventDefault();
+      const status = document.querySelector("#story-image-status");
+      if (!draftStoryImages.length) {
+        status.textContent = "Choisissez au moins une photo pour cette section.";
+        return;
+      }
+      const previousImages = storeData.settings.storyImages;
+      storeData.settings.storyImages = [...draftStoryImages];
+      storyImageIndex = 0;
+      if (!persistStoreData()) {
+        storeData.settings.storyImages = previousImages;
+        status.textContent = "Erreur : impossible d'enregistrer les photos. Vérifiez l'espace disponible.";
+        return;
+      }
+      renderStorefront();
+      status.textContent = "Photos de la section enregistrées.";
+    });
+
+    let coverPreviewUrl;
+
+    document.querySelector("#cover-image-file").addEventListener("change", (event) => {
+      const file = event.currentTarget.files[0];
+      const status = document.querySelector("#cover-status");
+      status.textContent = "";
+      if (!file) return;
+      if (!file.type.startsWith("image/")) {
+        event.currentTarget.value = "";
+        status.textContent = "Choisissez un fichier image valide.";
+        return;
+      }
+      if (file.size > 10 * 1024 * 1024) {
+        event.currentTarget.value = "";
+        status.textContent = "L'image est trop lourde. Choisissez une image de moins de 10 Mo.";
+        return;
+      }
+      if (coverPreviewUrl) URL.revokeObjectURL(coverPreviewUrl);
+      coverPreviewUrl = URL.createObjectURL(file);
+      document.querySelector("#cover-image-preview").src = coverPreviewUrl;
+    });
+
+    document.querySelector("#cover-form").addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const form = event.currentTarget;
+      const file = form.elements.coverImage.files[0];
+      const status = document.querySelector("#cover-status");
+      if (!file) {
+        status.textContent = "Choisissez une photo de couverture.";
+        return;
+      }
+      status.textContent = "Traitement de la couverture...";
+      try {
+        const coverImage = await resizeImage(file);
+        const previousCover = storeData.settings.coverImage;
+        storeData.settings.coverImage = coverImage;
+        if (!persistStoreData()) {
+          storeData.settings.coverImage = previousCover;
+          status.textContent = "Erreur : impossible d'enregistrer la couverture. Vérifiez l'espace disponible.";
+          return;
+        }
+        renderStorefront();
+        document.querySelector("#cover-image-preview").src = coverImage;
+        form.reset();
+        status.textContent = "Photo de couverture enregistrée.";
+      } catch (error) {
+        console.error("Impossible de traiter la photo de couverture.", error);
+        status.textContent = error.message;
+      }
+    });
+
+    document.querySelector("#product-form").addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const form = event.currentTarget;
+      const status = document.querySelector("#product-status");
+      if (!draftProductImages.length) {
+        status.textContent = "Choisissez au moins une image depuis votre appareil.";
+        return;
+      }
+      const price = Number(form.elements.price.value);
+      const oldPriceInput = form.elements.oldPrice.value.trim();
+      const oldPrice = oldPriceInput ? Number(oldPriceInput) : null;
+      if (oldPrice !== null && (!Number.isFinite(oldPrice) || oldPrice <= price)) {
+        status.textContent = "L'ancien prix doit être supérieur au prix actuel.";
+        return;
+      }
+      const id = form.elements.id.value || `product-${Date.now()}`;
+      const existingIndex = storeData.products.findIndex((item) => item.id === id);
+      const previousProducts = storeData.products;
+      const previousProduct = existingIndex >= 0 ? storeData.products[existingIndex] : null;
+      const oldVideoId = previousProduct?.videoId || null;
+      let videoId = oldVideoId;
+      let newVideoId = null;
+      let cleanupWarning = false;
+      const saveButton = form.querySelector('button[type="submit"]');
+      saveButton.disabled = true;
+      status.textContent = "Enregistrement du produit...";
+      try {
+        if (draftProductVideo) {
+          newVideoId = `product-video-${id}-${Date.now()}-${Math.random().toString(36).slice(2)}`;
+          await saveProductVideo(newVideoId, draftProductVideo);
+          videoId = newVideoId;
+        } else if (draftProductVideoRemoved) {
+          videoId = null;
+        }
+        const product = {
+          id,
+          name: form.elements.name.value.trim(),
+          categoryIndex: Number(form.elements.categoryIndex.value),
+          description: form.elements.description.value.trim(),
+          price,
+          oldPrice,
+          images: [...draftProductImages],
+          badge: form.elements.badge.value.trim(),
+          videoId
+        };
+        storeData.products = existingIndex >= 0
+          ? storeData.products.map((item) => item.id === id ? product : item)
+          : [...storeData.products, product];
+        if (!persistStoreData()) {
+          storeData.products = previousProducts;
+          if (newVideoId) await deleteProductVideo(newVideoId);
+          status.textContent = "Erreur : impossible d'enregistrer le produit.";
+          return;
+        }
+        if (oldVideoId && oldVideoId !== videoId) {
+          try {
+            await deleteProductVideo(oldVideoId);
+          } catch (error) {
+            console.error("Impossible de supprimer l'ancienne vidéo du produit.", error);
+            cleanupWarning = true;
+          }
+        }
+      } catch (error) {
+        if (newVideoId) {
+          try {
+            await deleteProductVideo(newVideoId);
+          } catch (cleanupError) {
+            console.error("Impossible de supprimer la vidéo temporaire.", cleanupError);
+          }
+        }
+        storeData.products = previousProducts;
+        console.error("Impossible d'enregistrer le produit ou sa vidéo.", error);
+        status.textContent = error.message;
+        return;
+      } finally {
+        saveButton.disabled = false;
+      }
+      renderAdmin();
+      renderStorefront();
+      resetProductForm();
+      status.textContent = cleanupWarning
+        ? "Produit enregistré, mais l'ancienne vidéo n'a pas pu être supprimée."
+        : "Produit enregistré.";
+    });
+
+    document.querySelector("#product-video").addEventListener("change", async (event) => {
+      const input = event.currentTarget;
+      const file = input.files[0];
+      const status = document.querySelector("#product-status");
+      status.textContent = "";
+      if (!file) return;
+      if (!file.type.startsWith("video/")) {
+        input.value = "";
+        status.textContent = "Choisissez un fichier vidéo valide.";
+        return;
+      }
+      if (file.size > 50 * 1024 * 1024) {
+        input.value = "";
+        status.textContent = "La vidéo dépasse 50 Mo. Choisissez une vidéo plus légère.";
+        return;
+      }
+      draftProductVideo = file;
+      draftProductVideoRemoved = false;
+      await renderProductVideoPreview();
+      status.textContent = "Vidéo prête. Enregistrez le produit pour la publier.";
+    });
+
+    document.querySelector("#product-image").addEventListener("change", async (event) => {
+      const files = Array.from(event.currentTarget.files);
+      const status = document.querySelector("#product-status");
+      status.textContent = "";
+      if (!files.length) return;
+      if (files.some((file) => !file.type.startsWith("image/"))) {
+        event.currentTarget.value = "";
+        status.textContent = "Tous les fichiers choisis doivent être des images.";
+        return;
+      }
+      if (draftProductImages.length + files.length > 6) {
+        event.currentTarget.value = "";
+        status.textContent = "Vous pouvez choisir jusqu'à 6 images par produit.";
+        return;
+      }
+      if (files.some((file) => file.size > 10 * 1024 * 1024)) {
+        event.currentTarget.value = "";
+        status.textContent = "Une des images dépasse 10 Mo. Choisissez des images plus légères.";
+        return;
+      }
+      const input = event.currentTarget;
+      input.disabled = true;
+      status.textContent = "Traitement des images...";
+      try {
+        draftProductImages.push(...await Promise.all(files.map(resizeImage)));
+        renderImagePreviews();
+        document.querySelector("#image-help").textContent = `${draftProductImages.length} image(s) dans ce produit.`;
+        status.textContent = "Images ajoutées. Vous pouvez encore en choisir d'autres.";
+      } catch (error) {
+        console.error("Impossible de traiter les images choisies.", error);
+        status.textContent = error.message;
+      } finally {
+        input.value = "";
+        input.disabled = false;
+      }
+    });
+
+    document.querySelector("#cancel-edit").addEventListener("click", resetProductForm);
+    document.querySelector("#language-select").addEventListener("change", (event) => {
+      const requestedLanguage = event.currentTarget.value;
+      if (!Object.prototype.hasOwnProperty.call(translations, requestedLanguage)) return;
+      currentLanguage = requestedLanguage;
+      try {
+        localStorage.setItem("noirva-language", currentLanguage);
+      } catch (error) {
+        console.error("Impossible d'enregistrer la langue choisie.", error);
+      }
+      renderStorefront();
+    });
+    window.addEventListener("hashchange", setAdminMode);
+    renderStorefront();
+    setAdminMode();
+    document.querySelector("#year").textContent = String(new Date().getFullYear());
+  </script>
+</body>
+</html>
