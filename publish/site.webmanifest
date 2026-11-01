@@ -1,15 +1,15 @@
 {
-  "id": "/",
+  "id": "./",
   "name": "Noirva Elegance",
   "short_name": "Noirva",
-  "start_url": "/",
-  "scope": "/",
+  "start_url": "./",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#111110",
   "theme_color": "#111110",
   "icons": [
     {
-      "src": "/noirva-icon.svg",
+      "src": "./noirva-icon.svg",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any maskable"
