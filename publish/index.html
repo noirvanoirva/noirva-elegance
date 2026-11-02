@@ -554,7 +554,7 @@
       .cart { min-height: 38px; gap: 4px; padding: 0 6px; font-size: 8px; letter-spacing: .04em; }
       .menu-toggle { padding: 4px; font-size: 18px; }
     }
-  </style>
+      .theme-toggle { width: 40px; min-height: 40px; display: inline-grid; flex: 0 0 auto; place-items: center; padding: 0; border: 0; border-radius: 50%; background: transparent; color: var(--ink); cursor: pointer; transition: background .2s ease, color .2s ease; }     .theme-toggle:hover { background: color-mix(in srgb, var(--gold) 12%, transparent); color: var(--gold); }     .theme-toggle svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.7; }     .theme-toggle .sun-icon, [data-color-mode="light"] .theme-toggle .moon-icon { display: none; }     [data-color-mode="light"] .theme-toggle .sun-icon { display: block; }     [data-color-mode="light"] .header { background: color-mix(in srgb, var(--paper) 94%, transparent); border-bottom-color: var(--line); }     [data-color-mode="light"] .announcement { color: var(--ink); }     [data-color-mode="light"] .nav-links { background: var(--paper); }     [data-color-mode="light"] .cart { border-color: var(--line); }     [data-color-mode="light"] .hero-inner { background: var(--hero-surface); }     [data-color-mode="light"] .hero-inner::after { background: linear-gradient(90deg, rgba(248, 246, 241, .94) 0%, rgba(248, 246, 241, .82) 48%, rgba(248, 246, 241, .2) 100%); }     [data-color-mode="light"] h1 { color: var(--ink); }     [data-color-mode="light"] .hero-copy > p:not(.eyebrow) { color: var(--muted); }     [data-color-mode="light"] .button { color: var(--ink); }     [data-color-mode="light"] .button:hover { color: var(--ink); }     [data-color-mode="light"] .hero-note { border-left-color: var(--gold); background: color-mix(in srgb, var(--paper) 88%, transparent); color: var(--ink); }     [data-color-mode="light"] .products-section, [data-color-mode="light"] .story { background: var(--white); }     [data-color-mode="light"] .product-filters { border-color: var(--line); }     [data-color-mode="light"] .product-filter { border-color: var(--line); }     [data-color-mode="light"] .product-filter:hover, [data-color-mode="light"] .product-filter[aria-pressed="true"] { color: var(--ink); }     [data-color-mode="light"] .product-search input, [data-color-mode="light"] .product-sort select { border-color: var(--line); background: var(--white); color: var(--ink); }     [data-color-mode="light"] .product { border-bottom-color: var(--line); }     [data-color-mode="light"] .product-image { background: var(--image-surface); }     [data-color-mode="light"] .add-button { border-color: var(--ink); }     [data-color-mode="light"] .add-button:hover { background: var(--ink); color: var(--white); }     [data-color-mode="light"] .footer { background: var(--hero-surface); color: var(--footer-text); }     [data-color-mode="light"] .footer .brand span { color: var(--gold); }     [data-color-mode="light"] .admin-warning { background: #f0ede6; color: #5e574c; }     @media (max-width: 760px) {       .theme-toggle { width: 38px; min-height: 38px; }     }     @media (max-width: 360px) {       .nav-tools { gap: 4px; }       .language-picker select { max-width: 72px; }       .theme-toggle { width: 36px; min-height: 36px; }     }   </style>
 </head>
 <body>
   <div class="announcement">Montres · Sacs · Accessoires — une élégance à offrir, à s'offrir</div>
@@ -576,7 +576,7 @@
             <option value="en">English</option>
           </select>
         </div>
-        <button class="cart" type="button" aria-label="Panier, 0 article">
+        <button class="theme-toggle" id="theme-mode-toggle" type="button" aria-label="Passer en mode clair" title="Passer en mode clair" aria-pressed="false"><svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 15.3A8.5 8.5 0 0 1 8.7 3.8 8.5 8.5 0 1 0 20.2 15.3Z"></path></svg><svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"></path></svg></button>         <button class="cart" type="button" aria-label="Panier, 0 article">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.2 10.2a2 2 0 0 0 2 1.6h8.9a2 2 0 0 0 1.9-1.4L22 8H6"></path><circle cx="10" cy="20" r="1"></circle><circle cx="18" cy="20" r="1"></circle></svg>
           <span>Panier (<span id="cart-count">0</span>)</span>
         </button>
@@ -962,7 +962,7 @@
     const firestoreImagePrefix = "firestore-image:";
     const translations = {
       fr: {
-        language: "Langue", menu: "Ouvrir le menu", closeMenu: "Fermer le menu", cart: "Panier", cartItems: "{count} article(s)", emptyCart: "Votre panier est vide.",
+        language: "Langue", menu: "Ouvrir le menu", closeMenu: "Fermer le menu", cart: "Panier", switchToLightMode: "Passer en mode clair", switchToDarkMode: "Passer en mode sombre", cartItems: "{count} article(s)", emptyCart: "Votre panier est vide.",
         cartStorageError: "Le panier ne peut pas être enregistré dans ce navigateur.",
         invalidQuantity: "Entrez un nombre de pièces supérieur ou égal à 1.",
         unit: "unité", quantity: "Qté", decrease: "Diminuer la quantité de {name}", increase: "Augmenter la quantité de {name}",
@@ -989,7 +989,7 @@
         nav: ["Nouveautés", "Collections", "La maison"], footer: ["Collections", "À propos"], settings: {}
       },
       en: {
-        language: "Language", menu: "Open menu", closeMenu: "Close menu", cart: "Cart", cartItems: "{count} item(s)", emptyCart: "Your cart is empty.",
+        language: "Language", menu: "Open menu", closeMenu: "Close menu", cart: "Cart", switchToLightMode: "Switch to light mode", switchToDarkMode: "Switch to dark mode", cartItems: "{count} item(s)", emptyCart: "Your cart is empty.",
         cartStorageError: "Your cart could not be saved in this browser.",
         invalidQuantity: "Enter a quantity of 1 or more.",
         unit: "unit", quantity: "Qty", decrease: "Decrease quantity of {name}", increase: "Increase quantity of {name}",
@@ -1034,7 +1034,7 @@
         }
       },
       ar: {
-        language: "اللغة", menu: "فتح القائمة", closeMenu: "إغلاق القائمة", cart: "السلة", cartItems: "{count} منتج",
+        language: "اللغة", menu: "فتح القائمة", closeMenu: "إغلاق القائمة", cart: "السلة", switchToLightMode: "التبديل إلى الوضع الفاتح", switchToDarkMode: "التبديل إلى الوضع الداكن", cartItems: "{count} منتج",
         emptyCart: "سلتك فارغة.", cartStorageError: "تعذر حفظ سلتك في هذا المتصفح.",
         invalidQuantity: "أدخل كمية تساوي قطعة واحدة على الأقل.",
         unit: "للوحدة", quantity: "الكمية",
@@ -1109,7 +1109,7 @@
         return "fr";
       }
     })();
-    function translate(key, values = {}) {
+    let currentColorMode = (() => { try { const saved = localStorage.getItem("noirva-color-mode"); return saved === "light" || saved === "dark" ? saved : "dark"; } catch (error) { console.error("Impossible de lire le mode d'affichage enregistré.", error); return "dark"; } })(); function translate(key, values = {}) {
       const template = translations[currentLanguage][key] ?? translations.fr[key] ?? key;
       return Object.entries(values).reduce((text, [name, value]) => text.replaceAll(`{${name}}`, String(value)), template);
     }
@@ -1834,11 +1834,11 @@
       footer: "--footer-text"
     };
 
-    function applyTheme() {
+    const lightTheme = { ink: "#29251f", gold: "#a66b35", paper: "#f7f5f0", white: "#fffefa", muted: "#716c64", line: "#e5dfd5", hero: "#eee9df", story: "#eee9df", category: "#e8e2d8", image: "#ddd5c8", footer: "#29251f" }; function applyTheme() {       const theme = currentColorMode === "light" ? lightTheme : storeData.settings.theme;
       Object.entries(themeProperties).forEach(([key, property]) => {
-        document.documentElement.style.setProperty(property, storeData.settings.theme[key]);
+        document.documentElement.style.setProperty(property, theme[key]);
       });
-      document.body.classList.toggle("no-animations", !storeData.settings.animations);
+      document.documentElement.dataset.colorMode = currentColorMode; document.documentElement.style.colorScheme = currentColorMode; document.documentElement.style.setProperty("--footer-muted", theme.muted); document.querySelector('meta[name="theme-color"]').content = theme.paper; const toggle = document.querySelector("#theme-mode-toggle"); const label = translate(currentColorMode === "dark" ? "switchToLightMode" : "switchToDarkMode"); toggle.setAttribute("aria-label", label); toggle.setAttribute("title", label); toggle.setAttribute("aria-pressed", String(currentColorMode === "light"));       document.body.classList.toggle("no-animations", !storeData.settings.animations);
     }
 
     function renderCategories() {
@@ -3294,7 +3294,7 @@
       }
       renderStorefront();
     });
-    document.querySelector("#admin-google-signin").addEventListener("click", async () => {
+    document.querySelector("#theme-mode-toggle").addEventListener("click", () => { currentColorMode = currentColorMode === "dark" ? "light" : "dark"; try { localStorage.setItem("noirva-color-mode", currentColorMode); } catch (error) { console.error("Impossible d'enregistrer le mode d'affichage choisi.", error); } applyTheme(); });     document.querySelector("#admin-google-signin").addEventListener("click", async () => {
       const status = document.querySelector("#admin-auth-status");
       if (!firebaseAuth) {
         status.textContent = "Firebase n'est pas configuré.";
