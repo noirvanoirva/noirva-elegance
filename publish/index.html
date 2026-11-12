@@ -8,8 +8,37 @@
   <link rel="manifest" href="./site.webmanifest">
   <link rel="icon" href="./noirva-icon.svg" type="image/svg+xml">
   <meta name="theme-color" content="#111110">
-  <meta name="description" content="Noirva Elegance — une sélection raffinée de montres, sacs et accessoires pour chaque occasion.">
-  <title>Noirva Elegance — L'élégance, naturellement</title>
+  <meta name="description" content="Découvrez Noirva Elegance, une boutique en ligne de montres, sacs et accessoires élégants. Explorez la collection et commandez facilement sur WhatsApp.">
+  <link rel="canonical" href="https://noirvanoirva.github.io/noirva-elegance/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Noirva Elegance">
+  <meta property="og:url" content="https://noirvanoirva.github.io/noirva-elegance/">
+  <meta property="og:title" content="Noirva Elegance — Montres, sacs et accessoires élégants">
+  <meta property="og:description" content="Découvrez une sélection élégante de montres, sacs et accessoires. Explorez la collection Noirva Elegance et commandez sur WhatsApp.">
+  <meta property="og:locale" content="fr_FR">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Noirva Elegance — Montres, sacs et accessoires élégants">
+  <meta name="twitter:description" content="Découvrez une sélection élégante de montres, sacs et accessoires. Explorez la collection Noirva Elegance et commandez sur WhatsApp.">
+  <title>Noirva Elegance — Montres, sacs et accessoires élégants</title>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "name": "Noirva Elegance",
+          "url": "https://noirvanoirva.github.io/noirva-elegance/",
+          "logo": "https://noirvanoirva.github.io/noirva-elegance/noirva-icon.svg"
+        },
+        {
+          "@type": "WebSite",
+          "name": "Noirva Elegance",
+          "url": "https://noirvanoirva.github.io/noirva-elegance/",
+          "inLanguage": ["fr", "ar", "en"]
+        }
+      ]
+    }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
@@ -1706,6 +1735,30 @@
     function renderStorefront() {
       document.documentElement.lang = currentLanguage;
       document.documentElement.dir = currentLanguage === "ar" ? "rtl" : "ltr";
+      const seo = {
+        fr: {
+          title: "Noirva Elegance — Montres, sacs et accessoires élégants",
+          description: "Découvrez Noirva Elegance, une boutique en ligne de montres, sacs et accessoires élégants. Explorez la collection et commandez facilement sur WhatsApp.",
+          locale: "fr_FR"
+        },
+        ar: {
+          title: "Noirva Elegance — ساعات وحقائب وإكسسوارات أنيقة",
+          description: "اكتشفوا Noirva Elegance، متجر الساعات والحقائب والإكسسوارات الأنيقة. تصفحوا المجموعة واطلبوا بسهولة عبر واتساب.",
+          locale: "ar"
+        },
+        en: {
+          title: "Noirva Elegance — Elegant Watches, Bags & Accessories",
+          description: "Discover Noirva Elegance, an online boutique for elegant watches, bags, and accessories. Explore the collection and order easily on WhatsApp.",
+          locale: "en_US"
+        }
+      }[currentLanguage];
+      document.title = seo.title;
+      document.querySelector('meta[name="description"]').content = seo.description;
+      document.querySelector('meta[property="og:title"]').content = seo.title;
+      document.querySelector('meta[property="og:description"]').content = seo.description;
+      document.querySelector('meta[property="og:locale"]').content = seo.locale;
+      document.querySelector('meta[name="twitter:title"]').content = seo.title;
+      document.querySelector('meta[name="twitter:description"]').content = seo.description;
       document.querySelector("#language-select").value = currentLanguage;
       document.querySelector("#language-select").setAttribute("aria-label", translate("language"));
       document.querySelector(".language-picker label").textContent = translate("language");
@@ -1777,8 +1830,8 @@
       document.querySelector("#whatsapp-float").setAttribute("aria-label", currentLanguage === "ar" ? "تواصل مع Noirva Elegance عبر واتساب" : currentLanguage === "en" ? "Contact Noirva Elegance on WhatsApp" : "Contacter Noirva Elegance sur WhatsApp");
       document.querySelector("#instagram-float").setAttribute("aria-label", currentLanguage === "ar" ? "تابع Noirva Elegance على إنستغرام" : currentLanguage === "en" ? "Follow Noirva Elegance on Instagram" : "Suivre Noirva Elegance sur Instagram");
       document.querySelector(".copyright").innerHTML = `© <span id="year">${new Date().getFullYear()}</span> Noirva Elegance. ${currentLanguage === "ar" ? "جميع الحقوق محفوظة." : currentLanguage === "en" ? "All rights reserved." : "Tous droits réservés."}`;
-      document.title = `Noirva Elegance — ${localizedSetting("title")}`;
-      document.querySelector('meta[name="description"]').content = localizedSetting("description");
+      document.title = seo.title;
+
       document.querySelector("#product-search").placeholder = `${translate("search")}…`;
       document.querySelector(".product-search .visually-hidden").textContent = translate("search");
       document.querySelector(".product-sort .visually-hidden").textContent = translate("sort");
